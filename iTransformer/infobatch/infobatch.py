@@ -257,7 +257,7 @@ class InfoBatch(Dataset):
             # loss_val = values.detach().clone()
 
 
-        self.cur_batch_index = None  # 重置 checke codes
+        self.cur_batch_index = None  # 重置
         if self.args.pruning_method != 16:
             self.scores[indices] = values  # 直接在 GPU 上更新
         if not only_update_saved_loss_metric:
