@@ -1,0 +1,205 @@
+nohup: ignoring input
+Running with pruning_method=1
+Running with pruning_method=3
+Running with pruning_method=4
+Running with pruning_method=101
+Running with pruning_method=103
+Running with pruning_method=104
+Running with pruning_method=201
+Running with pruning_method=203
+Running with pruning_method=204
+Running with pruning_method=301
+Running with pruning_method=303
+Running with pruning_method=304
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Error while loading conda entry point: conda-content-trust (OpenSSL 3.0's legacy provider failed to load. This is a fatal error by default, but cryptography supports running without legacy algorithms by setting the environment variable CRYPTOGRAPHY_OPENSSL_NO_LEGACY. If you did not expect this error, you have likely made a mistake with your OpenSSL configuration.)
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Traceback (most recent call last):
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 993, in <module>
+    main()
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 713, in main
+    best_params, sorted_metrics, loss_all_epoch = call_pruning_metrics(base_train_dataset, test_loader, config, device=device)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 365, in call_pruning_metrics
+    loss_all_epoch = np.load('/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/miniconda3/envs/regression/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 451, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy'
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Traceback (most recent call last):
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 993, in <module>
+    main()
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 713, in main
+    best_params, sorted_metrics, loss_all_epoch = call_pruning_metrics(base_train_dataset, test_loader, config, device=device)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 365, in call_pruning_metrics
+    loss_all_epoch = np.load('/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/miniconda3/envs/regression/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 451, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy'
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Traceback (most recent call last):
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 993, in <module>
+    main()
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 713, in main
+    best_params, sorted_metrics, loss_all_epoch = call_pruning_metrics(base_train_dataset, test_loader, config, device=device)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/research_project/quality_air/air_data_distribution_train.py", line 365, in call_pruning_metrics
+    loss_all_epoch = np.load('/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/local/zi/miniconda3/envs/regression/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 451, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/zi/research_project/TDDS/Cifar100_loss_np_epoch30.npy'
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+ERROR conda.cli.main_run:execute(125): `conda run python /home/local/zi/research_project/quality_air/air_data_distribution_train.py --pruning_method 104` failed. (See above for error)
+ERROR conda.cli.main_run:execute(125): `conda run python /home/local/zi/research_project/quality_air/air_data_distribution_train.py --pruning_method 101` failed. (See above for error)
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+S2L --- pr:0.0, removed_IDs rate: 0.0
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.1, removed_IDs rate: 0.10008510638297873
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.2, removed_IDs rate: 0.2
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.3, removed_IDs rate: 0.30008510638297875
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.4, removed_IDs rate: 0.4
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.5, removed_IDs rate: 0.5000851063829788
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.6, removed_IDs rate: 0.6
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.7, removed_IDs rate: 0.7000851063829787
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.8, removed_IDs rate: 0.8001702127659575
+S2L --- sorted_sample_ids: 5875, all: 5875
+S2L --- pr:0.9, removed_IDs rate: 0.9000851063829787
+S2L --- sorted_sample_ids: 5875, all: 5875
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+ERROR conda.cli.main_run:execute(125): `conda run python /home/local/zi/research_project/quality_air/air_data_distribution_train.py --pruning_method 103` failed. (See above for error)
+Loading dataset ...
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+S2L --- pr:0.0, removed_IDs rate: 0.0
+S2L --- sorted_sample_ids: 58432, all: 5875
+S2L --- pr:0.1, removed_IDs rate: 0.09276595744680852
+S2L --- sorted_sample_ids: 53133, all: 5875
+S2L --- pr:0.2, removed_IDs rate: 0.19574468085106383
+S2L --- sorted_sample_ids: 47895, all: 5875
+S2L --- pr:0.3, removed_IDs rate: 0.28748936170212763
+S2L --- sorted_sample_ids: 42591, all: 5875
+S2L --- pr:0.4, removed_IDs rate: 0.38791489361702125
+S2L --- sorted_sample_ids: 37338, all: 5875
+S2L --- pr:0.5, removed_IDs rate: 0.4890212765957447
+S2L --- sorted_sample_ids: 32089, all: 5875
+S2L --- pr:0.6, removed_IDs rate: 0.5880851063829787
+S2L --- sorted_sample_ids: 26827, all: 5875
+S2L --- pr:0.7, removed_IDs rate: 0.697531914893617
+S2L --- sorted_sample_ids: 21627, all: 5875
+S2L --- pr:0.8, removed_IDs rate: 0.7945531914893617
+S2L --- sorted_sample_ids: 16354, all: 5875
+S2L --- pr:0.9, removed_IDs rate: 0.892595744680851
+S2L --- sorted_sample_ids: 11087, all: 5875
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}
+Starting hyperparameter optimization...
+set seed for metric calculation: 0
+S2L --- pr:0.0, removed_IDs rate: 0.0
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.1, removed_IDs rate: 0.1000484496124031
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.2, removed_IDs rate: 0.20003633720930233
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.3, removed_IDs rate: 0.30002422480620156
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.4, removed_IDs rate: 0.40001211240310075
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.5, removed_IDs rate: 0.5
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.6, removed_IDs rate: 0.6000484496124031
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.7, removed_IDs rate: 0.7000363372093024
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.8, removed_IDs rate: 0.8000242248062015
+S2L --- sorted_sample_ids: 16512, all: 16512
+S2L --- pr:0.9, removed_IDs rate: 0.9000121124031008
+S2L --- sorted_sample_ids: 16512, all: 16512
+Parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1}

@@ -1,0 +1,7 @@
+- cluster=example-slurm
+- module=4xl40s_ag_1_graphcast_seed3
+- dataloader=era5-w
+- module.seed=3
+- module.accumulate_grad_batches=2
+- module.path_save_base=/mnt/ssd/zi/4xl40s_ag_2_graphcast_seed3
+- max_steps=320000

@@ -1,0 +1,24 @@
+nohup: ignoring input
+We will use these GPUs: 0 1 2 3
+Number of GPUs: 4
+===== Starting All Tasks with Balanced GPU Allocation =====
+Total tasks: 16
+-----------------------------------------------------------
+分配任务: method=4, subset_rate=0.3, seed=42, cost=0.7 -> GPU=0 (负载=.7)
+分配任务: method=4, subset_rate=0.3, seed=43, cost=0.7 -> GPU=1 (负载=.7)
+分配任务: method=5, subset_rate=0.3, seed=42, cost=0.7 -> GPU=2 (负载=.7)
+分配任务: method=5, subset_rate=0.3, seed=43, cost=0.7 -> GPU=3 (负载=.7)
+分配任务: method=4, subset_rate=0.5, seed=42, cost=0.5 -> GPU=0 (负载=1.2)
+分配任务: method=4, subset_rate=0.5, seed=43, cost=0.5 -> GPU=1 (负载=1.2)
+分配任务: method=5, subset_rate=0.5, seed=42, cost=0.5 -> GPU=2 (负载=1.2)
+分配任务: method=5, subset_rate=0.5, seed=43, cost=0.5 -> GPU=3 (负载=1.2)
+分配任务: method=4, subset_rate=0.7, seed=42, cost=0.3 -> GPU=0 (负载=1.5)
+分配任务: method=4, subset_rate=0.7, seed=43, cost=0.3 -> GPU=1 (负载=1.5)
+分配任务: method=5, subset_rate=0.7, seed=42, cost=0.3 -> GPU=2 (负载=1.5)
+分配任务: method=5, subset_rate=0.7, seed=43, cost=0.3 -> GPU=3 (负载=1.5)
+分配任务: method=4, subset_rate=0.9, seed=42, cost=0.1 -> GPU=0 (负载=1.6)
+分配任务: method=4, subset_rate=0.9, seed=43, cost=0.1 -> GPU=1 (负载=1.6)
+分配任务: method=5, subset_rate=0.9, seed=42, cost=0.1 -> GPU=2 (负载=1.6)
+分配任务: method=5, subset_rate=0.9, seed=43, cost=0.1 -> GPU=3 (负载=1.6)
+./ttds_pruning2.sh: line 167: unexpected EOF while looking for matching `"'
+All tasks have been submitted and completed.

@@ -1,0 +1,1512 @@
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/TDDS/wandb/run-20250203_101753-3j8m1k0r
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ranodom_pr0.0_resnet18_cifar100_seed54
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/c-class-iterations-full
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/c-class-iterations-full/runs/3j8m1k0r
+./checkpoint/pruned-dataset
+save path : ./checkpoint/pruned-dataset
+{'data_path': './data', 'dataset': 'cifar100', 'arch': 'resnet18', 'epochs': 200, 'batch_size': 128, 'learning_rate': 0.1, 'momentum': 0.9, 'decay': 0.0005, 'print_freq': 200, 'save_path': './checkpoint/pruned-dataset', 'evaluate': False, 'subset_rate': 0.0, 'mask_path': './checkpoint/generated_mask/data_mask_win10_ep30.npy', 'score_path': './checkpoint/generated_mask/score_win10_ep30.npy', 'ngpu': 1, 'workers': 2, 'manualSeed': 54, 'pruning_methods': -1, 'use_cuda': True}
+Random Seed: 54
+python version : 3.12.8 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:31:09) [GCC 11.2.0]
+torch  version : 2.5.1
+cudnn  version : 90100
+Dataset: cifar100
+Data Path: ./data
+Network: resnet18
+Batchsize: 128
+Learning Rate: 0.1
+Momentum: 0.9
+Weight Decay: 0.0005
+Loading CIFAR100... Files already downloaded and verified
+Files already downloaded and verified
+=> creating model 'resnet18'
+=> network :
+ ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=same, bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=512, out_features=100, bias=True)
+)
+
+==>>[2025-02-03 18:17:55] [Epoch=000/200] [Need: 00:00:00] [learning_rate=0.1000] [Best : Accuracy=0.00, Error=100.00]
+  Epoch: [000][000/128]   Time 0.826 (0.826)   Data 0.000 (0.000)   Loss 4.7349 (4.7349)   Prec@1 0.781 (0.781)   Prec@5 4.688 (4.688)   [2025-02-03 18:17:56]
+  Epoch: [000][200/128]   Time 0.015 (0.019)   Data 0.000 (0.000)   Loss 3.6528 (4.0521)   Prec@1 14.844 (8.244)   Prec@5 39.062 (26.594)   [2025-02-03 18:17:59]
+  **Train** Prec@1 11.980 Prec@5 34.192 Error@1 88.020
+  **Test** Prec@1 18.530 Prec@5 46.460 Error@1 81.470
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:03] [Epoch=001/200] [Need: 00:24:17] [learning_rate=0.1000] [Best : Accuracy=18.53, Error=81.47]
+  Epoch: [001][000/128]   Time 0.132 (0.132)   Data 0.000 (0.000)   Loss 3.1894 (3.1894)   Prec@1 23.438 (23.438)   Prec@5 50.000 (50.000)   [2025-02-03 18:18:03]
+  Epoch: [001][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 3.0289 (3.1148)   Prec@1 22.656 (22.579)   Prec@5 56.250 (52.118)   [2025-02-03 18:18:05]
+  **Train** Prec@1 25.784 Prec@5 56.388 Error@1 74.216
+  **Test** Prec@1 28.030 Prec@5 58.340 Error@1 71.970
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:09] [Epoch=002/200] [Need: 00:21:54] [learning_rate=0.1000] [Best : Accuracy=28.03, Error=71.97]
+  Epoch: [002][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 2.3475 (2.3475)   Prec@1 34.375 (34.375)   Prec@5 71.094 (71.094)   [2025-02-03 18:18:09]
+  Epoch: [002][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 2.5903 (2.4671)   Prec@1 31.250 (35.009)   Prec@5 64.844 (68.015)   [2025-02-03 18:18:12]
+  **Train** Prec@1 36.946 Prec@5 70.012 Error@1 63.054
+  **Test** Prec@1 36.280 Prec@5 69.280 Error@1 63.720
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:15] [Epoch=003/200] [Need: 00:21:20] [learning_rate=0.0999] [Best : Accuracy=36.28, Error=63.72]
+  Epoch: [003][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.9188 (1.9188)   Prec@1 49.219 (49.219)   Prec@5 78.906 (78.906)   [2025-02-03 18:18:15]
+  Epoch: [003][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 2.0969 (2.0641)   Prec@1 43.750 (43.839)   Prec@5 78.125 (76.388)   [2025-02-03 18:18:18]
+  **Train** Prec@1 45.044 Prec@5 77.532 Error@1 54.956
+  **Test** Prec@1 37.700 Prec@5 69.870 Error@1 62.300
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:21] [Epoch=004/200] [Need: 00:20:56] [learning_rate=0.0999] [Best : Accuracy=37.70, Error=62.30]
+  Epoch: [004][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 1.9860 (1.9860)   Prec@1 43.750 (43.750)   Prec@5 80.469 (80.469)   [2025-02-03 18:18:21]
+  Epoch: [004][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.6551 (1.8044)   Prec@1 51.562 (49.907)   Prec@5 83.594 (81.339)   [2025-02-03 18:18:24]
+  **Train** Prec@1 50.414 Prec@5 81.566 Error@1 49.586
+  **Test** Prec@1 49.600 Prec@5 79.710 Error@1 50.400
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:27] [Epoch=005/200] [Need: 00:20:38] [learning_rate=0.0998] [Best : Accuracy=49.60, Error=50.40]
+  Epoch: [005][000/128]   Time 0.164 (0.164)   Data 0.000 (0.000)   Loss 1.5753 (1.5753)   Prec@1 57.812 (57.812)   Prec@5 83.594 (83.594)   [2025-02-03 18:18:27]
+  Epoch: [005][200/128]   Time 0.014 (0.015)   Data 0.000 (0.000)   Loss 1.8821 (1.6438)   Prec@1 48.438 (53.308)   Prec@5 76.562 (84.185)   [2025-02-03 18:18:30]
+  **Train** Prec@1 53.386 Prec@5 83.970 Error@1 46.614
+  **Test** Prec@1 47.510 Prec@5 77.750 Error@1 52.490
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:34] [Epoch=006/200] [Need: 00:20:40] [learning_rate=0.0998] [Best : Accuracy=49.60, Error=50.40]
+  Epoch: [006][000/128]   Time 0.144 (0.144)   Data 0.000 (0.000)   Loss 1.3553 (1.3553)   Prec@1 58.594 (58.594)   Prec@5 92.188 (92.188)   [2025-02-03 18:18:34]
+  Epoch: [006][200/128]   Time 0.012 (0.015)   Data 0.000 (0.000)   Loss 1.5634 (1.5346)   Prec@1 54.688 (56.285)   Prec@5 86.719 (86.178)   [2025-02-03 18:18:37]
+  **Train** Prec@1 56.048 Prec@5 85.892 Error@1 43.952
+  **Test** Prec@1 50.320 Prec@5 81.100 Error@1 49.680
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:40] [Epoch=007/200] [Need: 00:20:31] [learning_rate=0.0997] [Best : Accuracy=50.32, Error=49.68]
+  Epoch: [007][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 1.6192 (1.6192)   Prec@1 53.125 (53.125)   Prec@5 84.375 (84.375)   [2025-02-03 18:18:40]
+  Epoch: [007][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.2902 (1.4533)   Prec@1 64.062 (58.637)   Prec@5 85.156 (87.372)   [2025-02-03 18:18:43]
+  **Train** Prec@1 57.798 Prec@5 86.866 Error@1 42.202
+  **Test** Prec@1 52.910 Prec@5 83.030 Error@1 47.090
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:46] [Epoch=008/200] [Need: 00:20:20] [learning_rate=0.0996] [Best : Accuracy=52.91, Error=47.09]
+  Epoch: [008][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 1.5308 (1.5308)   Prec@1 56.250 (56.250)   Prec@5 84.375 (84.375)   [2025-02-03 18:18:46]
+  Epoch: [008][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 1.3536 (1.3919)   Prec@1 59.375 (59.993)   Prec@5 89.844 (88.270)   [2025-02-03 18:18:49]
+  **Train** Prec@1 59.260 Prec@5 87.708 Error@1 40.740
+  **Test** Prec@1 48.090 Prec@5 79.770 Error@1 51.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:52] [Epoch=009/200] [Need: 00:20:06] [learning_rate=0.0995] [Best : Accuracy=52.91, Error=47.09]
+  Epoch: [009][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 1.1305 (1.1305)   Prec@1 65.625 (65.625)   Prec@5 92.969 (92.969)   [2025-02-03 18:18:52]
+  Epoch: [009][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.3027 (1.3470)   Prec@1 60.156 (61.062)   Prec@5 89.844 (88.942)   [2025-02-03 18:18:55]
+  **Train** Prec@1 60.734 Prec@5 88.490 Error@1 39.266
+  **Test** Prec@1 53.050 Prec@5 82.030 Error@1 46.950
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:18:58] [Epoch=010/200] [Need: 00:19:53] [learning_rate=0.0994] [Best : Accuracy=53.05, Error=46.95]
+  Epoch: [010][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 1.5744 (1.5744)   Prec@1 57.812 (57.812)   Prec@5 88.281 (88.281)   [2025-02-03 18:18:58]
+  Epoch: [010][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 1.5504 (1.2990)   Prec@1 56.250 (62.745)   Prec@5 86.719 (89.494)   [2025-02-03 18:19:01]
+  **Train** Prec@1 61.932 Prec@5 89.148 Error@1 38.068
+  **Test** Prec@1 54.850 Prec@5 83.280 Error@1 45.150
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:04] [Epoch=011/200] [Need: 00:19:42] [learning_rate=0.0993] [Best : Accuracy=54.85, Error=45.15]
+  Epoch: [011][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.1714 (1.1714)   Prec@1 67.969 (67.969)   Prec@5 89.844 (89.844)   [2025-02-03 18:19:04]
+  Epoch: [011][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 1.3137 (1.2512)   Prec@1 57.031 (63.511)   Prec@5 87.500 (90.326)   [2025-02-03 18:19:07]
+  **Train** Prec@1 62.906 Prec@5 89.706 Error@1 37.094
+  **Test** Prec@1 51.770 Prec@5 81.700 Error@1 48.230
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:10] [Epoch=012/200] [Need: 00:19:27] [learning_rate=0.0991] [Best : Accuracy=54.85, Error=45.15]
+  Epoch: [012][000/128]   Time 0.473 (0.473)   Data 0.000 (0.000)   Loss 1.1095 (1.1095)   Prec@1 64.844 (64.844)   Prec@5 92.969 (92.969)   [2025-02-03 18:19:10]
+  Epoch: [012][200/128]   Time 0.011 (0.015)   Data 0.000 (0.000)   Loss 1.2629 (1.2291)   Prec@1 66.406 (64.377)   Prec@5 89.062 (90.446)   [2025-02-03 18:19:13]
+  **Train** Prec@1 63.634 Prec@5 90.024 Error@1 36.366
+  **Test** Prec@1 55.820 Prec@5 84.680 Error@1 44.180
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:16] [Epoch=013/200] [Need: 00:19:25] [learning_rate=0.0990] [Best : Accuracy=55.82, Error=44.18]
+  Epoch: [013][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 1.1141 (1.1141)   Prec@1 60.156 (60.156)   Prec@5 93.750 (93.750)   [2025-02-03 18:19:17]
+  Epoch: [013][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.3794 (1.2116)   Prec@1 66.406 (64.828)   Prec@5 88.281 (90.742)   [2025-02-03 18:19:19]
+  **Train** Prec@1 64.486 Prec@5 90.484 Error@1 35.514
+  **Test** Prec@1 51.970 Prec@5 82.250 Error@1 48.030
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:22] [Epoch=014/200] [Need: 00:19:15] [learning_rate=0.0988] [Best : Accuracy=55.82, Error=44.18]
+  Epoch: [014][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.0665 (1.0665)   Prec@1 67.969 (67.969)   Prec@5 94.531 (94.531)   [2025-02-03 18:19:23]
+  Epoch: [014][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.1201 (1.1794)   Prec@1 71.875 (66.088)   Prec@5 92.969 (91.282)   [2025-02-03 18:19:25]
+  **Train** Prec@1 65.210 Prec@5 90.770 Error@1 34.790
+  **Test** Prec@1 56.870 Prec@5 85.780 Error@1 43.130
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:29] [Epoch=015/200] [Need: 00:19:08] [learning_rate=0.0986] [Best : Accuracy=56.87, Error=43.13]
+  Epoch: [015][000/128]   Time 0.123 (0.123)   Data 0.000 (0.000)   Loss 1.1583 (1.1583)   Prec@1 69.531 (69.531)   Prec@5 92.188 (92.188)   [2025-02-03 18:19:29]
+  Epoch: [015][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.1376 (1.1619)   Prec@1 67.188 (66.091)   Prec@5 89.062 (91.527)   [2025-02-03 18:19:31]
+  **Train** Prec@1 65.562 Prec@5 90.972 Error@1 34.438
+  **Test** Prec@1 55.680 Prec@5 84.060 Error@1 44.320
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:35] [Epoch=016/200] [Need: 00:18:59] [learning_rate=0.0984] [Best : Accuracy=56.87, Error=43.13]
+  Epoch: [016][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 1.3246 (1.3246)   Prec@1 61.719 (61.719)   Prec@5 91.406 (91.406)   [2025-02-03 18:19:35]
+  Epoch: [016][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.1242 (1.1286)   Prec@1 66.406 (67.009)   Prec@5 92.188 (91.791)   [2025-02-03 18:19:37]
+  **Train** Prec@1 65.874 Prec@5 91.310 Error@1 34.126
+  **Test** Prec@1 57.020 Prec@5 84.430 Error@1 42.980
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:41] [Epoch=017/200] [Need: 00:18:51] [learning_rate=0.0982] [Best : Accuracy=57.02, Error=42.98]
+  Epoch: [017][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 1.0464 (1.0464)   Prec@1 70.312 (70.312)   Prec@5 95.312 (95.312)   [2025-02-03 18:19:41]
+  Epoch: [017][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.2844 (1.1064)   Prec@1 57.812 (67.681)   Prec@5 90.625 (92.149)   [2025-02-03 18:19:43]
+  **Train** Prec@1 66.580 Prec@5 91.512 Error@1 33.420
+  **Test** Prec@1 52.510 Prec@5 81.780 Error@1 47.490
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:47] [Epoch=018/200] [Need: 00:18:44] [learning_rate=0.0980] [Best : Accuracy=57.02, Error=42.98]
+  Epoch: [018][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 1.1001 (1.1001)   Prec@1 66.406 (66.406)   Prec@5 95.312 (95.312)   [2025-02-03 18:19:47]
+  Epoch: [018][200/128]   Time 0.014 (0.015)   Data 0.000 (0.000)   Loss 1.3728 (1.0894)   Prec@1 60.938 (67.957)   Prec@5 89.062 (92.463)   [2025-02-03 18:19:50]
+  **Train** Prec@1 67.038 Prec@5 91.868 Error@1 32.962
+  **Test** Prec@1 55.710 Prec@5 83.530 Error@1 44.290
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:53] [Epoch=019/200] [Need: 00:18:42] [learning_rate=0.0978] [Best : Accuracy=57.02, Error=42.98]
+  Epoch: [019][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.1034 (1.1034)   Prec@1 67.969 (67.969)   Prec@5 93.750 (93.750)   [2025-02-03 18:19:53]
+  Epoch: [019][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.2269 (1.0836)   Prec@1 60.938 (68.540)   Prec@5 91.406 (92.565)   [2025-02-03 18:19:56]
+  **Train** Prec@1 67.468 Prec@5 91.958 Error@1 32.532
+  **Test** Prec@1 55.310 Prec@5 84.420 Error@1 44.690
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:19:59] [Epoch=020/200] [Need: 00:18:35] [learning_rate=0.0976] [Best : Accuracy=57.02, Error=42.98]
+  Epoch: [020][000/128]   Time 0.135 (0.135)   Data 0.000 (0.000)   Loss 0.9679 (0.9679)   Prec@1 71.875 (71.875)   Prec@5 96.094 (96.094)   [2025-02-03 18:19:59]
+  Epoch: [020][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0460 (1.0681)   Prec@1 71.094 (68.322)   Prec@5 92.188 (92.895)   [2025-02-03 18:20:02]
+  **Train** Prec@1 67.642 Prec@5 92.352 Error@1 32.358
+  **Test** Prec@1 55.540 Prec@5 83.590 Error@1 44.460
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:05] [Epoch=021/200] [Need: 00:18:27] [learning_rate=0.0973] [Best : Accuracy=57.02, Error=42.98]
+  Epoch: [021][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.1696 (1.1696)   Prec@1 65.625 (65.625)   Prec@5 90.625 (90.625)   [2025-02-03 18:20:06]
+  Epoch: [021][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0968 (1.0537)   Prec@1 62.500 (68.913)   Prec@5 94.531 (92.837)   [2025-02-03 18:20:08]
+  **Train** Prec@1 68.166 Prec@5 92.440 Error@1 31.834
+  **Test** Prec@1 58.090 Prec@5 85.250 Error@1 41.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:12] [Epoch=022/200] [Need: 00:18:21] [learning_rate=0.0970] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [022][000/128]   Time 0.136 (0.136)   Data 0.000 (0.000)   Loss 0.9408 (0.9408)   Prec@1 75.000 (75.000)   Prec@5 93.750 (93.750)   [2025-02-03 18:20:12]
+  Epoch: [022][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 1.0928 (1.0382)   Prec@1 64.844 (69.601)   Prec@5 92.969 (92.965)   [2025-02-03 18:20:14]
+  **Train** Prec@1 68.644 Prec@5 92.588 Error@1 31.356
+  **Test** Prec@1 57.940 Prec@5 85.150 Error@1 42.060
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:18] [Epoch=023/200] [Need: 00:18:14] [learning_rate=0.0968] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [023][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 1.0593 (1.0593)   Prec@1 70.312 (70.312)   Prec@5 92.188 (92.188)   [2025-02-03 18:20:18]
+  Epoch: [023][200/128]   Time 0.013 (0.016)   Data 0.000 (0.000)   Loss 1.2621 (1.0186)   Prec@1 61.719 (70.068)   Prec@5 91.406 (93.221)   [2025-02-03 18:20:21]
+  **Train** Prec@1 68.966 Prec@5 92.684 Error@1 31.034
+  **Test** Prec@1 56.220 Prec@5 85.140 Error@1 43.780
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:24] [Epoch=024/200] [Need: 00:18:11] [learning_rate=0.0965] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [024][000/128]   Time 0.109 (0.109)   Data 0.000 (0.000)   Loss 1.0133 (1.0133)   Prec@1 67.969 (67.969)   Prec@5 95.312 (95.312)   [2025-02-03 18:20:24]
+  Epoch: [024][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 1.1012 (1.0315)   Prec@1 70.312 (69.593)   Prec@5 92.188 (93.101)   [2025-02-03 18:20:27]
+  **Train** Prec@1 69.006 Prec@5 92.778 Error@1 30.994
+  **Test** Prec@1 55.240 Prec@5 83.890 Error@1 44.760
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:30] [Epoch=025/200] [Need: 00:18:03] [learning_rate=0.0962] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [025][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 1.0630 (1.0630)   Prec@1 67.969 (67.969)   Prec@5 92.969 (92.969)   [2025-02-03 18:20:30]
+  Epoch: [025][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0405 (1.0076)   Prec@1 72.656 (70.196)   Prec@5 95.312 (93.493)   [2025-02-03 18:20:33]
+  **Train** Prec@1 69.174 Prec@5 92.936 Error@1 30.826
+  **Test** Prec@1 54.610 Prec@5 82.000 Error@1 45.390
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:36] [Epoch=026/200] [Need: 00:17:57] [learning_rate=0.0959] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [026][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 1.0006 (1.0006)   Prec@1 65.625 (65.625)   Prec@5 94.531 (94.531)   [2025-02-03 18:20:37]
+  Epoch: [026][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0781 (0.9956)   Prec@1 71.094 (70.752)   Prec@5 92.969 (93.560)   [2025-02-03 18:20:39]
+  **Train** Prec@1 69.812 Prec@5 93.076 Error@1 30.188
+  **Test** Prec@1 57.010 Prec@5 86.040 Error@1 42.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:43] [Epoch=027/200] [Need: 00:17:50] [learning_rate=0.0956] [Best : Accuracy=58.09, Error=41.91]
+  Epoch: [027][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.9984 (0.9984)   Prec@1 74.219 (74.219)   Prec@5 92.188 (92.188)   [2025-02-03 18:20:43]
+  Epoch: [027][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.8161 (0.9879)   Prec@1 77.344 (71.035)   Prec@5 94.531 (93.602)   [2025-02-03 18:20:45]
+  **Train** Prec@1 69.776 Prec@5 93.062 Error@1 30.224
+  **Test** Prec@1 58.570 Prec@5 85.640 Error@1 41.430
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:49] [Epoch=028/200] [Need: 00:17:43] [learning_rate=0.0952] [Best : Accuracy=58.57, Error=41.43]
+  Epoch: [028][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.6551 (0.6551)   Prec@1 85.156 (85.156)   Prec@5 97.656 (97.656)   [2025-02-03 18:20:49]
+  Epoch: [028][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 1.1606 (0.9782)   Prec@1 64.062 (71.195)   Prec@5 92.188 (93.633)   [2025-02-03 18:20:51]
+  **Train** Prec@1 69.974 Prec@5 93.194 Error@1 30.026
+  **Test** Prec@1 60.450 Prec@5 88.020 Error@1 39.550
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:20:54] [Epoch=029/200] [Need: 00:17:34] [learning_rate=0.0949] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [029][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.8318 (0.8318)   Prec@1 76.562 (76.562)   Prec@5 93.750 (93.750)   [2025-02-03 18:20:54]
+  Epoch: [029][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.9946 (0.9615)   Prec@1 71.875 (71.824)   Prec@5 92.969 (93.972)   [2025-02-03 18:20:57]
+  **Train** Prec@1 70.402 Prec@5 93.380 Error@1 29.598
+  **Test** Prec@1 59.880 Prec@5 86.530 Error@1 40.120
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:01] [Epoch=030/200] [Need: 00:17:28] [learning_rate=0.0946] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [030][000/128]   Time 0.132 (0.132)   Data 0.000 (0.000)   Loss 0.9562 (0.9562)   Prec@1 70.312 (70.312)   Prec@5 95.312 (95.312)   [2025-02-03 18:21:01]
+  Epoch: [030][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0905 (0.9684)   Prec@1 67.188 (71.346)   Prec@5 92.969 (93.851)   [2025-02-03 18:21:03]
+  **Train** Prec@1 70.396 Prec@5 93.400 Error@1 29.604
+  **Test** Prec@1 59.050 Prec@5 86.750 Error@1 40.950
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:07] [Epoch=031/200] [Need: 00:17:22] [learning_rate=0.0942] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [031][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.9485 (0.9485)   Prec@1 67.969 (67.969)   Prec@5 95.312 (95.312)   [2025-02-03 18:21:07]
+  Epoch: [031][200/128]   Time 0.014 (0.013)   Data 0.000 (0.000)   Loss 1.0225 (0.9623)   Prec@1 69.531 (71.552)   Prec@5 93.750 (94.003)   [2025-02-03 18:21:09]
+  **Train** Prec@1 70.562 Prec@5 93.510 Error@1 29.438
+  **Test** Prec@1 58.630 Prec@5 86.220 Error@1 41.370
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:13] [Epoch=032/200] [Need: 00:17:16] [learning_rate=0.0938] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [032][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 1.0704 (1.0704)   Prec@1 73.438 (73.438)   Prec@5 92.969 (92.969)   [2025-02-03 18:21:13]
+  Epoch: [032][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7782 (0.9427)   Prec@1 77.344 (72.023)   Prec@5 95.312 (94.135)   [2025-02-03 18:21:15]
+  **Train** Prec@1 70.780 Prec@5 93.586 Error@1 29.220
+  **Test** Prec@1 57.420 Prec@5 85.580 Error@1 42.580
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:19] [Epoch=033/200] [Need: 00:17:09] [learning_rate=0.0934] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [033][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.9521 (0.9521)   Prec@1 71.094 (71.094)   Prec@5 92.188 (92.188)   [2025-02-03 18:21:19]
+  Epoch: [033][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.9879 (0.9558)   Prec@1 73.438 (71.692)   Prec@5 95.312 (94.123)   [2025-02-03 18:21:22]
+  **Train** Prec@1 70.742 Prec@5 93.584 Error@1 29.258
+  **Test** Prec@1 58.450 Prec@5 86.040 Error@1 41.550
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:25] [Epoch=034/200] [Need: 00:17:02] [learning_rate=0.0930] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [034][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.9275 (0.9275)   Prec@1 73.438 (73.438)   Prec@5 94.531 (94.531)   [2025-02-03 18:21:25]
+  Epoch: [034][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0783 (0.9252)   Prec@1 68.750 (72.481)   Prec@5 89.844 (94.422)   [2025-02-03 18:21:28]
+  **Train** Prec@1 71.284 Prec@5 93.824 Error@1 28.716
+  **Test** Prec@1 59.650 Prec@5 86.700 Error@1 40.350
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:31] [Epoch=035/200] [Need: 00:16:55] [learning_rate=0.0926] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [035][000/128]   Time 0.142 (0.142)   Data 0.000 (0.000)   Loss 0.9364 (0.9364)   Prec@1 75.000 (75.000)   Prec@5 95.312 (95.312)   [2025-02-03 18:21:31]
+  Epoch: [035][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.9134 (0.9188)   Prec@1 69.531 (72.944)   Prec@5 95.312 (94.419)   [2025-02-03 18:21:34]
+  **Train** Prec@1 71.496 Prec@5 93.948 Error@1 28.504
+  **Test** Prec@1 56.410 Prec@5 83.750 Error@1 43.590
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:37] [Epoch=036/200] [Need: 00:16:49] [learning_rate=0.0922] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [036][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 1.0014 (1.0014)   Prec@1 72.656 (72.656)   Prec@5 93.750 (93.750)   [2025-02-03 18:21:37]
+  Epoch: [036][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7441 (0.9066)   Prec@1 81.250 (72.998)   Prec@5 95.312 (94.574)   [2025-02-03 18:21:40]
+  **Train** Prec@1 71.734 Prec@5 94.062 Error@1 28.266
+  **Test** Prec@1 58.430 Prec@5 86.090 Error@1 41.570
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:43] [Epoch=037/200] [Need: 00:16:43] [learning_rate=0.0918] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [037][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.9138 (0.9138)   Prec@1 71.875 (71.875)   Prec@5 95.312 (95.312)   [2025-02-03 18:21:43]
+  Epoch: [037][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.8240 (0.9103)   Prec@1 73.438 (72.956)   Prec@5 94.531 (94.652)   [2025-02-03 18:21:46]
+  **Train** Prec@1 71.854 Prec@5 94.134 Error@1 28.146
+  **Test** Prec@1 60.400 Prec@5 87.100 Error@1 39.600
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:49] [Epoch=038/200] [Need: 00:16:35] [learning_rate=0.0914] [Best : Accuracy=60.45, Error=39.55]
+  Epoch: [038][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.7954 (0.7954)   Prec@1 78.125 (78.125)   Prec@5 94.531 (94.531)   [2025-02-03 18:21:49]
+  Epoch: [038][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.9877 (0.9104)   Prec@1 71.875 (73.076)   Prec@5 92.969 (94.586)   [2025-02-03 18:21:52]
+  **Train** Prec@1 71.994 Prec@5 94.178 Error@1 28.006
+  **Test** Prec@1 61.340 Prec@5 88.050 Error@1 38.660
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:21:55] [Epoch=039/200] [Need: 00:16:29] [learning_rate=0.0909] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [039][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.7688 (0.7688)   Prec@1 79.688 (79.688)   Prec@5 95.312 (95.312)   [2025-02-03 18:21:55]
+  Epoch: [039][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.9414 (0.8970)   Prec@1 72.656 (73.165)   Prec@5 94.531 (94.846)   [2025-02-03 18:21:58]
+  **Train** Prec@1 72.080 Prec@5 94.238 Error@1 27.920
+  **Test** Prec@1 60.160 Prec@5 85.980 Error@1 39.840
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:01] [Epoch=040/200] [Need: 00:16:22] [learning_rate=0.0905] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [040][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.9635 (0.9635)   Prec@1 74.219 (74.219)   Prec@5 90.625 (90.625)   [2025-02-03 18:22:01]
+  Epoch: [040][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 0.9122 (0.9018)   Prec@1 74.219 (73.239)   Prec@5 93.750 (94.644)   [2025-02-03 18:22:04]
+  **Train** Prec@1 72.500 Prec@5 94.306 Error@1 27.500
+  **Test** Prec@1 57.860 Prec@5 85.940 Error@1 42.140
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:07] [Epoch=041/200] [Need: 00:16:16] [learning_rate=0.0900] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [041][000/128]   Time 0.109 (0.109)   Data 0.000 (0.000)   Loss 1.1183 (1.1183)   Prec@1 71.875 (71.875)   Prec@5 95.312 (95.312)   [2025-02-03 18:22:07]
+  Epoch: [041][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.2759 (0.8836)   Prec@1 64.062 (74.094)   Prec@5 86.719 (94.908)   [2025-02-03 18:22:10]
+  **Train** Prec@1 72.744 Prec@5 94.272 Error@1 27.256
+  **Test** Prec@1 57.480 Prec@5 84.470 Error@1 42.520
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:13] [Epoch=042/200] [Need: 00:16:09] [learning_rate=0.0895] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [042][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.7149 (0.7149)   Prec@1 80.469 (80.469)   Prec@5 98.438 (98.438)   [2025-02-03 18:22:13]
+  Epoch: [042][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 1.0701 (0.8980)   Prec@1 67.969 (73.387)   Prec@5 95.312 (94.900)   [2025-02-03 18:22:16]
+  **Train** Prec@1 72.638 Prec@5 94.470 Error@1 27.362
+  **Test** Prec@1 60.010 Prec@5 86.880 Error@1 39.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:19] [Epoch=043/200] [Need: 00:16:02] [learning_rate=0.0890] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [043][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.6046 (0.6046)   Prec@1 82.812 (82.812)   Prec@5 98.438 (98.438)   [2025-02-03 18:22:19]
+  Epoch: [043][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.8450 (0.8817)   Prec@1 75.000 (73.589)   Prec@5 95.312 (94.967)   [2025-02-03 18:22:22]
+  **Train** Prec@1 72.746 Prec@5 94.520 Error@1 27.254
+  **Test** Prec@1 59.610 Prec@5 85.750 Error@1 40.390
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:25] [Epoch=044/200] [Need: 00:15:56] [learning_rate=0.0885] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [044][000/128]   Time 0.140 (0.140)   Data 0.000 (0.000)   Loss 0.8569 (0.8569)   Prec@1 76.562 (76.562)   Prec@5 95.312 (95.312)   [2025-02-03 18:22:25]
+  Epoch: [044][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.9605 (0.8664)   Prec@1 74.219 (74.277)   Prec@5 96.094 (95.145)   [2025-02-03 18:22:28]
+  **Train** Prec@1 73.014 Prec@5 94.544 Error@1 26.986
+  **Test** Prec@1 58.420 Prec@5 84.830 Error@1 41.580
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:31] [Epoch=045/200] [Need: 00:15:50] [learning_rate=0.0880] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [045][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.8525 (0.8525)   Prec@1 77.344 (77.344)   Prec@5 96.875 (96.875)   [2025-02-03 18:22:32]
+  Epoch: [045][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.9719 (0.8513)   Prec@1 70.312 (74.701)   Prec@5 94.531 (95.223)   [2025-02-03 18:22:34]
+  **Train** Prec@1 73.592 Prec@5 94.652 Error@1 26.408
+  **Test** Prec@1 59.120 Prec@5 85.810 Error@1 40.880
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:37] [Epoch=046/200] [Need: 00:15:43] [learning_rate=0.0875] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [046][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.8842 (0.8842)   Prec@1 71.094 (71.094)   Prec@5 94.531 (94.531)   [2025-02-03 18:22:37]
+  Epoch: [046][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 1.0502 (0.8651)   Prec@1 71.094 (74.192)   Prec@5 91.406 (95.021)   [2025-02-03 18:22:40]
+  **Train** Prec@1 73.370 Prec@5 94.686 Error@1 26.630
+  **Test** Prec@1 57.990 Prec@5 85.840 Error@1 42.010
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:43] [Epoch=047/200] [Need: 00:15:37] [learning_rate=0.0870] [Best : Accuracy=61.34, Error=38.66]
+  Epoch: [047][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.6691 (0.6691)   Prec@1 82.031 (82.031)   Prec@5 96.875 (96.875)   [2025-02-03 18:22:44]
+  Epoch: [047][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 1.0175 (0.8578)   Prec@1 68.750 (74.701)   Prec@5 94.531 (95.219)   [2025-02-03 18:22:46]
+  **Train** Prec@1 73.794 Prec@5 94.844 Error@1 26.206
+  **Test** Prec@1 62.060 Prec@5 87.880 Error@1 37.940
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:50] [Epoch=048/200] [Need: 00:15:30] [learning_rate=0.0864] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [048][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.6589 (0.6589)   Prec@1 76.562 (76.562)   Prec@5 98.438 (98.438)   [2025-02-03 18:22:50]
+  Epoch: [048][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.9141 (0.8448)   Prec@1 75.781 (74.786)   Prec@5 91.406 (95.382)   [2025-02-03 18:22:52]
+  **Train** Prec@1 73.622 Prec@5 94.854 Error@1 26.378
+  **Test** Prec@1 60.360 Prec@5 86.500 Error@1 39.640
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:22:56] [Epoch=049/200] [Need: 00:15:25] [learning_rate=0.0859] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [049][000/128]   Time 0.128 (0.128)   Data 0.000 (0.000)   Loss 0.8711 (0.8711)   Prec@1 76.562 (76.562)   Prec@5 94.531 (94.531)   [2025-02-03 18:22:56]
+  Epoch: [049][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7727 (0.8314)   Prec@1 74.219 (75.054)   Prec@5 94.531 (95.577)   [2025-02-03 18:22:58]
+  **Train** Prec@1 73.940 Prec@5 94.968 Error@1 26.060
+  **Test** Prec@1 61.130 Prec@5 87.510 Error@1 38.870
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:02] [Epoch=050/200] [Need: 00:15:18] [learning_rate=0.0854] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [050][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.8154 (0.8154)   Prec@1 72.656 (72.656)   Prec@5 96.875 (96.875)   [2025-02-03 18:23:02]
+  Epoch: [050][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.9290 (0.8280)   Prec@1 71.094 (75.326)   Prec@5 92.188 (95.565)   [2025-02-03 18:23:04]
+  **Train** Prec@1 74.192 Prec@5 95.082 Error@1 25.808
+  **Test** Prec@1 60.580 Prec@5 86.840 Error@1 39.420
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:08] [Epoch=051/200] [Need: 00:15:12] [learning_rate=0.0848] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [051][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.7976 (0.7976)   Prec@1 75.000 (75.000)   Prec@5 95.312 (95.312)   [2025-02-03 18:23:08]
+  Epoch: [051][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.8293 (0.8165)   Prec@1 76.562 (75.517)   Prec@5 95.312 (95.573)   [2025-02-03 18:23:11]
+  **Train** Prec@1 74.190 Prec@5 95.050 Error@1 25.810
+  **Test** Prec@1 60.390 Prec@5 86.930 Error@1 39.610
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:14] [Epoch=052/200] [Need: 00:15:06] [learning_rate=0.0842] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [052][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.8239 (0.8239)   Prec@1 75.781 (75.781)   Prec@5 96.094 (96.094)   [2025-02-03 18:23:14]
+  Epoch: [052][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 1.0245 (0.8004)   Prec@1 67.969 (76.104)   Prec@5 92.188 (95.655)   [2025-02-03 18:23:17]
+  **Train** Prec@1 74.390 Prec@5 95.038 Error@1 25.610
+  **Test** Prec@1 59.010 Prec@5 85.750 Error@1 40.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:20] [Epoch=053/200] [Need: 00:15:00] [learning_rate=0.0837] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [053][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.6388 (0.6388)   Prec@1 78.906 (78.906)   Prec@5 98.438 (98.438)   [2025-02-03 18:23:20]
+  Epoch: [053][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.9608 (0.8057)   Prec@1 70.312 (75.688)   Prec@5 93.750 (95.670)   [2025-02-03 18:23:23]
+  **Train** Prec@1 74.578 Prec@5 95.288 Error@1 25.422
+  **Test** Prec@1 60.940 Prec@5 86.870 Error@1 39.060
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:26] [Epoch=054/200] [Need: 00:14:55] [learning_rate=0.0831] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [054][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.6791 (0.6791)   Prec@1 82.812 (82.812)   Prec@5 97.656 (97.656)   [2025-02-03 18:23:27]
+  Epoch: [054][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.8787 (0.7946)   Prec@1 73.438 (76.197)   Prec@5 94.531 (95.670)   [2025-02-03 18:23:29]
+  **Train** Prec@1 74.944 Prec@5 95.322 Error@1 25.056
+  **Test** Prec@1 61.260 Prec@5 86.740 Error@1 38.740
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:32] [Epoch=055/200] [Need: 00:14:48] [learning_rate=0.0825] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [055][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.6949 (0.6949)   Prec@1 80.469 (80.469)   Prec@5 93.750 (93.750)   [2025-02-03 18:23:33]
+  Epoch: [055][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6827 (0.7897)   Prec@1 78.906 (76.096)   Prec@5 96.094 (95.911)   [2025-02-03 18:23:35]
+  **Train** Prec@1 74.814 Prec@5 95.340 Error@1 25.186
+  **Test** Prec@1 59.050 Prec@5 86.220 Error@1 40.950
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:38] [Epoch=056/200] [Need: 00:14:42] [learning_rate=0.0819] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [056][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.6177 (0.6177)   Prec@1 84.375 (84.375)   Prec@5 98.438 (98.438)   [2025-02-03 18:23:39]
+  Epoch: [056][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.9443 (0.7923)   Prec@1 70.312 (76.201)   Prec@5 92.969 (95.888)   [2025-02-03 18:23:41]
+  **Train** Prec@1 75.088 Prec@5 95.468 Error@1 24.912
+  **Test** Prec@1 58.580 Prec@5 85.360 Error@1 41.420
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:44] [Epoch=057/200] [Need: 00:14:35] [learning_rate=0.0813] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [057][000/128]   Time 0.108 (0.108)   Data 0.000 (0.000)   Loss 0.7458 (0.7458)   Prec@1 80.469 (80.469)   Prec@5 96.875 (96.875)   [2025-02-03 18:23:44]
+  Epoch: [057][200/128]   Time 0.011 (0.013)   Data 0.000 (0.000)   Loss 1.1417 (0.7711)   Prec@1 66.406 (76.617)   Prec@5 91.406 (96.206)   [2025-02-03 18:23:47]
+  **Train** Prec@1 75.272 Prec@5 95.644 Error@1 24.728
+  **Test** Prec@1 61.980 Prec@5 86.630 Error@1 38.020
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:50] [Epoch=058/200] [Need: 00:14:29] [learning_rate=0.0806] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [058][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.7285 (0.7285)   Prec@1 80.469 (80.469)   Prec@5 96.094 (96.094)   [2025-02-03 18:23:51]
+  Epoch: [058][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.9227 (0.7784)   Prec@1 70.312 (76.446)   Prec@5 94.531 (95.888)   [2025-02-03 18:23:53]
+  **Train** Prec@1 75.342 Prec@5 95.542 Error@1 24.658
+  **Test** Prec@1 60.850 Prec@5 86.850 Error@1 39.150
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:23:57] [Epoch=059/200] [Need: 00:14:23] [learning_rate=0.0800] [Best : Accuracy=62.06, Error=37.94]
+  Epoch: [059][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.7293 (0.7293)   Prec@1 75.781 (75.781)   Prec@5 96.094 (96.094)   [2025-02-03 18:23:57]
+  Epoch: [059][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7522 (0.7609)   Prec@1 77.344 (77.111)   Prec@5 97.656 (96.160)   [2025-02-03 18:23:59]
+  **Train** Prec@1 75.542 Prec@5 95.566 Error@1 24.458
+  **Test** Prec@1 64.180 Prec@5 89.060 Error@1 35.820
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:03] [Epoch=060/200] [Need: 00:14:17] [learning_rate=0.0794] [Best : Accuracy=64.18, Error=35.82]
+  Epoch: [060][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.6630 (0.6630)   Prec@1 77.344 (77.344)   Prec@5 97.656 (97.656)   [2025-02-03 18:24:03]
+  Epoch: [060][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.7740 (0.7655)   Prec@1 78.906 (76.916)   Prec@5 95.312 (96.133)   [2025-02-03 18:24:05]
+  **Train** Prec@1 75.600 Prec@5 95.650 Error@1 24.400
+  **Test** Prec@1 59.140 Prec@5 86.780 Error@1 40.860
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:09] [Epoch=061/200] [Need: 00:14:10] [learning_rate=0.0788] [Best : Accuracy=64.18, Error=35.82]
+  Epoch: [061][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.7304 (0.7304)   Prec@1 77.344 (77.344)   Prec@5 96.094 (96.094)   [2025-02-03 18:24:09]
+  Epoch: [061][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.6356 (0.7501)   Prec@1 84.375 (77.153)   Prec@5 97.656 (96.319)   [2025-02-03 18:24:11]
+  **Train** Prec@1 75.736 Prec@5 95.738 Error@1 24.264
+  **Test** Prec@1 59.190 Prec@5 85.710 Error@1 40.810
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:15] [Epoch=062/200] [Need: 00:14:04] [learning_rate=0.0781] [Best : Accuracy=64.18, Error=35.82]
+  Epoch: [062][000/128]   Time 0.126 (0.126)   Data 0.000 (0.000)   Loss 0.7408 (0.7408)   Prec@1 79.688 (79.688)   Prec@5 97.656 (97.656)   [2025-02-03 18:24:15]
+  Epoch: [062][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.8302 (0.7532)   Prec@1 77.344 (77.072)   Prec@5 96.094 (96.331)   [2025-02-03 18:24:18]
+  **Train** Prec@1 75.938 Prec@5 95.862 Error@1 24.062
+  **Test** Prec@1 62.150 Prec@5 88.100 Error@1 37.850
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:21] [Epoch=063/200] [Need: 00:13:58] [learning_rate=0.0775] [Best : Accuracy=64.18, Error=35.82]
+  Epoch: [063][000/128]   Time 0.132 (0.132)   Data 0.000 (0.000)   Loss 0.7649 (0.7649)   Prec@1 78.125 (78.125)   Prec@5 97.656 (97.656)   [2025-02-03 18:24:21]
+  Epoch: [063][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7848 (0.7348)   Prec@1 75.000 (77.771)   Prec@5 94.531 (96.506)   [2025-02-03 18:24:24]
+  **Train** Prec@1 76.414 Prec@5 95.956 Error@1 23.586
+  **Test** Prec@1 60.010 Prec@5 86.740 Error@1 39.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:27] [Epoch=064/200] [Need: 00:13:52] [learning_rate=0.0768] [Best : Accuracy=64.18, Error=35.82]
+  Epoch: [064][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.9066 (0.9066)   Prec@1 72.656 (72.656)   Prec@5 96.094 (96.094)   [2025-02-03 18:24:27]
+  Epoch: [064][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7789 (0.7387)   Prec@1 78.125 (77.966)   Prec@5 96.094 (96.319)   [2025-02-03 18:24:30]
+  **Train** Prec@1 76.730 Prec@5 95.952 Error@1 23.270
+  **Test** Prec@1 65.200 Prec@5 89.830 Error@1 34.800
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:33] [Epoch=065/200] [Need: 00:13:46] [learning_rate=0.0761] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [065][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.6056 (0.6056)   Prec@1 79.688 (79.688)   Prec@5 98.438 (98.438)   [2025-02-03 18:24:33]
+  Epoch: [065][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.7693 (0.7086)   Prec@1 78.125 (78.681)   Prec@5 93.750 (96.801)   [2025-02-03 18:24:36]
+  **Train** Prec@1 77.162 Prec@5 96.196 Error@1 22.838
+  **Test** Prec@1 62.540 Prec@5 88.040 Error@1 37.460
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:39] [Epoch=066/200] [Need: 00:13:40] [learning_rate=0.0755] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [066][000/128]   Time 0.126 (0.126)   Data 0.000 (0.000)   Loss 0.9656 (0.9656)   Prec@1 70.312 (70.312)   Prec@5 97.656 (97.656)   [2025-02-03 18:24:40]
+  Epoch: [066][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7374 (0.7250)   Prec@1 75.000 (78.183)   Prec@5 97.656 (96.657)   [2025-02-03 18:24:42]
+  **Train** Prec@1 76.922 Prec@5 96.188 Error@1 23.078
+  **Test** Prec@1 60.670 Prec@5 87.250 Error@1 39.330
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:45] [Epoch=067/200] [Need: 00:13:34] [learning_rate=0.0748] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [067][000/128]   Time 0.113 (0.113)   Data 0.000 (0.000)   Loss 0.7030 (0.7030)   Prec@1 81.250 (81.250)   Prec@5 95.312 (95.312)   [2025-02-03 18:24:46]
+  Epoch: [067][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6908 (0.7138)   Prec@1 77.344 (78.284)   Prec@5 97.656 (96.560)   [2025-02-03 18:24:48]
+  **Train** Prec@1 77.132 Prec@5 96.138 Error@1 22.868
+  **Test** Prec@1 63.400 Prec@5 88.390 Error@1 36.600
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:52] [Epoch=068/200] [Need: 00:13:27] [learning_rate=0.0741] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [068][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.7489 (0.7489)   Prec@1 78.125 (78.125)   Prec@5 96.094 (96.094)   [2025-02-03 18:24:52]
+  Epoch: [068][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6516 (0.7032)   Prec@1 83.594 (78.941)   Prec@5 96.875 (96.692)   [2025-02-03 18:24:54]
+  **Train** Prec@1 77.332 Prec@5 96.252 Error@1 22.668
+  **Test** Prec@1 62.480 Prec@5 87.940 Error@1 37.520
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:24:58] [Epoch=069/200] [Need: 00:13:21] [learning_rate=0.0734] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [069][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.7067 (0.7067)   Prec@1 78.906 (78.906)   Prec@5 97.656 (97.656)   [2025-02-03 18:24:58]
+  Epoch: [069][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6792 (0.6985)   Prec@1 76.562 (78.727)   Prec@5 99.219 (96.824)   [2025-02-03 18:25:01]
+  **Train** Prec@1 77.624 Prec@5 96.490 Error@1 22.376
+  **Test** Prec@1 58.280 Prec@5 84.720 Error@1 41.720
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:04] [Epoch=070/200] [Need: 00:13:15] [learning_rate=0.0727] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [070][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.5845 (0.5845)   Prec@1 83.594 (83.594)   Prec@5 96.875 (96.875)   [2025-02-03 18:25:04]
+  Epoch: [070][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.7102 (0.6846)   Prec@1 82.031 (79.361)   Prec@5 94.531 (97.019)   [2025-02-03 18:25:07]
+  **Train** Prec@1 77.806 Prec@5 96.462 Error@1 22.194
+  **Test** Prec@1 61.740 Prec@5 87.850 Error@1 38.260
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:10] [Epoch=071/200] [Need: 00:13:09] [learning_rate=0.0720] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [071][000/128]   Time 0.135 (0.135)   Data 0.000 (0.000)   Loss 0.5634 (0.5634)   Prec@1 81.250 (81.250)   Prec@5 98.438 (98.438)   [2025-02-03 18:25:10]
+  Epoch: [071][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.6337 (0.6798)   Prec@1 77.344 (79.256)   Prec@5 97.656 (96.957)   [2025-02-03 18:25:13]
+  **Train** Prec@1 78.024 Prec@5 96.400 Error@1 21.976
+  **Test** Prec@1 62.160 Prec@5 87.600 Error@1 37.840
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:16] [Epoch=072/200] [Need: 00:13:03] [learning_rate=0.0713] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [072][000/128]   Time 0.110 (0.110)   Data 0.000 (0.000)   Loss 0.7272 (0.7272)   Prec@1 76.562 (76.562)   Prec@5 94.531 (94.531)   [2025-02-03 18:25:16]
+  Epoch: [072][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.8021 (0.6791)   Prec@1 75.000 (79.221)   Prec@5 97.656 (97.058)   [2025-02-03 18:25:19]
+  **Train** Prec@1 77.914 Prec@5 96.470 Error@1 22.086
+  **Test** Prec@1 63.700 Prec@5 89.040 Error@1 36.300
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:22] [Epoch=073/200] [Need: 00:12:56] [learning_rate=0.0706] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [073][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.6894 (0.6894)   Prec@1 82.031 (82.031)   Prec@5 99.219 (99.219)   [2025-02-03 18:25:22]
+  Epoch: [073][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7435 (0.6650)   Prec@1 75.781 (79.649)   Prec@5 96.875 (97.081)   [2025-02-03 18:25:25]
+  **Train** Prec@1 78.316 Prec@5 96.654 Error@1 21.684
+  **Test** Prec@1 62.040 Prec@5 87.750 Error@1 37.960
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:28] [Epoch=074/200] [Need: 00:12:50] [learning_rate=0.0699] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [074][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 1.0433 (1.0433)   Prec@1 67.188 (67.188)   Prec@5 89.844 (89.844)   [2025-02-03 18:25:28]
+  Epoch: [074][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6954 (0.6506)   Prec@1 80.469 (80.321)   Prec@5 96.875 (97.264)   [2025-02-03 18:25:31]
+  **Train** Prec@1 78.798 Prec@5 96.756 Error@1 21.202
+  **Test** Prec@1 61.410 Prec@5 86.480 Error@1 38.590
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:34] [Epoch=075/200] [Need: 00:12:44] [learning_rate=0.0691] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [075][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.6128 (0.6128)   Prec@1 79.688 (79.688)   Prec@5 97.656 (97.656)   [2025-02-03 18:25:34]
+  Epoch: [075][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.5029 (0.6508)   Prec@1 85.156 (80.177)   Prec@5 98.438 (97.287)   [2025-02-03 18:25:37]
+  **Train** Prec@1 79.028 Prec@5 96.866 Error@1 20.972
+  **Test** Prec@1 59.390 Prec@5 85.140 Error@1 40.610
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:40] [Epoch=076/200] [Need: 00:12:38] [learning_rate=0.0684] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [076][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.6475 (0.6475)   Prec@1 81.250 (81.250)   Prec@5 96.875 (96.875)   [2025-02-03 18:25:40]
+  Epoch: [076][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.8366 (0.6466)   Prec@1 72.656 (80.768)   Prec@5 96.875 (97.248)   [2025-02-03 18:25:43]
+  **Train** Prec@1 79.146 Prec@5 96.846 Error@1 20.854
+  **Test** Prec@1 63.770 Prec@5 89.350 Error@1 36.230
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:47] [Epoch=077/200] [Need: 00:12:32] [learning_rate=0.0677] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [077][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.6168 (0.6168)   Prec@1 82.812 (82.812)   Prec@5 96.094 (96.094)   [2025-02-03 18:25:47]
+  Epoch: [077][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.7160 (0.6581)   Prec@1 74.219 (80.022)   Prec@5 96.094 (97.415)   [2025-02-03 18:25:49]
+  **Train** Prec@1 79.138 Prec@5 96.980 Error@1 20.862
+  **Test** Prec@1 62.390 Prec@5 87.860 Error@1 37.610
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:52] [Epoch=078/200] [Need: 00:12:26] [learning_rate=0.0669] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [078][000/128]   Time 0.133 (0.133)   Data 0.000 (0.000)   Loss 0.6183 (0.6183)   Prec@1 82.812 (82.812)   Prec@5 96.094 (96.094)   [2025-02-03 18:25:53]
+  Epoch: [078][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4752 (0.6208)   Prec@1 83.594 (81.192)   Prec@5 99.219 (97.466)   [2025-02-03 18:25:55]
+  **Train** Prec@1 79.436 Prec@5 96.990 Error@1 20.564
+  **Test** Prec@1 61.010 Prec@5 86.820 Error@1 38.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:25:59] [Epoch=079/200] [Need: 00:12:20] [learning_rate=0.0662] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [079][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.5740 (0.5740)   Prec@1 84.375 (84.375)   Prec@5 96.875 (96.875)   [2025-02-03 18:25:59]
+  Epoch: [079][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7344 (0.6310)   Prec@1 78.125 (81.343)   Prec@5 96.094 (97.334)   [2025-02-03 18:26:01]
+  **Train** Prec@1 79.984 Prec@5 97.000 Error@1 20.016
+  **Test** Prec@1 62.770 Prec@5 87.500 Error@1 37.230
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:05] [Epoch=080/200] [Need: 00:12:14] [learning_rate=0.0655] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [080][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.8942 (0.8942)   Prec@1 70.312 (70.312)   Prec@5 95.312 (95.312)   [2025-02-03 18:26:05]
+  Epoch: [080][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.7245 (0.6123)   Prec@1 78.906 (81.600)   Prec@5 96.875 (97.450)   [2025-02-03 18:26:08]
+  **Train** Prec@1 79.862 Prec@5 97.110 Error@1 20.138
+  **Test** Prec@1 63.860 Prec@5 88.140 Error@1 36.140
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:11] [Epoch=081/200] [Need: 00:12:08] [learning_rate=0.0647] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [081][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.3844 (0.3844)   Prec@1 91.406 (91.406)   Prec@5 99.219 (99.219)   [2025-02-03 18:26:11]
+  Epoch: [081][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6841 (0.6081)   Prec@1 82.031 (81.440)   Prec@5 97.656 (97.629)   [2025-02-03 18:26:14]
+  **Train** Prec@1 80.212 Prec@5 97.260 Error@1 19.788
+  **Test** Prec@1 63.120 Prec@5 88.920 Error@1 36.880
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:17] [Epoch=082/200] [Need: 00:12:02] [learning_rate=0.0639] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [082][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.5478 (0.5478)   Prec@1 79.688 (79.688)   Prec@5 99.219 (99.219)   [2025-02-03 18:26:17]
+  Epoch: [082][200/128]   Time 0.011 (0.014)   Data 0.000 (0.000)   Loss 0.5253 (0.6027)   Prec@1 81.250 (81.328)   Prec@5 99.219 (97.839)   [2025-02-03 18:26:20]
+  **Train** Prec@1 80.080 Prec@5 97.296 Error@1 19.920
+  **Test** Prec@1 64.910 Prec@5 89.250 Error@1 35.090
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:23] [Epoch=083/200] [Need: 00:11:55] [learning_rate=0.0632] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [083][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.5113 (0.5113)   Prec@1 83.594 (83.594)   Prec@5 98.438 (98.438)   [2025-02-03 18:26:23]
+  Epoch: [083][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7917 (0.5844)   Prec@1 75.000 (82.245)   Prec@5 94.531 (97.866)   [2025-02-03 18:26:26]
+  **Train** Prec@1 80.804 Prec@5 97.428 Error@1 19.196
+  **Test** Prec@1 62.910 Prec@5 88.390 Error@1 37.090
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:29] [Epoch=084/200] [Need: 00:11:49] [learning_rate=0.0624] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [084][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.4947 (0.4947)   Prec@1 88.281 (88.281)   Prec@5 97.656 (97.656)   [2025-02-03 18:26:29]
+  Epoch: [084][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6668 (0.5890)   Prec@1 78.906 (81.849)   Prec@5 98.438 (97.800)   [2025-02-03 18:26:32]
+  **Train** Prec@1 80.398 Prec@5 97.426 Error@1 19.602
+  **Test** Prec@1 63.680 Prec@5 88.410 Error@1 36.320
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:35] [Epoch=085/200] [Need: 00:11:43] [learning_rate=0.0617] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [085][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.5720 (0.5720)   Prec@1 85.156 (85.156)   Prec@5 96.875 (96.875)   [2025-02-03 18:26:35]
+  Epoch: [085][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.7021 (0.5801)   Prec@1 74.219 (82.218)   Prec@5 97.656 (97.917)   [2025-02-03 18:26:38]
+  **Train** Prec@1 81.020 Prec@5 97.512 Error@1 18.980
+  **Test** Prec@1 62.500 Prec@5 88.430 Error@1 37.500
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:42] [Epoch=086/200] [Need: 00:11:37] [learning_rate=0.0609] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [086][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.4922 (0.4922)   Prec@1 86.719 (86.719)   Prec@5 97.656 (97.656)   [2025-02-03 18:26:42]
+  Epoch: [086][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.8598 (0.5516)   Prec@1 74.219 (83.104)   Prec@5 94.531 (98.150)   [2025-02-03 18:26:44]
+  **Train** Prec@1 81.650 Prec@5 97.732 Error@1 18.350
+  **Test** Prec@1 63.820 Prec@5 88.400 Error@1 36.180
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:48] [Epoch=087/200] [Need: 00:11:31] [learning_rate=0.0601] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [087][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.5659 (0.5659)   Prec@1 83.594 (83.594)   Prec@5 98.438 (98.438)   [2025-02-03 18:26:48]
+  Epoch: [087][200/128]   Time 0.013 (0.016)   Data 0.000 (0.000)   Loss 0.5060 (0.5624)   Prec@1 82.812 (82.770)   Prec@5 98.438 (98.111)   [2025-02-03 18:26:51]
+  **Train** Prec@1 81.344 Prec@5 97.656 Error@1 18.656
+  **Test** Prec@1 62.550 Prec@5 87.710 Error@1 37.450
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:26:54] [Epoch=088/200] [Need: 00:11:25] [learning_rate=0.0594] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [088][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.4996 (0.4996)   Prec@1 88.281 (88.281)   Prec@5 96.875 (96.875)   [2025-02-03 18:26:54]
+  Epoch: [088][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6569 (0.5573)   Prec@1 81.250 (82.929)   Prec@5 98.438 (97.987)   [2025-02-03 18:26:57]
+  **Train** Prec@1 81.552 Prec@5 97.596 Error@1 18.448
+  **Test** Prec@1 60.600 Prec@5 85.540 Error@1 39.400
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:00] [Epoch=089/200] [Need: 00:11:19] [learning_rate=0.0586] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [089][000/128]   Time 0.133 (0.133)   Data 0.000 (0.000)   Loss 0.7204 (0.7204)   Prec@1 75.781 (75.781)   Prec@5 96.094 (96.094)   [2025-02-03 18:27:00]
+  Epoch: [089][200/128]   Time 0.056 (0.015)   Data 0.000 (0.000)   Loss 0.6253 (0.5415)   Prec@1 80.469 (83.201)   Prec@5 98.438 (98.142)   [2025-02-03 18:27:03]
+  **Train** Prec@1 81.750 Prec@5 97.796 Error@1 18.250
+  **Test** Prec@1 61.980 Prec@5 87.410 Error@1 38.020
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:06] [Epoch=090/200] [Need: 00:11:13] [learning_rate=0.0578] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [090][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.4165 (0.4165)   Prec@1 88.281 (88.281)   Prec@5 98.438 (98.438)   [2025-02-03 18:27:07]
+  Epoch: [090][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6787 (0.5294)   Prec@1 82.031 (83.640)   Prec@5 96.875 (98.313)   [2025-02-03 18:27:09]
+  **Train** Prec@1 82.240 Prec@5 97.992 Error@1 17.760
+  **Test** Prec@1 62.870 Prec@5 88.010 Error@1 37.130
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:13] [Epoch=091/200] [Need: 00:11:07] [learning_rate=0.0570] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [091][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.5519 (0.5519)   Prec@1 81.250 (81.250)   Prec@5 97.656 (97.656)   [2025-02-03 18:27:13]
+  Epoch: [091][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.5359 (0.5199)   Prec@1 85.156 (83.990)   Prec@5 97.656 (98.360)   [2025-02-03 18:27:15]
+  **Train** Prec@1 82.542 Prec@5 98.002 Error@1 17.458
+  **Test** Prec@1 64.430 Prec@5 88.460 Error@1 35.570
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:18] [Epoch=092/200] [Need: 00:11:00] [learning_rate=0.0563] [Best : Accuracy=65.20, Error=34.80]
+  Epoch: [092][000/128]   Time 0.139 (0.139)   Data 0.000 (0.000)   Loss 0.4030 (0.4030)   Prec@1 87.500 (87.500)   Prec@5 97.656 (97.656)   [2025-02-03 18:27:19]
+  Epoch: [092][200/128]   Time 0.015 (0.014)   Data 0.000 (0.000)   Loss 0.5600 (0.5075)   Prec@1 82.031 (84.453)   Prec@5 100.000 (98.453)   [2025-02-03 18:27:21]
+  **Train** Prec@1 82.912 Prec@5 98.066 Error@1 17.088
+  **Test** Prec@1 65.880 Prec@5 89.330 Error@1 34.120
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:24] [Epoch=093/200] [Need: 00:10:54] [learning_rate=0.0555] [Best : Accuracy=65.88, Error=34.12]
+  Epoch: [093][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.3680 (0.3680)   Prec@1 88.281 (88.281)   Prec@5 99.219 (99.219)   [2025-02-03 18:27:25]
+  Epoch: [093][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.6920 (0.5052)   Prec@1 78.906 (84.200)   Prec@5 98.438 (98.480)   [2025-02-03 18:27:27]
+  **Train** Prec@1 82.576 Prec@5 98.042 Error@1 17.424
+  **Test** Prec@1 64.880 Prec@5 88.740 Error@1 35.120
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:31] [Epoch=094/200] [Need: 00:10:48] [learning_rate=0.0547] [Best : Accuracy=65.88, Error=34.12]
+  Epoch: [094][000/128]   Time 0.139 (0.139)   Data 0.000 (0.000)   Loss 0.5420 (0.5420)   Prec@1 82.031 (82.031)   Prec@5 98.438 (98.438)   [2025-02-03 18:27:31]
+  Epoch: [094][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.5138 (0.4949)   Prec@1 87.500 (84.717)   Prec@5 98.438 (98.457)   [2025-02-03 18:27:33]
+  **Train** Prec@1 83.662 Prec@5 98.256 Error@1 16.338
+  **Test** Prec@1 63.670 Prec@5 88.330 Error@1 36.330
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:37] [Epoch=095/200] [Need: 00:10:42] [learning_rate=0.0539] [Best : Accuracy=65.88, Error=34.12]
+  Epoch: [095][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.5736 (0.5736)   Prec@1 78.906 (78.906)   Prec@5 96.875 (96.875)   [2025-02-03 18:27:37]
+  Epoch: [095][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4263 (0.5008)   Prec@1 85.938 (84.449)   Prec@5 99.219 (98.515)   [2025-02-03 18:27:39]
+  **Train** Prec@1 83.500 Prec@5 98.320 Error@1 16.500
+  **Test** Prec@1 63.930 Prec@5 88.110 Error@1 36.070
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:43] [Epoch=096/200] [Need: 00:10:36] [learning_rate=0.0531] [Best : Accuracy=65.88, Error=34.12]
+  Epoch: [096][000/128]   Time 0.107 (0.107)   Data 0.000 (0.000)   Loss 0.5147 (0.5147)   Prec@1 85.938 (85.938)   Prec@5 96.875 (96.875)   [2025-02-03 18:27:43]
+  Epoch: [096][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.6554 (0.4962)   Prec@1 80.469 (84.752)   Prec@5 96.094 (98.562)   [2025-02-03 18:27:45]
+  **Train** Prec@1 83.572 Prec@5 98.270 Error@1 16.428
+  **Test** Prec@1 65.980 Prec@5 89.280 Error@1 34.020
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:49] [Epoch=097/200] [Need: 00:10:29] [learning_rate=0.0524] [Best : Accuracy=65.98, Error=34.02]
+  Epoch: [097][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.4849 (0.4849)   Prec@1 85.938 (85.938)   Prec@5 98.438 (98.438)   [2025-02-03 18:27:49]
+  Epoch: [097][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.7480 (0.4715)   Prec@1 79.688 (85.646)   Prec@5 95.312 (98.721)   [2025-02-03 18:27:51]
+  **Train** Prec@1 84.214 Prec@5 98.422 Error@1 15.786
+  **Test** Prec@1 64.180 Prec@5 88.760 Error@1 35.820
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:27:55] [Epoch=098/200] [Need: 00:10:23] [learning_rate=0.0516] [Best : Accuracy=65.98, Error=34.02]
+  Epoch: [098][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.5974 (0.5974)   Prec@1 82.031 (82.031)   Prec@5 96.875 (96.875)   [2025-02-03 18:27:55]
+  Epoch: [098][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4573 (0.4768)   Prec@1 86.719 (85.191)   Prec@5 96.094 (98.678)   [2025-02-03 18:27:57]
+  **Train** Prec@1 84.118 Prec@5 98.444 Error@1 15.882
+  **Test** Prec@1 65.040 Prec@5 89.170 Error@1 34.960
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:01] [Epoch=099/200] [Need: 00:10:17] [learning_rate=0.0508] [Best : Accuracy=65.98, Error=34.02]
+  Epoch: [099][000/128]   Time 0.109 (0.109)   Data 0.000 (0.000)   Loss 0.4888 (0.4888)   Prec@1 81.250 (81.250)   Prec@5 98.438 (98.438)   [2025-02-03 18:28:01]
+  Epoch: [099][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.5049 (0.4550)   Prec@1 86.719 (85.949)   Prec@5 97.656 (98.756)   [2025-02-03 18:28:03]
+  **Train** Prec@1 84.762 Prec@5 98.508 Error@1 15.238
+  **Test** Prec@1 66.940 Prec@5 89.670 Error@1 33.060
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:07] [Epoch=100/200] [Need: 00:10:11] [learning_rate=0.0500] [Best : Accuracy=66.94, Error=33.06]
+  Epoch: [100][000/128]   Time 0.110 (0.110)   Data 0.000 (0.000)   Loss 0.4981 (0.4981)   Prec@1 82.812 (82.812)   Prec@5 98.438 (98.438)   [2025-02-03 18:28:07]
+  Epoch: [100][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.6514 (0.4415)   Prec@1 79.688 (86.283)   Prec@5 96.875 (98.904)   [2025-02-03 18:28:10]
+  **Train** Prec@1 85.102 Prec@5 98.600 Error@1 14.898
+  **Test** Prec@1 65.000 Prec@5 88.810 Error@1 35.000
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:13] [Epoch=101/200] [Need: 00:10:05] [learning_rate=0.0492] [Best : Accuracy=66.94, Error=33.06]
+  Epoch: [101][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.3478 (0.3478)   Prec@1 92.188 (92.188)   Prec@5 98.438 (98.438)   [2025-02-03 18:28:13]
+  Epoch: [101][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.4639 (0.4238)   Prec@1 85.156 (86.936)   Prec@5 100.000 (98.869)   [2025-02-03 18:28:15]
+  **Train** Prec@1 85.216 Prec@5 98.588 Error@1 14.784
+  **Test** Prec@1 64.930 Prec@5 88.900 Error@1 35.070
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:19] [Epoch=102/200] [Need: 00:09:58] [learning_rate=0.0484] [Best : Accuracy=66.94, Error=33.06]
+  Epoch: [102][000/128]   Time 0.110 (0.110)   Data 0.000 (0.000)   Loss 0.3118 (0.3118)   Prec@1 91.406 (91.406)   Prec@5 100.000 (100.000)   [2025-02-03 18:28:19]
+  Epoch: [102][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.5912 (0.4379)   Prec@1 82.812 (86.416)   Prec@5 99.219 (98.923)   [2025-02-03 18:28:22]
+  **Train** Prec@1 85.158 Prec@5 98.754 Error@1 14.842
+  **Test** Prec@1 63.380 Prec@5 88.480 Error@1 36.620
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:25] [Epoch=103/200] [Need: 00:09:52] [learning_rate=0.0476] [Best : Accuracy=66.94, Error=33.06]
+  Epoch: [103][000/128]   Time 0.140 (0.140)   Data 0.000 (0.000)   Loss 0.4739 (0.4739)   Prec@1 89.844 (89.844)   Prec@5 97.656 (97.656)   [2025-02-03 18:28:25]
+  Epoch: [103][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.2799 (0.4221)   Prec@1 89.062 (87.061)   Prec@5 100.000 (98.954)   [2025-02-03 18:28:28]
+  **Train** Prec@1 85.864 Prec@5 98.718 Error@1 14.136
+  **Test** Prec@1 65.590 Prec@5 88.760 Error@1 34.410
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:31] [Epoch=104/200] [Need: 00:09:46] [learning_rate=0.0469] [Best : Accuracy=66.94, Error=33.06]
+  Epoch: [104][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.4396 (0.4396)   Prec@1 83.594 (83.594)   Prec@5 98.438 (98.438)   [2025-02-03 18:28:31]
+  Epoch: [104][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4018 (0.4142)   Prec@1 89.062 (87.069)   Prec@5 99.219 (99.021)   [2025-02-03 18:28:34]
+  **Train** Prec@1 86.116 Prec@5 98.868 Error@1 13.884
+  **Test** Prec@1 67.090 Prec@5 89.630 Error@1 32.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:37] [Epoch=105/200] [Need: 00:09:40] [learning_rate=0.0461] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [105][000/128]   Time 0.136 (0.136)   Data 0.000 (0.000)   Loss 0.3358 (0.3358)   Prec@1 89.062 (89.062)   Prec@5 100.000 (100.000)   [2025-02-03 18:28:37]
+  Epoch: [105][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.4197 (0.3970)   Prec@1 85.938 (87.702)   Prec@5 100.000 (99.180)   [2025-02-03 18:28:40]
+  **Train** Prec@1 86.102 Prec@5 98.884 Error@1 13.898
+  **Test** Prec@1 65.720 Prec@5 89.490 Error@1 34.280
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:43] [Epoch=106/200] [Need: 00:09:34] [learning_rate=0.0453] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [106][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.4715 (0.4715)   Prec@1 87.500 (87.500)   Prec@5 99.219 (99.219)   [2025-02-03 18:28:43]
+  Epoch: [106][200/128]   Time 0.013 (0.016)   Data 0.000 (0.000)   Loss 0.4705 (0.3938)   Prec@1 88.281 (87.951)   Prec@5 98.438 (99.176)   [2025-02-03 18:28:46]
+  **Train** Prec@1 86.612 Prec@5 98.874 Error@1 13.388
+  **Test** Prec@1 64.320 Prec@5 88.430 Error@1 35.680
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:50] [Epoch=107/200] [Need: 00:09:28] [learning_rate=0.0445] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [107][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.3874 (0.3874)   Prec@1 90.625 (90.625)   Prec@5 100.000 (100.000)   [2025-02-03 18:28:50]
+  Epoch: [107][200/128]   Time 0.014 (0.015)   Data 0.000 (0.000)   Loss 0.3502 (0.3851)   Prec@1 88.281 (88.114)   Prec@5 100.000 (99.234)   [2025-02-03 18:28:53]
+  **Train** Prec@1 86.998 Prec@5 99.016 Error@1 13.002
+  **Test** Prec@1 66.640 Prec@5 89.530 Error@1 33.360
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:28:56] [Epoch=108/200] [Need: 00:09:22] [learning_rate=0.0437] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [108][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.4225 (0.4225)   Prec@1 83.594 (83.594)   Prec@5 100.000 (100.000)   [2025-02-03 18:28:56]
+  Epoch: [108][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4364 (0.3681)   Prec@1 84.375 (88.627)   Prec@5 97.656 (99.316)   [2025-02-03 18:28:59]
+  **Train** Prec@1 87.380 Prec@5 99.134 Error@1 12.620
+  **Test** Prec@1 65.690 Prec@5 88.510 Error@1 34.310
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:02] [Epoch=109/200] [Need: 00:09:16] [learning_rate=0.0430] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [109][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.3931 (0.3931)   Prec@1 89.844 (89.844)   Prec@5 100.000 (100.000)   [2025-02-03 18:29:02]
+  Epoch: [109][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.4191 (0.3675)   Prec@1 87.500 (88.654)   Prec@5 100.000 (99.277)   [2025-02-03 18:29:05]
+  **Train** Prec@1 87.452 Prec@5 99.088 Error@1 12.548
+  **Test** Prec@1 66.260 Prec@5 89.720 Error@1 33.740
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:08] [Epoch=110/200] [Need: 00:09:10] [learning_rate=0.0422] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [110][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.3423 (0.3423)   Prec@1 89.844 (89.844)   Prec@5 98.438 (98.438)   [2025-02-03 18:29:08]
+  Epoch: [110][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.4208 (0.3611)   Prec@1 88.281 (88.697)   Prec@5 99.219 (99.386)   [2025-02-03 18:29:11]
+  **Train** Prec@1 87.966 Prec@5 99.170 Error@1 12.034
+  **Test** Prec@1 67.090 Prec@5 89.520 Error@1 32.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:14] [Epoch=111/200] [Need: 00:09:04] [learning_rate=0.0414] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [111][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.3169 (0.3169)   Prec@1 90.625 (90.625)   Prec@5 100.000 (100.000)   [2025-02-03 18:29:14]
+  Epoch: [111][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.4825 (0.3417)   Prec@1 85.938 (89.630)   Prec@5 97.656 (99.343)   [2025-02-03 18:29:17]
+  **Train** Prec@1 88.548 Prec@5 99.268 Error@1 11.452
+  **Test** Prec@1 66.240 Prec@5 89.270 Error@1 33.760
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:20] [Epoch=112/200] [Need: 00:08:58] [learning_rate=0.0406] [Best : Accuracy=67.09, Error=32.91]
+  Epoch: [112][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.2573 (0.2573)   Prec@1 91.406 (91.406)   Prec@5 99.219 (99.219)   [2025-02-03 18:29:20]
+  Epoch: [112][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4507 (0.3384)   Prec@1 85.938 (89.560)   Prec@5 100.000 (99.359)   [2025-02-03 18:29:23]
+  **Train** Prec@1 88.470 Prec@5 99.174 Error@1 11.530
+  **Test** Prec@1 67.270 Prec@5 89.880 Error@1 32.730
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:27] [Epoch=113/200] [Need: 00:08:52] [learning_rate=0.0399] [Best : Accuracy=67.27, Error=32.73]
+  Epoch: [113][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.3309 (0.3309)   Prec@1 89.062 (89.062)   Prec@5 100.000 (100.000)   [2025-02-03 18:29:27]
+  Epoch: [113][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.3398 (0.3523)   Prec@1 89.062 (89.195)   Prec@5 100.000 (99.370)   [2025-02-03 18:29:29]
+  **Train** Prec@1 88.250 Prec@5 99.208 Error@1 11.750
+  **Test** Prec@1 67.520 Prec@5 89.820 Error@1 32.480
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:33] [Epoch=114/200] [Need: 00:08:45] [learning_rate=0.0391] [Best : Accuracy=67.52, Error=32.48]
+  Epoch: [114][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.3296 (0.3296)   Prec@1 89.844 (89.844)   Prec@5 99.219 (99.219)   [2025-02-03 18:29:33]
+  Epoch: [114][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.3354 (0.3310)   Prec@1 89.844 (89.929)   Prec@5 100.000 (99.448)   [2025-02-03 18:29:35]
+  **Train** Prec@1 89.096 Prec@5 99.378 Error@1 10.904
+  **Test** Prec@1 65.470 Prec@5 89.160 Error@1 34.530
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:39] [Epoch=115/200] [Need: 00:08:39] [learning_rate=0.0383] [Best : Accuracy=67.52, Error=32.48]
+  Epoch: [115][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.3552 (0.3552)   Prec@1 89.062 (89.062)   Prec@5 99.219 (99.219)   [2025-02-03 18:29:39]
+  Epoch: [115][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4169 (0.3109)   Prec@1 86.719 (90.532)   Prec@5 99.219 (99.510)   [2025-02-03 18:29:42]
+  **Train** Prec@1 89.516 Prec@5 99.408 Error@1 10.484
+  **Test** Prec@1 66.220 Prec@5 89.610 Error@1 33.780
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:45] [Epoch=116/200] [Need: 00:08:33] [learning_rate=0.0376] [Best : Accuracy=67.52, Error=32.48]
+  Epoch: [116][000/128]   Time 0.113 (0.113)   Data 0.000 (0.000)   Loss 0.4480 (0.4480)   Prec@1 89.062 (89.062)   Prec@5 98.438 (98.438)   [2025-02-03 18:29:45]
+  Epoch: [116][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.3644 (0.3059)   Prec@1 86.719 (90.477)   Prec@5 100.000 (99.561)   [2025-02-03 18:29:48]
+  **Train** Prec@1 89.440 Prec@5 99.452 Error@1 10.560
+  **Test** Prec@1 65.970 Prec@5 88.990 Error@1 34.030
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:51] [Epoch=117/200] [Need: 00:08:27] [learning_rate=0.0368] [Best : Accuracy=67.52, Error=32.48]
+  Epoch: [117][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.3037 (0.3037)   Prec@1 89.062 (89.062)   Prec@5 100.000 (100.000)   [2025-02-03 18:29:51]
+  Epoch: [117][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.2554 (0.2864)   Prec@1 89.844 (91.095)   Prec@5 100.000 (99.654)   [2025-02-03 18:29:54]
+  **Train** Prec@1 89.984 Prec@5 99.478 Error@1 10.016
+  **Test** Prec@1 66.050 Prec@5 89.280 Error@1 33.950
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:29:57] [Epoch=118/200] [Need: 00:08:21] [learning_rate=0.0361] [Best : Accuracy=67.52, Error=32.48]
+  Epoch: [118][000/128]   Time 0.126 (0.126)   Data 0.000 (0.000)   Loss 0.3421 (0.3421)   Prec@1 90.625 (90.625)   Prec@5 99.219 (99.219)   [2025-02-03 18:29:57]
+  Epoch: [118][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4802 (0.3033)   Prec@1 82.812 (90.812)   Prec@5 100.000 (99.557)   [2025-02-03 18:30:00]
+  **Train** Prec@1 89.948 Prec@5 99.464 Error@1 10.052
+  **Test** Prec@1 68.010 Prec@5 90.040 Error@1 31.990
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:03] [Epoch=119/200] [Need: 00:08:15] [learning_rate=0.0353] [Best : Accuracy=68.01, Error=31.99]
+  Epoch: [119][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 0.2851 (0.2851)   Prec@1 90.625 (90.625)   Prec@5 100.000 (100.000)   [2025-02-03 18:30:03]
+  Epoch: [119][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.3350 (0.2898)   Prec@1 89.844 (91.037)   Prec@5 99.219 (99.584)   [2025-02-03 18:30:06]
+  **Train** Prec@1 90.296 Prec@5 99.486 Error@1 9.704
+  **Test** Prec@1 64.730 Prec@5 88.270 Error@1 35.270
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:09] [Epoch=120/200] [Need: 00:08:09] [learning_rate=0.0345] [Best : Accuracy=68.01, Error=31.99]
+  Epoch: [120][000/128]   Time 0.144 (0.144)   Data 0.000 (0.000)   Loss 0.2316 (0.2316)   Prec@1 92.969 (92.969)   Prec@5 99.219 (99.219)   [2025-02-03 18:30:09]
+  Epoch: [120][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4070 (0.2678)   Prec@1 86.719 (91.884)   Prec@5 100.000 (99.697)   [2025-02-03 18:30:12]
+  **Train** Prec@1 91.402 Prec@5 99.602 Error@1 8.598
+  **Test** Prec@1 66.860 Prec@5 89.660 Error@1 33.140
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:15] [Epoch=121/200] [Need: 00:08:02] [learning_rate=0.0338] [Best : Accuracy=68.01, Error=31.99]
+  Epoch: [121][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.2716 (0.2716)   Prec@1 92.969 (92.969)   Prec@5 100.000 (100.000)   [2025-02-03 18:30:15]
+  Epoch: [121][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.3271 (0.2562)   Prec@1 89.844 (92.300)   Prec@5 100.000 (99.763)   [2025-02-03 18:30:18]
+  **Train** Prec@1 91.396 Prec@5 99.638 Error@1 8.604
+  **Test** Prec@1 65.340 Prec@5 88.680 Error@1 34.660
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:21] [Epoch=122/200] [Need: 00:07:56] [learning_rate=0.0331] [Best : Accuracy=68.01, Error=31.99]
+  Epoch: [122][000/128]   Time 0.110 (0.110)   Data 0.000 (0.000)   Loss 0.2073 (0.2073)   Prec@1 94.531 (94.531)   Prec@5 99.219 (99.219)   [2025-02-03 18:30:21]
+  Epoch: [122][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.3515 (0.2559)   Prec@1 88.281 (92.339)   Prec@5 100.000 (99.697)   [2025-02-03 18:30:24]
+  **Train** Prec@1 91.476 Prec@5 99.650 Error@1 8.524
+  **Test** Prec@1 66.450 Prec@5 89.740 Error@1 33.550
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:27] [Epoch=123/200] [Need: 00:07:50] [learning_rate=0.0323] [Best : Accuracy=68.01, Error=31.99]
+  Epoch: [123][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.2104 (0.2104)   Prec@1 92.969 (92.969)   Prec@5 100.000 (100.000)   [2025-02-03 18:30:27]
+  Epoch: [123][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.2362 (0.2580)   Prec@1 92.188 (92.059)   Prec@5 98.438 (99.755)   [2025-02-03 18:30:30]
+  **Train** Prec@1 91.648 Prec@5 99.704 Error@1 8.352
+  **Test** Prec@1 68.140 Prec@5 90.140 Error@1 31.860
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:33] [Epoch=124/200] [Need: 00:07:44] [learning_rate=0.0316] [Best : Accuracy=68.14, Error=31.86]
+  Epoch: [124][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.3087 (0.3087)   Prec@1 87.500 (87.500)   Prec@5 99.219 (99.219)   [2025-02-03 18:30:34]
+  Epoch: [124][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.2071 (0.2281)   Prec@1 92.969 (93.260)   Prec@5 99.219 (99.736)   [2025-02-03 18:30:36]
+  **Train** Prec@1 92.104 Prec@5 99.646 Error@1 7.896
+  **Test** Prec@1 69.620 Prec@5 90.240 Error@1 30.380
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:40] [Epoch=125/200] [Need: 00:07:38] [learning_rate=0.0309] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [125][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.1947 (0.1947)   Prec@1 96.094 (96.094)   Prec@5 99.219 (99.219)   [2025-02-03 18:30:40]
+  Epoch: [125][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.4432 (0.2251)   Prec@1 88.281 (93.315)   Prec@5 97.656 (99.786)   [2025-02-03 18:30:42]
+  **Train** Prec@1 92.508 Prec@5 99.728 Error@1 7.492
+  **Test** Prec@1 68.860 Prec@5 90.370 Error@1 31.140
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:46] [Epoch=126/200] [Need: 00:07:32] [learning_rate=0.0301] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [126][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.1486 (0.1486)   Prec@1 95.312 (95.312)   Prec@5 100.000 (100.000)   [2025-02-03 18:30:46]
+  Epoch: [126][200/128]   Time 0.011 (0.015)   Data 0.000 (0.000)   Loss 0.2067 (0.2129)   Prec@1 94.531 (93.556)   Prec@5 100.000 (99.817)   [2025-02-03 18:30:49]
+  **Train** Prec@1 92.932 Prec@5 99.776 Error@1 7.068
+  **Test** Prec@1 69.490 Prec@5 90.940 Error@1 30.510
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:52] [Epoch=127/200] [Need: 00:07:26] [learning_rate=0.0294] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [127][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.2034 (0.2034)   Prec@1 92.969 (92.969)   Prec@5 99.219 (99.219)   [2025-02-03 18:30:52]
+  Epoch: [127][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.1681 (0.2115)   Prec@1 97.656 (93.898)   Prec@5 100.000 (99.806)   [2025-02-03 18:30:55]
+  **Train** Prec@1 93.154 Prec@5 99.764 Error@1 6.846
+  **Test** Prec@1 68.930 Prec@5 90.360 Error@1 31.070
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:30:58] [Epoch=128/200] [Need: 00:07:20] [learning_rate=0.0287] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [128][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.1745 (0.1745)   Prec@1 96.875 (96.875)   Prec@5 100.000 (100.000)   [2025-02-03 18:30:58]
+  Epoch: [128][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.2976 (0.2079)   Prec@1 92.188 (93.672)   Prec@5 99.219 (99.798)   [2025-02-03 18:31:01]
+  **Train** Prec@1 93.184 Prec@5 99.772 Error@1 6.816
+  **Test** Prec@1 68.600 Prec@5 90.460 Error@1 31.400
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:04] [Epoch=129/200] [Need: 00:07:14] [learning_rate=0.0280] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [129][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.2158 (0.2158)   Prec@1 95.312 (95.312)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:04]
+  Epoch: [129][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.1707 (0.1940)   Prec@1 95.312 (94.162)   Prec@5 100.000 (99.887)   [2025-02-03 18:31:07]
+  **Train** Prec@1 93.666 Prec@5 99.818 Error@1 6.334
+  **Test** Prec@1 68.550 Prec@5 90.160 Error@1 31.450
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:10] [Epoch=130/200] [Need: 00:07:08] [learning_rate=0.0273] [Best : Accuracy=69.62, Error=30.38]
+  Epoch: [130][000/128]   Time 0.129 (0.129)   Data 0.000 (0.000)   Loss 0.1730 (0.1730)   Prec@1 95.312 (95.312)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:11]
+  Epoch: [130][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.1986 (0.1866)   Prec@1 92.969 (94.415)   Prec@5 100.000 (99.864)   [2025-02-03 18:31:13]
+  **Train** Prec@1 93.922 Prec@5 99.824 Error@1 6.078
+  **Test** Prec@1 70.470 Prec@5 91.120 Error@1 29.530
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:16] [Epoch=131/200] [Need: 00:07:01] [learning_rate=0.0266] [Best : Accuracy=70.47, Error=29.53]
+  Epoch: [131][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.2302 (0.2302)   Prec@1 92.969 (92.969)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:17]
+  Epoch: [131][200/128]   Time 0.015 (0.013)   Data 0.000 (0.000)   Loss 0.1579 (0.1787)   Prec@1 95.312 (94.827)   Prec@5 100.000 (99.856)   [2025-02-03 18:31:19]
+  **Train** Prec@1 94.400 Prec@5 99.820 Error@1 5.600
+  **Test** Prec@1 69.090 Prec@5 90.620 Error@1 30.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:23] [Epoch=132/200] [Need: 00:06:55] [learning_rate=0.0259] [Best : Accuracy=70.47, Error=29.53]
+  Epoch: [132][000/128]   Time 0.113 (0.113)   Data 0.000 (0.000)   Loss 0.1289 (0.1289)   Prec@1 96.875 (96.875)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:23]
+  Epoch: [132][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.1983 (0.1852)   Prec@1 93.750 (94.570)   Prec@5 100.000 (99.852)   [2025-02-03 18:31:25]
+  **Train** Prec@1 94.434 Prec@5 99.844 Error@1 5.566
+  **Test** Prec@1 69.670 Prec@5 90.730 Error@1 30.330
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:28] [Epoch=133/200] [Need: 00:06:49] [learning_rate=0.0252] [Best : Accuracy=70.47, Error=29.53]
+  Epoch: [133][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 0.1360 (0.1360)   Prec@1 97.656 (97.656)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:29]
+  Epoch: [133][200/128]   Time 0.015 (0.014)   Data 0.000 (0.000)   Loss 0.1092 (0.1548)   Prec@1 97.656 (95.767)   Prec@5 100.000 (99.907)   [2025-02-03 18:31:31]
+  **Train** Prec@1 95.134 Prec@5 99.882 Error@1 4.866
+  **Test** Prec@1 70.420 Prec@5 91.040 Error@1 29.580
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:35] [Epoch=134/200] [Need: 00:06:43] [learning_rate=0.0245] [Best : Accuracy=70.47, Error=29.53]
+  Epoch: [134][000/128]   Time 0.140 (0.140)   Data 0.000 (0.000)   Loss 0.1077 (0.1077)   Prec@1 97.656 (97.656)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:35]
+  Epoch: [134][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.1390 (0.1545)   Prec@1 96.094 (95.627)   Prec@5 100.000 (99.914)   [2025-02-03 18:31:38]
+  **Train** Prec@1 95.188 Prec@5 99.880 Error@1 4.812
+  **Test** Prec@1 70.070 Prec@5 91.280 Error@1 29.930
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:41] [Epoch=135/200] [Need: 00:06:37] [learning_rate=0.0239] [Best : Accuracy=70.47, Error=29.53]
+  Epoch: [135][000/128]   Time 0.128 (0.128)   Data 0.000 (0.000)   Loss 0.1369 (0.1369)   Prec@1 96.094 (96.094)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:41]
+  Epoch: [135][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.1201 (0.1490)   Prec@1 96.094 (95.814)   Prec@5 100.000 (99.926)   [2025-02-03 18:31:44]
+  **Train** Prec@1 95.428 Prec@5 99.904 Error@1 4.572
+  **Test** Prec@1 70.550 Prec@5 91.220 Error@1 29.450
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:47] [Epoch=136/200] [Need: 00:06:31] [learning_rate=0.0232] [Best : Accuracy=70.55, Error=29.45]
+  Epoch: [136][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.1554 (0.1554)   Prec@1 94.531 (94.531)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:47]
+  Epoch: [136][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.2302 (0.1329)   Prec@1 92.969 (96.311)   Prec@5 99.219 (99.918)   [2025-02-03 18:31:50]
+  **Train** Prec@1 95.678 Prec@5 99.922 Error@1 4.322
+  **Test** Prec@1 70.210 Prec@5 90.990 Error@1 29.790
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:53] [Epoch=137/200] [Need: 00:06:25] [learning_rate=0.0225] [Best : Accuracy=70.55, Error=29.45]
+  Epoch: [137][000/128]   Time 0.126 (0.126)   Data 0.000 (0.000)   Loss 0.0925 (0.0925)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:31:54]
+  Epoch: [137][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.1303 (0.1476)   Prec@1 96.094 (95.763)   Prec@5 100.000 (99.938)   [2025-02-03 18:31:56]
+  **Train** Prec@1 95.810 Prec@5 99.916 Error@1 4.190
+  **Test** Prec@1 70.320 Prec@5 91.150 Error@1 29.680
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:31:59] [Epoch=138/200] [Need: 00:06:19] [learning_rate=0.0219] [Best : Accuracy=70.55, Error=29.45]
+  Epoch: [138][000/128]   Time 0.135 (0.135)   Data 0.000 (0.000)   Loss 0.0932 (0.0932)   Prec@1 96.875 (96.875)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:00]
+  Epoch: [138][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.0905 (0.1334)   Prec@1 96.875 (96.210)   Prec@5 100.000 (99.946)   [2025-02-03 18:32:02]
+  **Train** Prec@1 95.964 Prec@5 99.924 Error@1 4.036
+  **Test** Prec@1 70.680 Prec@5 91.260 Error@1 29.320
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:06] [Epoch=139/200] [Need: 00:06:13] [learning_rate=0.0212] [Best : Accuracy=70.68, Error=29.32]
+  Epoch: [139][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.1078 (0.1078)   Prec@1 97.656 (97.656)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:06]
+  Epoch: [139][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.1552 (0.1184)   Prec@1 94.531 (96.786)   Prec@5 100.000 (99.946)   [2025-02-03 18:32:08]
+  **Train** Prec@1 96.480 Prec@5 99.942 Error@1 3.520
+  **Test** Prec@1 70.240 Prec@5 90.790 Error@1 29.760
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:12] [Epoch=140/200] [Need: 00:06:06] [learning_rate=0.0206] [Best : Accuracy=70.68, Error=29.32]
+  Epoch: [140][000/128]   Time 0.128 (0.128)   Data 0.000 (0.000)   Loss 0.1005 (0.1005)   Prec@1 96.875 (96.875)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:12]
+  Epoch: [140][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 0.0781 (0.0964)   Prec@1 98.438 (97.571)   Prec@5 100.000 (99.953)   [2025-02-03 18:32:15]
+  **Train** Prec@1 97.308 Prec@5 99.954 Error@1 2.692
+  **Test** Prec@1 72.410 Prec@5 92.000 Error@1 27.590
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:18] [Epoch=141/200] [Need: 00:06:00] [learning_rate=0.0200] [Best : Accuracy=72.41, Error=27.59]
+  Epoch: [141][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.1299 (0.1299)   Prec@1 95.312 (95.312)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:18]
+  Epoch: [141][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.1285 (0.0938)   Prec@1 96.094 (97.625)   Prec@5 100.000 (99.988)   [2025-02-03 18:32:21]
+  **Train** Prec@1 97.372 Prec@5 99.986 Error@1 2.628
+  **Test** Prec@1 72.090 Prec@5 91.200 Error@1 27.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:24] [Epoch=142/200] [Need: 00:05:54] [learning_rate=0.0194] [Best : Accuracy=72.41, Error=27.59]
+  Epoch: [142][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.1030 (0.1030)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:24]
+  Epoch: [142][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0903 (0.0973)   Prec@1 98.438 (97.532)   Prec@5 100.000 (99.981)   [2025-02-03 18:32:26]
+  **Train** Prec@1 97.372 Prec@5 99.982 Error@1 2.628
+  **Test** Prec@1 70.210 Prec@5 90.590 Error@1 29.790
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:30] [Epoch=143/200] [Need: 00:05:48] [learning_rate=0.0187] [Best : Accuracy=72.41, Error=27.59]
+  Epoch: [143][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.1036 (0.1036)   Prec@1 96.094 (96.094)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:30]
+  Epoch: [143][200/128]   Time 0.015 (0.015)   Data 0.000 (0.000)   Loss 0.1257 (0.0952)   Prec@1 97.656 (97.520)   Prec@5 100.000 (99.988)   [2025-02-03 18:32:33]
+  **Train** Prec@1 97.572 Prec@5 99.988 Error@1 2.428
+  **Test** Prec@1 72.350 Prec@5 91.650 Error@1 27.650
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:37] [Epoch=144/200] [Need: 00:05:42] [learning_rate=0.0181] [Best : Accuracy=72.41, Error=27.59]
+  Epoch: [144][000/128]   Time 0.142 (0.142)   Data 0.000 (0.000)   Loss 0.0920 (0.0920)   Prec@1 98.438 (98.438)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:37]
+  Epoch: [144][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0626 (0.0778)   Prec@1 99.219 (98.193)   Prec@5 100.000 (99.992)   [2025-02-03 18:32:39]
+  **Train** Prec@1 98.146 Prec@5 99.988 Error@1 1.854
+  **Test** Prec@1 72.320 Prec@5 91.930 Error@1 27.680
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:43] [Epoch=145/200] [Need: 00:05:36] [learning_rate=0.0175] [Best : Accuracy=72.41, Error=27.59]
+  Epoch: [145][000/128]   Time 0.128 (0.128)   Data 0.000 (0.000)   Loss 0.0454 (0.0454)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:43]
+  Epoch: [145][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.0781 (0.0690)   Prec@1 98.438 (98.399)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:46]
+  **Train** Prec@1 98.266 Prec@5 99.992 Error@1 1.734
+  **Test** Prec@1 72.730 Prec@5 92.090 Error@1 27.270
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:49] [Epoch=146/200] [Need: 00:05:30] [learning_rate=0.0169] [Best : Accuracy=72.73, Error=27.27]
+  Epoch: [146][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.0647 (0.0647)   Prec@1 98.438 (98.438)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:49]
+  Epoch: [146][200/128]   Time 0.015 (0.013)   Data 0.000 (0.000)   Loss 0.0555 (0.0700)   Prec@1 99.219 (98.340)   Prec@5 100.000 (99.992)   [2025-02-03 18:32:52]
+  **Train** Prec@1 98.252 Prec@5 99.988 Error@1 1.748
+  **Test** Prec@1 71.930 Prec@5 91.790 Error@1 28.070
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:32:55] [Epoch=147/200] [Need: 00:05:24] [learning_rate=0.0163] [Best : Accuracy=72.73, Error=27.27]
+  Epoch: [147][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.0490 (0.0490)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:32:55]
+  Epoch: [147][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0889 (0.0566)   Prec@1 96.875 (98.811)   Prec@5 100.000 (99.996)   [2025-02-03 18:32:58]
+  **Train** Prec@1 98.734 Prec@5 99.994 Error@1 1.266
+  **Test** Prec@1 72.940 Prec@5 92.240 Error@1 27.060
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:01] [Epoch=148/200] [Need: 00:05:18] [learning_rate=0.0158] [Best : Accuracy=72.94, Error=27.06]
+  Epoch: [148][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.0480 (0.0480)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:01]
+  Epoch: [148][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.0421 (0.0501)   Prec@1 100.000 (99.013)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:04]
+  **Train** Prec@1 98.880 Prec@5 100.000 Error@1 1.120
+  **Test** Prec@1 73.930 Prec@5 92.060 Error@1 26.070
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:08] [Epoch=149/200] [Need: 00:05:12] [learning_rate=0.0152] [Best : Accuracy=73.93, Error=26.07]
+  Epoch: [149][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.0299 (0.0299)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:08]
+  Epoch: [149][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0184 (0.0447)   Prec@1 100.000 (99.199)   Prec@5 100.000 (99.996)   [2025-02-03 18:33:10]
+  **Train** Prec@1 99.218 Prec@5 99.996 Error@1 0.782
+  **Test** Prec@1 74.620 Prec@5 92.420 Error@1 25.380
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:14] [Epoch=150/200] [Need: 00:05:06] [learning_rate=0.0146] [Best : Accuracy=74.62, Error=25.38]
+  Epoch: [150][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.0354 (0.0354)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:14]
+  Epoch: [150][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0378 (0.0408)   Prec@1 99.219 (99.281)   Prec@5 100.000 (99.996)   [2025-02-03 18:33:16]
+  **Train** Prec@1 99.242 Prec@5 99.998 Error@1 0.758
+  **Test** Prec@1 74.240 Prec@5 92.640 Error@1 25.760
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:20] [Epoch=151/200] [Need: 00:04:59] [learning_rate=0.0141] [Best : Accuracy=74.62, Error=25.38]
+  Epoch: [151][000/128]   Time 0.124 (0.124)   Data 0.000 (0.000)   Loss 0.0442 (0.0442)   Prec@1 98.438 (98.438)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:20]
+  Epoch: [151][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0385 (0.0331)   Prec@1 99.219 (99.499)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:23]
+  **Train** Prec@1 99.460 Prec@5 100.000 Error@1 0.540
+  **Test** Prec@1 74.360 Prec@5 92.320 Error@1 25.640
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:26] [Epoch=152/200] [Need: 00:04:53] [learning_rate=0.0136] [Best : Accuracy=74.62, Error=25.38]
+  Epoch: [152][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.0579 (0.0579)   Prec@1 97.656 (97.656)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:26]
+  Epoch: [152][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0730 (0.0337)   Prec@1 98.438 (99.475)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:28]
+  **Train** Prec@1 99.480 Prec@5 99.998 Error@1 0.520
+  **Test** Prec@1 74.680 Prec@5 92.900 Error@1 25.320
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:32] [Epoch=153/200] [Need: 00:04:47] [learning_rate=0.0130] [Best : Accuracy=74.68, Error=25.32]
+  Epoch: [153][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.0320 (0.0320)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:32]
+  Epoch: [153][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.0236 (0.0245)   Prec@1 100.000 (99.697)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:35]
+  **Train** Prec@1 99.686 Prec@5 100.000 Error@1 0.314
+  **Test** Prec@1 76.350 Prec@5 93.070 Error@1 23.650
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:38] [Epoch=154/200] [Need: 00:04:41] [learning_rate=0.0125] [Best : Accuracy=76.35, Error=23.65]
+  Epoch: [154][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.0180 (0.0180)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:38]
+  Epoch: [154][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0107 (0.0189)   Prec@1 100.000 (99.837)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:41]
+  **Train** Prec@1 99.814 Prec@5 100.000 Error@1 0.186
+  **Test** Prec@1 75.880 Prec@5 93.220 Error@1 24.120
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:44] [Epoch=155/200] [Need: 00:04:35] [learning_rate=0.0120] [Best : Accuracy=76.35, Error=23.65]
+  Epoch: [155][000/128]   Time 0.113 (0.113)   Data 0.000 (0.000)   Loss 0.0078 (0.0078)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:44]
+  Epoch: [155][200/128]   Time 0.011 (0.014)   Data 0.000 (0.000)   Loss 0.0126 (0.0177)   Prec@1 100.000 (99.856)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:47]
+  **Train** Prec@1 99.806 Prec@5 100.000 Error@1 0.194
+  **Test** Prec@1 76.040 Prec@5 93.270 Error@1 23.960
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:50] [Epoch=156/200] [Need: 00:04:29] [learning_rate=0.0115] [Best : Accuracy=76.35, Error=23.65]
+  Epoch: [156][000/128]   Time 0.123 (0.123)   Data 0.000 (0.000)   Loss 0.0108 (0.0108)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:50]
+  Epoch: [156][200/128]   Time 0.011 (0.014)   Data 0.000 (0.000)   Loss 0.0168 (0.0177)   Prec@1 100.000 (99.841)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:53]
+  **Train** Prec@1 99.822 Prec@5 100.000 Error@1 0.178
+  **Test** Prec@1 76.230 Prec@5 93.440 Error@1 23.770
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:33:56] [Epoch=157/200] [Need: 00:04:23] [learning_rate=0.0110] [Best : Accuracy=76.35, Error=23.65]
+  Epoch: [157][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.0132 (0.0132)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:56]
+  Epoch: [157][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0119 (0.0143)   Prec@1 100.000 (99.891)   Prec@5 100.000 (100.000)   [2025-02-03 18:33:59]
+  **Train** Prec@1 99.888 Prec@5 100.000 Error@1 0.112
+  **Test** Prec@1 77.120 Prec@5 93.680 Error@1 22.880
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:02] [Epoch=158/200] [Need: 00:04:16] [learning_rate=0.0105] [Best : Accuracy=77.12, Error=22.88]
+  Epoch: [158][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.0082 (0.0082)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:02]
+  Epoch: [158][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0099 (0.0148)   Prec@1 100.000 (99.852)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:05]
+  **Train** Prec@1 99.882 Prec@5 100.000 Error@1 0.118
+  **Test** Prec@1 77.000 Prec@5 93.830 Error@1 23.000
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:08] [Epoch=159/200] [Need: 00:04:10] [learning_rate=0.0100] [Best : Accuracy=77.12, Error=22.88]
+  Epoch: [159][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.0079 (0.0079)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:08]
+  Epoch: [159][200/128]   Time 0.015 (0.013)   Data 0.000 (0.000)   Loss 0.0133 (0.0120)   Prec@1 100.000 (99.930)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:11]
+  **Train** Prec@1 99.914 Prec@5 100.000 Error@1 0.086
+  **Test** Prec@1 77.460 Prec@5 93.740 Error@1 22.540
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:14] [Epoch=160/200] [Need: 00:04:04] [learning_rate=0.0095] [Best : Accuracy=77.46, Error=22.54]
+  Epoch: [160][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.0074 (0.0074)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:14]
+  Epoch: [160][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0167 (0.0120)   Prec@1 100.000 (99.942)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:17]
+  **Train** Prec@1 99.936 Prec@5 100.000 Error@1 0.064
+  **Test** Prec@1 77.490 Prec@5 94.090 Error@1 22.510
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:20] [Epoch=161/200] [Need: 00:03:58] [learning_rate=0.0091] [Best : Accuracy=77.49, Error=22.51]
+  Epoch: [161][000/128]   Time 0.131 (0.131)   Data 0.000 (0.000)   Loss 0.0062 (0.0062)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:20]
+  Epoch: [161][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0084 (0.0113)   Prec@1 100.000 (99.949)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:23]
+  **Train** Prec@1 99.938 Prec@5 100.000 Error@1 0.062
+  **Test** Prec@1 77.550 Prec@5 93.870 Error@1 22.450
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:26] [Epoch=162/200] [Need: 00:03:52] [learning_rate=0.0086] [Best : Accuracy=77.55, Error=22.45]
+  Epoch: [162][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.0099 (0.0099)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:26]
+  Epoch: [162][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0124 (0.0117)   Prec@1 100.000 (99.934)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:29]
+  **Train** Prec@1 99.942 Prec@5 100.000 Error@1 0.058
+  **Test** Prec@1 77.670 Prec@5 94.120 Error@1 22.330
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:32] [Epoch=163/200] [Need: 00:03:46] [learning_rate=0.0082] [Best : Accuracy=77.67, Error=22.33]
+  Epoch: [163][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.0084 (0.0084)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:32]
+  Epoch: [163][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0169 (0.0110)   Prec@1 99.219 (99.942)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:35]
+  **Train** Prec@1 99.940 Prec@5 100.000 Error@1 0.060
+  **Test** Prec@1 77.540 Prec@5 93.800 Error@1 22.460
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:38] [Epoch=164/200] [Need: 00:03:40] [learning_rate=0.0078] [Best : Accuracy=77.67, Error=22.33]
+  Epoch: [164][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.0066 (0.0066)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:39]
+  Epoch: [164][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 0.0117 (0.0109)   Prec@1 100.000 (99.938)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:41]
+  **Train** Prec@1 99.936 Prec@5 100.000 Error@1 0.064
+  **Test** Prec@1 77.560 Prec@5 93.850 Error@1 22.440
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:44] [Epoch=165/200] [Need: 00:03:34] [learning_rate=0.0074] [Best : Accuracy=77.67, Error=22.33]
+  Epoch: [165][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.0100 (0.0100)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:45]
+  Epoch: [165][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0186 (0.0099)   Prec@1 100.000 (99.961)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:47]
+  **Train** Prec@1 99.946 Prec@5 100.000 Error@1 0.054
+  **Test** Prec@1 78.360 Prec@5 94.120 Error@1 21.640
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:50] [Epoch=166/200] [Need: 00:03:27] [learning_rate=0.0070] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [166][000/128]   Time 0.113 (0.113)   Data 0.000 (0.000)   Loss 0.0099 (0.0099)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:51]
+  Epoch: [166][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0099 (0.0101)   Prec@1 100.000 (99.969)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:53]
+  **Train** Prec@1 99.956 Prec@5 100.000 Error@1 0.044
+  **Test** Prec@1 78.030 Prec@5 94.080 Error@1 21.970
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:34:56] [Epoch=167/200] [Need: 00:03:21] [learning_rate=0.0066] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [167][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.0079 (0.0079)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:56]
+  Epoch: [167][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0087 (0.0104)   Prec@1 100.000 (99.953)   Prec@5 100.000 (100.000)   [2025-02-03 18:34:59]
+  **Train** Prec@1 99.952 Prec@5 100.000 Error@1 0.048
+  **Test** Prec@1 78.050 Prec@5 94.120 Error@1 21.950
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:02] [Epoch=168/200] [Need: 00:03:15] [learning_rate=0.0062] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [168][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.0097 (0.0097)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:02]
+  Epoch: [168][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0105 (0.0102)   Prec@1 100.000 (99.957)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:05]
+  **Train** Prec@1 99.952 Prec@5 100.000 Error@1 0.048
+  **Test** Prec@1 78.090 Prec@5 94.070 Error@1 21.910
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:08] [Epoch=169/200] [Need: 00:03:09] [learning_rate=0.0058] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [169][000/128]   Time 0.140 (0.140)   Data 0.000 (0.000)   Loss 0.0073 (0.0073)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:08]
+  Epoch: [169][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0106 (0.0102)   Prec@1 100.000 (99.961)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:11]
+  **Train** Prec@1 99.962 Prec@5 100.000 Error@1 0.038
+  **Test** Prec@1 78.140 Prec@5 94.060 Error@1 21.860
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:14] [Epoch=170/200] [Need: 00:03:03] [learning_rate=0.0054] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [170][000/128]   Time 0.118 (0.118)   Data 0.000 (0.000)   Loss 0.0090 (0.0090)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:14]
+  Epoch: [170][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0077 (0.0096)   Prec@1 100.000 (99.946)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:17]
+  **Train** Prec@1 99.948 Prec@5 100.000 Error@1 0.052
+  **Test** Prec@1 77.840 Prec@5 94.140 Error@1 22.160
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:20] [Epoch=171/200] [Need: 00:02:57] [learning_rate=0.0051] [Best : Accuracy=78.36, Error=21.64]
+  Epoch: [171][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.0093 (0.0093)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:20]
+  Epoch: [171][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0117 (0.0094)   Prec@1 100.000 (99.965)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:23]
+  **Train** Prec@1 99.966 Prec@5 100.000 Error@1 0.034
+  **Test** Prec@1 78.430 Prec@5 94.150 Error@1 21.570
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:26] [Epoch=172/200] [Need: 00:02:51] [learning_rate=0.0048] [Best : Accuracy=78.43, Error=21.57]
+  Epoch: [172][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.0089 (0.0089)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:26]
+  Epoch: [172][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0073 (0.0093)   Prec@1 100.000 (99.977)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:29]
+  **Train** Prec@1 99.960 Prec@5 100.000 Error@1 0.040
+  **Test** Prec@1 78.070 Prec@5 94.100 Error@1 21.930
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:32] [Epoch=173/200] [Need: 00:02:44] [learning_rate=0.0044] [Best : Accuracy=78.43, Error=21.57]
+  Epoch: [173][000/128]   Time 0.132 (0.132)   Data 0.000 (0.000)   Loss 0.0075 (0.0075)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:32]
+  Epoch: [173][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 0.0068 (0.0098)   Prec@1 100.000 (99.953)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:35]
+  **Train** Prec@1 99.964 Prec@5 100.000 Error@1 0.036
+  **Test** Prec@1 78.270 Prec@5 94.230 Error@1 21.730
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:38] [Epoch=174/200] [Need: 00:02:38] [learning_rate=0.0041] [Best : Accuracy=78.43, Error=21.57]
+  Epoch: [174][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 0.0083 (0.0083)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:38]
+  Epoch: [174][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0098 (0.0099)   Prec@1 100.000 (99.949)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:41]
+  **Train** Prec@1 99.950 Prec@5 100.000 Error@1 0.050
+  **Test** Prec@1 78.020 Prec@5 94.260 Error@1 21.980
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:44] [Epoch=175/200] [Need: 00:02:32] [learning_rate=0.0038] [Best : Accuracy=78.43, Error=21.57]
+  Epoch: [175][000/128]   Time 0.116 (0.116)   Data 0.000 (0.000)   Loss 0.0086 (0.0086)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:45]
+  Epoch: [175][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0182 (0.0101)   Prec@1 99.219 (99.953)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:47]
+  **Train** Prec@1 99.958 Prec@5 100.000 Error@1 0.042
+  **Test** Prec@1 78.540 Prec@5 94.270 Error@1 21.460
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:50] [Epoch=176/200] [Need: 00:02:26] [learning_rate=0.0035] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [176][000/128]   Time 0.109 (0.109)   Data 0.000 (0.000)   Loss 0.0092 (0.0092)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:51]
+  Epoch: [176][200/128]   Time 0.011 (0.013)   Data 0.000 (0.000)   Loss 0.0102 (0.0092)   Prec@1 100.000 (99.977)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:53]
+  **Train** Prec@1 99.970 Prec@5 100.000 Error@1 0.030
+  **Test** Prec@1 78.380 Prec@5 94.280 Error@1 21.620
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:35:56] [Epoch=177/200] [Need: 00:02:20] [learning_rate=0.0032] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [177][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.0109 (0.0109)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:57]
+  Epoch: [177][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.0161 (0.0093)   Prec@1 99.219 (99.957)   Prec@5 100.000 (100.000)   [2025-02-03 18:35:59]
+  **Train** Prec@1 99.958 Prec@5 100.000 Error@1 0.042
+  **Test** Prec@1 78.300 Prec@5 94.200 Error@1 21.700
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:02] [Epoch=178/200] [Need: 00:02:14] [learning_rate=0.0030] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [178][000/128]   Time 0.114 (0.114)   Data 0.000 (0.000)   Loss 0.0063 (0.0063)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:03]
+  Epoch: [178][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0113 (0.0090)   Prec@1 100.000 (99.981)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:05]
+  **Train** Prec@1 99.976 Prec@5 100.000 Error@1 0.024
+  **Test** Prec@1 78.200 Prec@5 94.210 Error@1 21.800
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:09] [Epoch=179/200] [Need: 00:02:08] [learning_rate=0.0027] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [179][000/128]   Time 0.122 (0.122)   Data 0.000 (0.000)   Loss 0.0120 (0.0120)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:09]
+  Epoch: [179][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0160 (0.0096)   Prec@1 99.219 (99.957)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:11]
+  **Train** Prec@1 99.962 Prec@5 100.000 Error@1 0.038
+  **Test** Prec@1 78.470 Prec@5 94.180 Error@1 21.530
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:15] [Epoch=180/200] [Need: 00:02:02] [learning_rate=0.0024] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [180][000/128]   Time 0.123 (0.123)   Data 0.000 (0.000)   Loss 0.0125 (0.0125)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:15]
+  Epoch: [180][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0104 (0.0093)   Prec@1 100.000 (99.973)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:17]
+  **Train** Prec@1 99.964 Prec@5 100.000 Error@1 0.036
+  **Test** Prec@1 78.380 Prec@5 94.230 Error@1 21.620
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:21] [Epoch=181/200] [Need: 00:01:56] [learning_rate=0.0022] [Best : Accuracy=78.54, Error=21.46]
+  Epoch: [181][000/128]   Time 0.543 (0.543)   Data 0.000 (0.000)   Loss 0.0070 (0.0070)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:21]
+  Epoch: [181][200/128]   Time 0.013 (0.016)   Data 0.000 (0.000)   Loss 0.0188 (0.0093)   Prec@1 99.219 (99.973)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:24]
+  **Train** Prec@1 99.970 Prec@5 100.000 Error@1 0.030
+  **Test** Prec@1 78.620 Prec@5 94.350 Error@1 21.380
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:27] [Epoch=182/200] [Need: 00:01:49] [learning_rate=0.0020] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [182][000/128]   Time 0.109 (0.109)   Data 0.000 (0.000)   Loss 0.0075 (0.0075)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:27]
+  Epoch: [182][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0096 (0.0094)   Prec@1 100.000 (99.961)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:30]
+  **Train** Prec@1 99.968 Prec@5 100.000 Error@1 0.032
+  **Test** Prec@1 78.530 Prec@5 94.400 Error@1 21.470
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:33] [Epoch=183/200] [Need: 00:01:43] [learning_rate=0.0018] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [183][000/128]   Time 0.141 (0.141)   Data 0.000 (0.000)   Loss 0.0067 (0.0067)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:33]
+  Epoch: [183][200/128]   Time 0.010 (0.014)   Data 0.000 (0.000)   Loss 0.0141 (0.0092)   Prec@1 100.000 (99.984)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:36]
+  **Train** Prec@1 99.970 Prec@5 100.000 Error@1 0.030
+  **Test** Prec@1 78.490 Prec@5 94.320 Error@1 21.510
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:39] [Epoch=184/200] [Need: 00:01:37] [learning_rate=0.0016] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [184][000/128]   Time 0.136 (0.136)   Data 0.000 (0.000)   Loss 0.0080 (0.0080)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:39]
+  Epoch: [184][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0093 (0.0090)   Prec@1 100.000 (99.981)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:42]
+  **Train** Prec@1 99.980 Prec@5 100.000 Error@1 0.020
+  **Test** Prec@1 78.430 Prec@5 94.280 Error@1 21.570
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:45] [Epoch=185/200] [Need: 00:01:31] [learning_rate=0.0014] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [185][000/128]   Time 0.115 (0.115)   Data 0.000 (0.000)   Loss 0.0083 (0.0083)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:45]
+  Epoch: [185][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0085 (0.0090)   Prec@1 100.000 (99.961)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:48]
+  **Train** Prec@1 99.960 Prec@5 100.000 Error@1 0.040
+  **Test** Prec@1 78.470 Prec@5 94.210 Error@1 21.530
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:51] [Epoch=186/200] [Need: 00:01:25] [learning_rate=0.0012] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [186][000/128]   Time 0.121 (0.121)   Data 0.000 (0.000)   Loss 0.0091 (0.0091)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:51]
+  Epoch: [186][200/128]   Time 0.011 (0.014)   Data 0.000 (0.000)   Loss 0.0091 (0.0091)   Prec@1 100.000 (99.969)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:54]
+  **Train** Prec@1 99.966 Prec@5 100.000 Error@1 0.034
+  **Test** Prec@1 78.490 Prec@5 94.330 Error@1 21.510
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:36:57] [Epoch=187/200] [Need: 00:01:19] [learning_rate=0.0010] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [187][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.0099 (0.0099)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:36:57]
+  Epoch: [187][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0081 (0.0091)   Prec@1 100.000 (99.965)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:00]
+  **Train** Prec@1 99.976 Prec@5 100.000 Error@1 0.024
+  **Test** Prec@1 78.440 Prec@5 94.230 Error@1 21.560
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:03] [Epoch=188/200] [Need: 00:01:13] [learning_rate=0.0009] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [188][000/128]   Time 0.123 (0.123)   Data 0.000 (0.000)   Loss 0.0111 (0.0111)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:04]
+  Epoch: [188][200/128]   Time 0.015 (0.013)   Data 0.000 (0.000)   Loss 0.0069 (0.0089)   Prec@1 100.000 (99.988)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:06]
+  **Train** Prec@1 99.978 Prec@5 100.000 Error@1 0.022
+  **Test** Prec@1 78.460 Prec@5 94.310 Error@1 21.540
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:09] [Epoch=189/200] [Need: 00:01:07] [learning_rate=0.0007] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [189][000/128]   Time 0.110 (0.110)   Data 0.000 (0.000)   Loss 0.0068 (0.0068)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:09]
+  Epoch: [189][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0068 (0.0088)   Prec@1 100.000 (99.973)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:12]
+  **Train** Prec@1 99.964 Prec@5 100.000 Error@1 0.036
+  **Test** Prec@1 78.420 Prec@5 94.220 Error@1 21.580
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:15] [Epoch=190/200] [Need: 00:01:01] [learning_rate=0.0006] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [190][000/128]   Time 0.125 (0.125)   Data 0.000 (0.000)   Loss 0.0130 (0.0130)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:16]
+  Epoch: [190][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0087 (0.0089)   Prec@1 100.000 (99.973)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:18]
+  **Train** Prec@1 99.972 Prec@5 100.000 Error@1 0.028
+  **Test** Prec@1 78.440 Prec@5 94.290 Error@1 21.560
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:22] [Epoch=191/200] [Need: 00:00:54] [learning_rate=0.0005] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [191][000/128]   Time 0.117 (0.117)   Data 0.000 (0.000)   Loss 0.0078 (0.0078)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:22]
+  Epoch: [191][200/128]   Time 0.013 (0.015)   Data 0.000 (0.000)   Loss 0.0079 (0.0086)   Prec@1 100.000 (99.984)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:25]
+  **Train** Prec@1 99.978 Prec@5 100.000 Error@1 0.022
+  **Test** Prec@1 78.530 Prec@5 94.170 Error@1 21.470
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:28] [Epoch=192/200] [Need: 00:00:48] [learning_rate=0.0004] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [192][000/128]   Time 0.127 (0.127)   Data 0.000 (0.000)   Loss 0.0062 (0.0062)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:28]
+  Epoch: [192][200/128]   Time 0.014 (0.014)   Data 0.000 (0.000)   Loss 0.0072 (0.0087)   Prec@1 100.000 (99.981)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:31]
+  **Train** Prec@1 99.970 Prec@5 100.000 Error@1 0.030
+  **Test** Prec@1 78.450 Prec@5 94.270 Error@1 21.550
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:34] [Epoch=193/200] [Need: 00:00:42] [learning_rate=0.0003] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [193][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 0.0061 (0.0061)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:34]
+  Epoch: [193][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0069 (0.0084)   Prec@1 100.000 (99.981)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:37]
+  **Train** Prec@1 99.978 Prec@5 100.000 Error@1 0.022
+  **Test** Prec@1 78.380 Prec@5 94.170 Error@1 21.620
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:40] [Epoch=194/200] [Need: 00:00:36] [learning_rate=0.0002] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [194][000/128]   Time 0.112 (0.112)   Data 0.000 (0.000)   Loss 0.0101 (0.0101)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:40]
+  Epoch: [194][200/128]   Time 0.015 (0.014)   Data 0.000 (0.000)   Loss 0.0121 (0.0088)   Prec@1 100.000 (99.977)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:43]
+  **Train** Prec@1 99.978 Prec@5 100.000 Error@1 0.022
+  **Test** Prec@1 78.420 Prec@5 94.260 Error@1 21.580
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:46] [Epoch=195/200] [Need: 00:00:30] [learning_rate=0.0002] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [195][000/128]   Time 0.119 (0.119)   Data 0.000 (0.000)   Loss 0.0071 (0.0071)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:46]
+  Epoch: [195][200/128]   Time 0.013 (0.013)   Data 0.000 (0.000)   Loss 0.0074 (0.0091)   Prec@1 100.000 (99.965)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:49]
+  **Train** Prec@1 99.976 Prec@5 100.000 Error@1 0.024
+  **Test** Prec@1 78.580 Prec@5 94.250 Error@1 21.420
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:52] [Epoch=196/200] [Need: 00:00:24] [learning_rate=0.0001] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [196][000/128]   Time 0.135 (0.135)   Data 0.000 (0.000)   Loss 0.0148 (0.0148)   Prec@1 99.219 (99.219)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:52]
+  Epoch: [196][200/128]   Time 0.012 (0.013)   Data 0.000 (0.000)   Loss 0.0086 (0.0088)   Prec@1 100.000 (99.977)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:55]
+  **Train** Prec@1 99.976 Prec@5 100.000 Error@1 0.024
+  **Test** Prec@1 78.600 Prec@5 94.190 Error@1 21.400
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:37:58] [Epoch=197/200] [Need: 00:00:18] [learning_rate=0.0001] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [197][000/128]   Time 0.148 (0.148)   Data 0.000 (0.000)   Loss 0.0079 (0.0079)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:37:58]
+  Epoch: [197][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0100 (0.0087)   Prec@1 100.000 (99.984)   Prec@5 100.000 (100.000)   [2025-02-03 18:38:01]
+  **Train** Prec@1 99.986 Prec@5 100.000 Error@1 0.014
+  **Test** Prec@1 78.580 Prec@5 94.210 Error@1 21.420
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:38:04] [Epoch=198/200] [Need: 00:00:12] [learning_rate=0.0000] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [198][000/128]   Time 0.129 (0.129)   Data 0.000 (0.000)   Loss 0.0097 (0.0097)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:38:05]
+  Epoch: [198][200/128]   Time 0.013 (0.014)   Data 0.000 (0.000)   Loss 0.0112 (0.0089)   Prec@1 100.000 (99.961)   Prec@5 100.000 (100.000)   [2025-02-03 18:38:07]
+  **Train** Prec@1 99.972 Prec@5 100.000 Error@1 0.028
+  **Test** Prec@1 78.470 Prec@5 94.370 Error@1 21.530
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+
+==>>[2025-02-03 18:38:11] [Epoch=199/200] [Need: 00:00:06] [learning_rate=0.0000] [Best : Accuracy=78.62, Error=21.38]
+  Epoch: [199][000/128]   Time 0.120 (0.120)   Data 0.000 (0.000)   Loss 0.0054 (0.0054)   Prec@1 100.000 (100.000)   Prec@5 100.000 (100.000)   [2025-02-03 18:38:11]
+  Epoch: [199][200/128]   Time 0.012 (0.014)   Data 0.000 (0.000)   Loss 0.0108 (0.0087)   Prec@1 100.000 (99.977)   Prec@5 100.000 (100.000)   [2025-02-03 18:38:13]
+  **Train** Prec@1 99.982 Prec@5 100.000 Error@1 0.018
+  **Test** Prec@1 78.590 Prec@5 94.290 Error@1 21.410
+---- save figure the accuracy/loss curve of train/val into ./checkpoint/pruned-dataset/curve.png
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mranodom_pr0.0_resnet18_cifar100_seed54[0m at: [34mhttps://wandb.ai/hpi-deep-learning/c-class-iterations-full/runs/3j8m1k0r[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250203_101753-3j8m1k0r/logs[0m

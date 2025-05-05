@@ -1,0 +1,66 @@
+nohup: ignoring input
+Running with pruning_rate=0.3 on GPU=0
+Running with pruning_rate=0.5 on GPU=1
+Running with pruning_rate=0.7 on GPU=2
+Running with pruning_rate=0.9 on GPU=3
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/california/wandb/run-20250128_093032-qboca9b2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run random_prune0.9_lr0.01_bs1024_dr0.1
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/california_housing_pruning
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/qboca9b2
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/california/wandb/run-20250128_093033-hm3bioql
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run random_prune0.7_lr0.01_bs1024_dr0.1
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/california_housing_pruning
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/hm3bioql
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/california/wandb/run-20250128_093034-0rnjrbst
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run random_prune0.5_lr0.01_bs1024_dr0.1
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/california_housing_pruning
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/0rnjrbst
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/california/wandb/run-20250128_093036-7v33kmyf
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run random_prune0.3_lr0.01_bs1024_dr0.1
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/california_housing_pruning
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/7v33kmyf
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.01, bs=1024, dr=0.1] -> best_test_loss = 0.257515
+Best parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1} with Test Loss: 0.2575152019724099
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mrandom_prune0.9_lr0.01_bs1024_dr0.1[0m at: [34mhttps://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/qboca9b2[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250128_093032-qboca9b2/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.01, bs=1024, dr=0.1] -> best_test_loss = 0.213532
+Best parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1} with Test Loss: 0.21353169977265096
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mrandom_prune0.5_lr0.01_bs1024_dr0.1[0m at: [34mhttps://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/0rnjrbst[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250128_093034-0rnjrbst/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.01, bs=1024, dr=0.1] -> best_test_loss = 0.205565
+Best parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1} with Test Loss: 0.2055649458820008
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mrandom_prune0.3_lr0.01_bs1024_dr0.1[0m at: [34mhttps://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/7v33kmyf[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250128_093036-7v33kmyf/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.01, bs=1024, dr=0.1] -> best_test_loss = 0.209937
+Best parameters: {'learning_rate': 0.01, 'batch_size': 1024, 'dropout_rate': 0.1} with Test Loss: 0.2099370322155238
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mrandom_prune0.7_lr0.01_bs1024_dr0.1[0m at: [34mhttps://wandb.ai/hpi-deep-learning/california_housing_pruning/runs/hm3bioql[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250128_093033-hm3bioql/logs[0m
+All tasks completed.

@@ -1,0 +1,162 @@
+nohup: ignoring input
+Running with pruning_rate=0.0 on GPU=0
+Running with pruning_rate=0.1 on GPU=1
+Running with pruning_rate=0.2 on GPU=2
+Running with pruning_rate=0.3 on GPU=3
+Running with pruning_rate=0.4 on GPU=0
+Running with pruning_rate=0.5 on GPU=1
+Running with pruning_rate=0.6 on GPU=2
+Running with pruning_rate=0.7 on GPU=3
+Running with pruning_rate=0.8 on GPU=0
+Running with pruning_rate=0.9 on GPU=1
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093929-yp5b2cjt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.9_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/yp5b2cjt
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093943-ydl6xc0o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.7_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/ydl6xc0o
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093949-0jpgmw3v
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.3_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/0jpgmw3v
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093953-pk5klc5o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.2_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/pk5klc5o
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093953-v6mv852j
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.5_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/v6mv852j
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093956-6mqkitkq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.1_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/6mqkitkq
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093958-cutn3in5
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.6_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/cutn3in5
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093958-gkcoz6yh
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.8_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/gkcoz6yh
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_093959-mf08kkw2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.0_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/mf08kkw2
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+wandb: Tracking run with wandb version 0.19.4
+wandb: Run data is saved locally in /home/zi/research_project/mnist/wandb/run-20250125_094000-5vxss1f3
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fixed_random_prune0.4_lr0.001_bs4096_dr0.15
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/m-classification
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/m-classification/runs/5vxss1f3
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.952700
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.952700
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.9_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/yp5b2cjt[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093929-yp5b2cjt/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.969900
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.969900
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.7_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/ydl6xc0o[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093943-ydl6xc0o/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.976800
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.976800
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.3_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/0jpgmw3v[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093949-0jpgmw3v/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.973700
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.973700
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.5_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/v6mv852j[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093953-v6mv852j/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.978600
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.978600
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.2_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/pk5klc5o[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093953-pk5klc5o/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.979000
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.979000
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.1_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/6mqkitkq[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093956-6mqkitkq/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.972600
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.972600
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.6_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/cutn3in5[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093958-cutn3in5/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.964300
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.964300
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.8_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/gkcoz6yh[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093958-gkcoz6yh/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.975700
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.975700
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.4_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/5vxss1f3[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_094000-5vxss1f3/logs[0m
+Loading dataset ...
+Starting hyperparameter optimization...
+[lr=0.001, bs=4096, dr=0.15] -> final_accuracy = 0.977600
+Best parameters: {'learning_rate': 0.001, 'batch_size': 4096, 'dropout_rate': 0.15} with Accuracy: 0.977600
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfixed_random_prune0.0_lr0.001_bs4096_dr0.15[0m at: [34mhttps://wandb.ai/hpi-deep-learning/m-classification/runs/mf08kkw2[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_093959-mf08kkw2/logs[0m
+All tasks completed.

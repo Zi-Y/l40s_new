@@ -1,0 +1,4 @@
+- log=false
+- cluster=example-slurm
+- module=4xl40s_ag_1_graphcast_seed3
+- dataloader=era5-w

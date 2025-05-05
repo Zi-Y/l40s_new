@@ -1,0 +1,660 @@
+Warning: Key 'x_range' has non-serializable value '[0, 1056]', converting to string.
+Warning: Key 'y_range' has non-serializable value '[0, 1056]', converting to string.
+[2025-02-06 18:38:51,174][root][INFO] - Data is loaded
+[2025-02-06 18:38:51,174][root][INFO] - inference_start: 2025-02-06 18:38:51
+sample time: 2020-10-18 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-19-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-19-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-19-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-19-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-19-06/tp_inference_results.jpg
+test
+sample time: 2020-11-22 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-23-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-23-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-23-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-23-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-23-06/tp_inference_results.jpg
+test
+sample time: 2020-12-01 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-02-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-02-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-02-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-02-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-02-06/tp_inference_results.jpg
+test
+sample time: 2020-12-28 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-29-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-29-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-29-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-29-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-29-06/tp_inference_results.jpg
+test
+sample time: 2020-11-15 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-16-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-16-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-16-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-16-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-16-06/tp_inference_results.jpg
+test
+sample time: 2020-12-05 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-06-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-06-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-06-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-06-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-06-06/tp_inference_results.jpg
+test
+sample time: 2020-11-24 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-25-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-25-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-25-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-25-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-25-06/tp_inference_results.jpg
+test
+sample time: 2020-11-29 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-30-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-30-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-30-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-30-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-30-06/tp_inference_results.jpg
+test
+sample time: 2020-12-18 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-19-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-19-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-19-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-19-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-19-06/tp_inference_results.jpg
+test
+sample time: 2020-12-02 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-03-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-03-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-03-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-03-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-03-06/tp_inference_results.jpg
+test
+sample time: 2020-10-02 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-03-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-03-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-03-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-03-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-03-06/tp_inference_results.jpg
+test
+sample time: 2020-12-29 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-30-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-30-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-30-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-30-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-30-06/tp_inference_results.jpg
+test
+sample time: 2020-10-05 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-06-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-06-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-06-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-06-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-06-06/tp_inference_results.jpg
+test
+sample time: 2020-10-08 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-09-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-09-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-09-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-09-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-09-06/tp_inference_results.jpg
+test
+sample time: 2020-10-29 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-30-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-30-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-30-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-30-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-30-06/tp_inference_results.jpg
+test
+sample time: 2020-12-27 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-28-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-28-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-28-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-28-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-28-06/tp_inference_results.jpg
+test
+sample time: 2020-11-01 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-02-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-02-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-02-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-02-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-02-06/tp_inference_results.jpg
+test
+sample time: 2020-10-21 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-22-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-22-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-22-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-22-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-22-06/tp_inference_results.jpg
+test
+sample time: 2020-11-03 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-04-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-04-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-04-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-04-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-04-06/tp_inference_results.jpg
+test
+sample time: 2020-10-06 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-07-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-07-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-07-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-07-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-07-06/tp_inference_results.jpg
+test
+sample time: 2020-11-02 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-03-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-03-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-03-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-03-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-03-06/tp_inference_results.jpg
+test
+sample time: 2020-10-10 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-11-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-11-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-11-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-11-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-11-06/tp_inference_results.jpg
+test
+sample time: 2020-11-20 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-21-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-21-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-21-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-21-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-21-06/tp_inference_results.jpg
+test
+sample time: 2020-11-07 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-08-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-08-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-08-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-08-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-08-06/tp_inference_results.jpg
+test
+sample time: 2020-10-31 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-01-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-01-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-01-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-01-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-01-06/tp_inference_results.jpg
+test
+sample time: 2020-10-14 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-15-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-15-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-15-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-15-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-15-06/tp_inference_results.jpg
+test
+sample time: 2020-12-31 06:00:00
+save to: ./inference_results_test/aurora_large/time_2021-01-01-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-01-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-01-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-01-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-01-06/tp_inference_results.jpg
+test
+sample time: 2020-12-22 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-23-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-23-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-23-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-23-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-23-06/tp_inference_results.jpg
+test
+sample time: 2020-11-10 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-11-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-11-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-11-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-11-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-11-06/tp_inference_results.jpg
+test
+sample time: 2020-12-26 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-27-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-27-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-27-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-27-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-27-06/tp_inference_results.jpg
+test
+sample time: 2020-10-17 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-18-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-18-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-18-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-18-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-18-06/tp_inference_results.jpg
+test
+sample time: 2020-12-19 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-20-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-20-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-20-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-20-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-20-06/tp_inference_results.jpg
+test
+sample time: 2020-12-13 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-14-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-14-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-14-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-14-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-14-06/tp_inference_results.jpg
+test
+sample time: 2020-10-13 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-14-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-14-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-14-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-14-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-14-06/tp_inference_results.jpg
+test
+sample time: 2020-12-24 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-25-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-25-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-25-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-25-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-25-06/tp_inference_results.jpg
+test
+sample time: 2020-10-09 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-10-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-10-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-10-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-10-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-10-06/tp_inference_results.jpg
+test
+sample time: 2020-11-18 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-19-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-19-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-19-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-19-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-19-06/tp_inference_results.jpg
+test
+sample time: 2020-10-11 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-12-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-12-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-12-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-12-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-12-06/tp_inference_results.jpg
+test
+sample time: 2020-10-16 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-17-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-17-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-17-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-17-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-17-06/tp_inference_results.jpg
+test
+sample time: 2020-12-06 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-07-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-07-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-07-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-07-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-07-06/tp_inference_results.jpg
+test
+sample time: 2020-11-19 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-20-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-20-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-20-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-20-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-20-06/tp_inference_results.jpg
+test
+sample time: 2020-11-16 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-17-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-17-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-17-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-17-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-17-06/tp_inference_results.jpg
+test
+sample time: 2020-10-19 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-20-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-20-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-20-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-20-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-20-06/tp_inference_results.jpg
+test
+sample time: 2020-12-21 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-22-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-22-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-22-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-22-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-22-06/tp_inference_results.jpg
+test
+sample time: 2020-12-11 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-12-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-12-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-12-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-12-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-12-06/tp_inference_results.jpg
+test
+sample time: 2020-11-04 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-05-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-05-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-05-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-05-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-05-06/tp_inference_results.jpg
+test
+sample time: 2020-10-28 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-29-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-29-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-29-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-29-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-29-06/tp_inference_results.jpg
+test
+sample time: 2020-12-14 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-15-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-15-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-15-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-15-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-15-06/tp_inference_results.jpg
+test
+sample time: 2020-12-20 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-21-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-21-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-21-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-21-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-21-06/tp_inference_results.jpg
+test
+sample time: 2020-12-30 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-31-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-31-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-31-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-31-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-31-06/tp_inference_results.jpg
+test
+sample time: 2021-01-01 06:00:00
+save to: ./inference_results_test/aurora_large/time_2021-01-02-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-02-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-02-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-02-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2021-01-02-06/tp_inference_results.jpg
+test
+sample time: 2020-12-16 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-17-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-17-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-17-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-17-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-17-06/tp_inference_results.jpg
+test
+sample time: 2020-10-04 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-05-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-05-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-05-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-05-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-05-06/tp_inference_results.jpg
+test
+sample time: 2020-12-17 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-18-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-18-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-18-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-18-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-18-06/tp_inference_results.jpg
+test
+sample time: 2020-11-09 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-10-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-10-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-10-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-10-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-10-06/tp_inference_results.jpg
+test
+sample time: 2020-11-14 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-15-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-15-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-15-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-15-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-15-06/tp_inference_results.jpg
+test
+sample time: 2020-11-13 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-14-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-14-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-14-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-14-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-14-06/tp_inference_results.jpg
+test
+sample time: 2020-12-09 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-10-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-10-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-10-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-10-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-10-06/tp_inference_results.jpg
+test
+sample time: 2020-10-03 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-04-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-04-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-04-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-04-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-04-06/tp_inference_results.jpg
+test
+sample time: 2020-10-30 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-31-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-31-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-31-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-31-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-31-06/tp_inference_results.jpg
+test
+sample time: 2020-10-23 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-24-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-24-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-24-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-24-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-24-06/tp_inference_results.jpg
+test
+sample time: 2020-10-26 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-27-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-27-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-27-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-27-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-27-06/tp_inference_results.jpg
+test
+sample time: 2020-11-21 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-22-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-22-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-22-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-22-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-22-06/tp_inference_results.jpg
+test
+sample time: 2020-12-03 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-04-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-04-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-04-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-04-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-04-06/tp_inference_results.jpg
+test
+sample time: 2020-11-27 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-28-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-28-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-28-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-28-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-28-06/tp_inference_results.jpg
+test
+sample time: 2020-11-26 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-27-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-27-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-27-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-27-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-27-06/tp_inference_results.jpg
+test
+sample time: 2020-12-04 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-05-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-05-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-05-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-05-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-05-06/tp_inference_results.jpg
+test
+sample time: 2020-10-07 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-08-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-08-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-08-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-08-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-08-06/tp_inference_results.jpg
+test
+sample time: 2020-10-20 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-21-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-21-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-21-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-21-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-21-06/tp_inference_results.jpg
+test
+sample time: 2020-10-27 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-28-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-28-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-28-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-28-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-28-06/tp_inference_results.jpg
+test
+sample time: 2020-10-01 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-02-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-02-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-02-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-02-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-02-06/tp_inference_results.jpg
+test
+sample time: 2020-12-12 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-13-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-13-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-13-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-13-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-13-06/tp_inference_results.jpg
+test
+sample time: 2020-12-07 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-08-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-08-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-08-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-08-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-08-06/tp_inference_results.jpg
+test
+sample time: 2020-11-25 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-26-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-26-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-26-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-26-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-26-06/tp_inference_results.jpg
+test
+sample time: 2020-11-30 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-01-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-01-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-01-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-01-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-01-06/tp_inference_results.jpg
+test
+sample time: 2020-11-12 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-13-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-13-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-13-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-13-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-13-06/tp_inference_results.jpg
+test
+sample time: 2020-10-25 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-26-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-26-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-26-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-26-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-26-06/tp_inference_results.jpg
+test
+sample time: 2020-10-22 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-23-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-23-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-23-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-23-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-23-06/tp_inference_results.jpg
+test
+sample time: 2020-11-06 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-07-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-07-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-07-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-07-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-07-06/tp_inference_results.jpg
+test
+sample time: 2020-10-15 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-16-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-16-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-16-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-16-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-16-06/tp_inference_results.jpg
+test
+sample time: 2020-11-08 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-09-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-09-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-09-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-09-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-09-06/tp_inference_results.jpg
+test
+sample time: 2020-12-25 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-26-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-26-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-26-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-26-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-26-06/tp_inference_results.jpg
+test
+sample time: 2020-10-24 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-25-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-25-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-25-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-25-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-25-06/tp_inference_results.jpg
+test
+sample time: 2020-12-23 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-24-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-24-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-24-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-24-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-24-06/tp_inference_results.jpg
+test
+sample time: 2020-12-15 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-16-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-16-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-16-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-16-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-16-06/tp_inference_results.jpg
+test
+sample time: 2020-11-23 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-24-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-24-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-24-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-24-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-24-06/tp_inference_results.jpg
+test
+sample time: 2020-10-12 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-10-13-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-13-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-13-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-13-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-10-13-06/tp_inference_results.jpg
+test
+sample time: 2020-12-10 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-11-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-11-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-11-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-11-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-11-06/tp_inference_results.jpg
+test
+sample time: 2020-11-17 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-18-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-18-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-18-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-18-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-18-06/tp_inference_results.jpg
+test
+sample time: 2020-11-11 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-12-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-12-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-12-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-12-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-12-06/tp_inference_results.jpg
+test
+sample time: 2020-12-08 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-12-09-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-09-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-09-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-09-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-12-09-06/tp_inference_results.jpg
+test
+sample time: 2020-11-05 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-06-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-06-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-06-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-06-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-06-06/tp_inference_results.jpg
+test
+sample time: 2020-11-28 06:00:00
+save to: ./inference_results_test/aurora_large/time_2020-11-29-06/msl_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-29-06/2t_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-29-06/10u_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-29-06/10v_inference_results.jpg
+save to: ./inference_results_test/aurora_large/time_2020-11-29-06/tp_inference_results.jpg
+test
+[2025-02-06 18:56:16,176][root][INFO] - inference_duration: 1970-01-01 00:17:25
+/home/zi/research_project/aurora/aurora/training/inference.py:88: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(ckpt_path, map_location="cpu")
+
+

@@ -1,0 +1,11 @@
+nohup: ignoring input
+We will use these GPUs: 0 1 2 3
+Number of GPUs: 4
+===== Starting All Tasks with Balanced GPU Allocation =====
+Total tasks: 4
+-----------------------------------------------------------
+分配任务: method=-1, subset_rate=0.0, seed=52, cost=1 -> GPU=0 (负载=1), epochs=200
+分配任务: method=-1, subset_rate=0.0, seed=53, cost=1 -> GPU=1 (负载=1), epochs=200
+分配任务: method=-1, subset_rate=0.0, seed=54, cost=1 -> GPU=2 (负载=1), epochs=200
+分配任务: method=-1, subset_rate=0.0, seed=55, cost=1 -> GPU=3 (负载=1), epochs=200
+All tasks have been submitted and completed.

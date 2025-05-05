@@ -1,0 +1,36 @@
+defaults:
+  - _self_
+  - dataset: dummy_debug
+  - variable_weights: finetuning
+
+task:
+  task: "train"  # Can be "train"
+  phase: "finetuning" # Can be finetuning and pretraining, inference
+  total_steps: 200
+  model_name: "Aurora"  # Change this to "AuroraSmall" or "Aurora" as needed
+  distributed: True
+  use_activation_checkpointing: True
+  use_torch_compile: False  # Turn on for faster training, but initialization is slower
+model:
+  drop_path: 0.0 # Change to 0.2 for pretraining
+  lead_time_hours: 24
+  patch_size: 4 # Default from paper
+dataloader:
+  batch_size: 1
+  num_workers: 16
+optimizer:
+  weight_decay: 5e-6
+  constant_lr: 5e-5
+lr_scheduler:
+  warmup_steps: 100
+  start_lr: 5e-4
+  final_lr: 5e-5
+checkpoint:
+  ckpt_dir: "./checkpoints"
+  ckpt_file: "aurora-0.25-small-pretrained.ckpt"
+  continue_training: False
+  ckpt_epoch: 1
+logging:
+  use_wandb: True
+  project_name: "aurora_project"
+  group_name: "finetuning" # for wandb

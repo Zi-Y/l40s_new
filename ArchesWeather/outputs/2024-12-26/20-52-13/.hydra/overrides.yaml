@@ -1,0 +1,7 @@
+- log=True
+- cluster=example-slurm
+- module=4xl40s_ag_1_graphcast_seed3
+- dataloader=era5-w
+- module.seed=3
+- max_steps=400
+- module.path_save_base=/mnt/ssd/zi/4xl40s_ag_1_graphcast_seed_test/

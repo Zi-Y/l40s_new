@@ -1,0 +1,82 @@
+nohup: ignoring input
+wandb: Appending key for api.wandb.ai to your netrc file: /home/zi/.netrc
+Running with model.patch_size=3...
+wandb: WARNING Disabling the wandb service is deprecated as of version 0.18.0 and will be removed in version 0.19.0.
+wandb: Currently logged in as: ziyang1 (hpi-deep-learning). Use `wandb login --relogin` to force relogin
+wandb: WARNING Path ./wandblogs/wandb/ wasn't writable, using system temp directory.
+is main node True
+wandb mode online
+wandb service True
+registering exp on main node
+{'cluster': {'data_path': './data/era5_240/full/', 'wandb_dir': './wandblogs/', 'wandb_mode': 'online', 'precision': '16-mixed', 'batch_size': 1, 'gpus': 4, 'cpus': 32, 'manual_requeue': True, 'folder': './sblogs/pg4-baseline/', 'launcher': {'gpus_per_node': 4, 'nodes': 1, 'tasks_per_node': 4, 'timeout_min': 1440, 'name': 'pg4-baseline', 'slurm_partiation': 'training', 'slurm_additional_parameters': {'hint': 'nomultithread'}, 'slurm_srun_args': ['--cpu-bind=none', '--mem-bind=none']}}, 'dataloader': {'dataset': {'_target_': 'dataloaders.era5.Era5Forecast', 'path': './data/era5_240/full/', 'lead_time_hours': 24, 'input_norm_scheme': 'pangu', 'output_norm_scheme': 'delta24', 'data_augmentation': False, 'train_split': 'all', 'include_vertical_wind_component': True, 'load_prev': True}}, 'module': {'name': 'pg4-baseline', 'project': 'atmo-comp', 'save_per_sample_loss': True, 'use_infobatch': False, 'seed': 3, 'path_save_base': '/mnt/ssd/zi/4xl40s_ag_1_graphcast_seed_3', 'accumulate_grad_batches': 1, 'gradient_clip_val': 0, 'info_batch': {'prune_easy': -100, 'info_batch_num_epoch': 10000, 'info_batch_ratio': 0.1, 'info_batch_delta': 0.875}, 'module': {'_target_': 'lightning_modules.forecast.ForecastModuleWithCond', 'cond_dim': 256, 'lr': 0.0003, 'betas': [0.9, 0.98], 'weight_decay': 0.01, 'num_warmup_steps': 5000, 'num_training_steps': 320000, 'use_graphcast_coeffs': True, 'use_prev': True}, 'backbone': {'_target_': 'backbones.archesweather.ArchesWeatherCond', 'lon_resolution': 240, 'lat_resolution': 120, 'two_poles': False, 'emb_dim': 192, 'patch_size': [2, 2, 2], 'window_size': [1, 6, 10], 'use_skip': True, 'conv_head': True, 'position_embs_dim': 0, 'surface_ch': 11, 'level_ch': 12, 'cond_dim': 256, 'droppath_coeff': 0.2, 'dropout': 0, 'first_interaction_layer': 'linear', 'depth_multiplier': 2, 'axis_attn': True, 'n_level_variables': 6}}, 'log': True, 'name': 'pg4-baseline', 'project': 'atmo-comp', 'exp_dir': './wandblogs/atmo-comp/pg4-baseline/test/', 'max_steps': 320000, 'batch_size': 1, 'resume': False, 'save_step_frequency': 20000, 'log_freq': 100, 'limit_val_batches': 6, 'debug': False}
+wandb: WARNING Path ./wandblogs/wandb/ wasn't writable, using system temp directory
+wandb: Tracking run with wandb version 0.17.8
+wandb: Run data is saved locally in /tmp/wandb/run-20241220_205422-pg4-baseline-k6v8h0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run pg4-baseline
+wandb: ⭐️ View project at https://wandb.ai/hpi-deep-learning/atmo-comp
+wandb: 🚀 View run at https://wandb.ai/hpi-deep-learning/atmo-comp/runs/pg4-baseline-k6v8h0
+0it [00:00, ?it/s]8it [00:00, 73.43it/s]12it [00:00, 76.52it/s]
+start time 2018-12-31T00:00:00
+0it [00:00, ?it/s]9it [00:00, 83.62it/s]18it [00:00, 83.99it/s]27it [00:00, 83.97it/s]36it [00:00, 84.01it/s]45it [00:00, 84.14it/s]54it [00:00, 84.10it/s]63it [00:00, 83.86it/s]72it [00:00, 83.88it/s]81it [00:00, 83.92it/s]90it [00:01, 83.99it/s]99it [00:01, 84.08it/s]108it [00:01, 83.42it/s]117it [00:01, 83.68it/s]126it [00:01, 83.79it/s]135it [00:01, 83.75it/s]144it [00:01, 83.72it/s]153it [00:01, 83.88it/s]160it [00:01, 83.87it/s]
+Seed set to 3
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/4
+is main node True
+Experiment already exists. Trying to resume it.
+is main node True
+Experiment already exists. Trying to resume it.
+is main node True
+Experiment already exists. Trying to resume it.
+wandb mode online
+wandb service True
+wandb mode online
+wandb service True
+wandb mode online
+wandb service True
+0it [00:00, ?it/s]0it [00:00, ?it/s]0it [00:00, ?it/s]8it [00:00, 73.49it/s]7it [00:00, 69.86it/s]8it [00:00, 72.86it/s]12it [00:00, 76.69it/s]
+12it [00:00, 75.91it/s]
+start time 2018-12-31T00:00:00
+12it [00:00, 74.92it/s]
+start time 2018-12-31T00:00:00
+0it [00:00, ?it/s]start time 2018-12-31T00:00:00
+0it [00:00, ?it/s]0it [00:00, ?it/s]9it [00:00, 84.16it/s]9it [00:00, 83.04it/s]9it [00:00, 83.54it/s]18it [00:00, 84.40it/s]18it [00:00, 83.30it/s]18it [00:00, 83.85it/s]27it [00:00, 84.30it/s]27it [00:00, 83.44it/s]27it [00:00, 83.97it/s]36it [00:00, 84.35it/s]36it [00:00, 83.52it/s]36it [00:00, 84.21it/s]45it [00:00, 84.45it/s]45it [00:00, 83.56it/s]45it [00:00, 84.21it/s]54it [00:00, 84.19it/s]54it [00:00, 83.39it/s]54it [00:00, 83.93it/s]63it [00:00, 84.17it/s]63it [00:00, 83.42it/s]63it [00:00, 84.06it/s]72it [00:00, 84.00it/s]72it [00:00, 83.43it/s]72it [00:00, 83.97it/s]81it [00:00, 83.88it/s]81it [00:00, 83.41it/s]81it [00:00, 83.78it/s]90it [00:01, 83.89it/s]90it [00:01, 83.37it/s]90it [00:01, 83.73it/s]99it [00:01, 84.06it/s]99it [00:01, 83.65it/s]99it [00:01, 83.83it/s]108it [00:01, 84.05it/s]108it [00:01, 83.69it/s]108it [00:01, 83.91it/s]117it [00:01, 84.28it/s]117it [00:01, 83.46it/s]117it [00:01, 83.99it/s]126it [00:01, 84.25it/s]126it [00:01, 83.33it/s]126it [00:01, 83.73it/s]135it [00:01, 84.04it/s]135it [00:01, 83.14it/s]135it [00:01, 83.41it/s]144it [00:01, 84.07it/s]144it [00:01, 83.17it/s]144it [00:01, 83.39it/s]153it [00:01, 83.93it/s]153it [00:01, 83.09it/s]153it [00:01, 83.40it/s]160it [00:01, 84.08it/s]
+160it [00:01, 83.34it/s]
+160it [00:01, 83.72it/s]
+Manual submitit Requeuing
+[rank: 3] Seed set to 3
+seed is set to 3
+gradient_clip_val: 0
+accumulate_grad_batches: 1
+use_info_batch:  False
+num_warmup_steps:  5000
+num_training_steps:  320000
+Manual submitit Requeuing
+[rank: 1] Seed set to 3
+Manual submitit Requeuing
+[rank: 2] Seed set to 3
+seed is set to 3
+gradient_clip_val: 0
+accumulate_grad_batches: 1
+use_info_batch:  False
+num_warmup_steps:  5000
+num_training_steps:  320000
+seed is set to 3
+gradient_clip_val: 0
+accumulate_grad_batches: 1
+use_info_batch:  False
+num_warmup_steps:  5000
+num_training_steps:  320000
+Initializing distributed: GLOBAL_RANK: 3, MEMBER: 4/4
+Initializing distributed: GLOBAL_RANK: 1, MEMBER: 2/4
+Initializing distributed: GLOBAL_RANK: 2, MEMBER: 3/4
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 4 processes
+----------------------------------------------------------------------------------------------------
+
+/home/zi/miniconda3/envs/weather/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

@@ -1,0 +1,33 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/file_manager.py", line 211, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/lru_cache.py", line 56, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/mnt/ssd/zi/data/era5_240/full/era5_240_1993_0h.nc',), 'a', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'd5b70a86-55cc-4d04-b73b-b4b493527521']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zi/ArchesWeather/dl_era.py", line 38, in <module>
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/dataset.py", line 2329, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/api.py", line 1343, in to_netcdf
+    store = store_open(target, mode, format, group, **kwargs)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 408, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 355, in __init__
+    self.format = self.ds.data_model
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 417, in ds
+    return self._acquire()
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/netCDF4_.py", line 411, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/file_manager.py", line 199, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/file_manager.py", line 217, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "src/netCDF4/_netCDF4.pyx", line 2470, in netCDF4._netCDF4.Dataset.__init__
+  File "src/netCDF4/_netCDF4.pyx", line 2107, in netCDF4._netCDF4._ensure_nc_success
+PermissionError: [Errno 13] Permission denied: '/mnt/ssd/zi/data/era5_240/full/era5_240_1993_0h.nc'

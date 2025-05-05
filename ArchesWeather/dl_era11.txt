@@ -1,0 +1,92 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/zi/ArchesWeather/dl_era1.py", line 38, in <module>
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/dataset.py", line 2329, in to_netcdf
+    return to_netcdf(  # type: ignore  # mypy cannot resolve the overloads:(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/api.py", line 1360, in to_netcdf
+    dump_to_store(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/api.py", line 1407, in dump_to_store
+    store.store(variables, attrs, check_encoding, writer, unlimited_dims=unlimited_dims)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/common.py", line 363, in store
+    variables, attributes = self.encode(variables, attributes)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/common.py", line 452, in encode
+    variables, attributes = cf_encoder(variables, attributes)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/conventions.py", line 805, in cf_encoder
+    new_vars = {k: encode_cf_variable(v, name=k) for k, v in variables.items()}
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/conventions.py", line 805, in <dictcomp>
+    new_vars = {k: encode_cf_variable(v, name=k) for k, v in variables.items()}
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/conventions.py", line 196, in encode_cf_variable
+    var = coder.encode(var, name=name)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/coding/times.py", line 969, in encode
+    variable.data.dtype, np.datetime64
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/variable.py", line 449, in data
+    return self._data.get_duck_array()
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/indexing.py", line 837, in get_duck_array
+    self._ensure_cached()
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/indexing.py", line 831, in _ensure_cached
+    self.array = as_indexable(self.array.get_duck_array())
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/indexing.py", line 788, in get_duck_array
+    return self.array.get_duck_array()
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/indexing.py", line 651, in get_duck_array
+    array = self.array[self.key]
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/zarr.py", line 104, in __getitem__
+    return indexing.explicit_indexing_adapter(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/core/indexing.py", line 1015, in explicit_indexing_adapter
+    result = raw_indexing_method(raw_key.tuple)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/xarray/backends/zarr.py", line 88, in _oindex
+    return self._array.oindex[key]
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/zarr/indexing.py", line 666, in __getitem__
+    return self.array.get_orthogonal_selection(selection, fields=fields)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/zarr/core.py", line 1080, in get_orthogonal_selection
+    return self._get_selection(indexer=indexer, out=out, fields=fields)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/zarr/core.py", line 1343, in _get_selection
+    self._chunk_getitems(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/zarr/core.py", line 2179, in _chunk_getitems
+    cdatas = self.chunk_store.getitems(ckeys, contexts=contexts)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/zarr/storage.py", line 1435, in getitems
+    raise v
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/fsspec/asyn.py", line 245, in _run_coro
+    return await asyncio.wait_for(coro, timeout=timeout), i
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/tasks.py", line 408, in wait_for
+    return await fut
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/gcsfs/core.py", line 1062, in _cat_file
+    headers, out = await self._call("GET", u2, headers=head)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/gcsfs/core.py", line 447, in _call
+    status, headers, info, contents = await self._request(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/decorator.py", line 221, in fun
+    return await caller(func, *(extras + args), **kw)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/gcsfs/retry.py", line 126, in retry_request
+    return await func(*args, **kwargs)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/gcsfs/core.py", line 426, in _request
+    async with self.session.request(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/client.py", line 1353, in __aenter__
+    self._resp = await self._coro
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/client.py", line 657, in _request
+    conn = await self._connector.connect(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/connector.py", line 564, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/connector.py", line 975, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/connector.py", line 1319, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohttp/connector.py", line 1073, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/site-packages/aiohappyeyeballs/impl.py", line 88, in start_connection
+    sock, _, _ = await staggered.staggered_race(
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py", line 144, in staggered_race
+    raise d.exception()
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py", line 116, in run_one_coro
+    assert winner_index is None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-447954' coro=<staggered_race.<locals>.run_one_coro() done, defined at /home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py:82> exception=AssertionError()>
+Traceback (most recent call last):
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py", line 116, in run_one_coro
+    assert winner_index is None
+AssertionError
+Task exception was never retrieved
+future: <Task finished name='Task-447984' coro=<staggered_race.<locals>.run_one_coro() done, defined at /home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py:82> exception=AssertionError()>
+Traceback (most recent call last):
+  File "/home/zi/miniconda3/envs/weather/lib/python3.10/asyncio/staggered.py", line 116, in run_one_coro
+    assert winner_index is None
+AssertionError

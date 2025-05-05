@@ -1,0 +1,3 @@
+- cluster=example-slurm
+- module=forecast-archesweather
+- dataloader=era5-w

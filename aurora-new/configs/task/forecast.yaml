@@ -1,0 +1,13 @@
+# Common attributes for all tasks
+task: "forecast"  # Can be "train" or "forecast"
+model_name: "AuroraSmall"  # Change this to "AuroraSmall" or "Aurora" as needed
+distributed: False
+use_activation_checkpointing: True
+use_torch_compile: False  # Turn on for faster training, but initialization is slower
+
+# Attributes for forecast task
+lead_times: [24, 48]  # Lead times to compute in hours
+checkpoint_path: ???  # Path to the checkpoint file
+output_dir: ???  # Path to the output directory
+use_wb2_format: False  # Use a WeatherBench2-compatible format
+rollout_steps: 1  # For compatibility with the training task

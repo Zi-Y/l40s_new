@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="zi@03.fb10dl.i.hpi.de:22 password (3)" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="zi@03.fb10dl.i.hpi.de:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/zi/research_project" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zi@03.fb10dl.i.hpi.de:22 password (2)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/zi/research_project" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zi@03.fb10dl.i.hpi.de:22 password (3)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/zi/research_project" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/home/zi/research_project/iTransformer/checkpoints" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

@@ -1,0 +1,18 @@
+nohup: ignoring input
+Running pruning_method=3, subset_rate=0.3, manualSeed=42 on GPU 0
+Running pruning_method=3, subset_rate=0.5, manualSeed=42 on GPU 1
+Running pruning_method=3, subset_rate=0.7, manualSeed=42 on GPU 2
+Running pruning_method=3, subset_rate=0.9, manualSeed=42 on GPU 3
+Running pruning_method=3, subset_rate=0.3, manualSeed=43 on GPU 0
+Running pruning_method=3, subset_rate=0.5, manualSeed=43 on GPU 1
+Running pruning_method=3, subset_rate=0.7, manualSeed=43 on GPU 2
+Running pruning_method=3, subset_rate=0.9, manualSeed=43 on GPU 3
+Running pruning_method=3, subset_rate=0.3, manualSeed=44 on GPU 0
+Running pruning_method=3, subset_rate=0.5, manualSeed=44 on GPU 1
+Running pruning_method=3, subset_rate=0.7, manualSeed=44 on GPU 2
+Running pruning_method=3, subset_rate=0.9, manualSeed=44 on GPU 3
+Running pruning_method=3, subset_rate=0.3, manualSeed=45 on GPU 0
+Running pruning_method=3, subset_rate=0.5, manualSeed=45 on GPU 1
+Running pruning_method=3, subset_rate=0.7, manualSeed=45 on GPU 2
+Running pruning_method=3, subset_rate=0.9, manualSeed=45 on GPU 3
+All tasks submitted.

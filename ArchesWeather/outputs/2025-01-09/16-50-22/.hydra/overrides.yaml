@@ -1,0 +1,9 @@
+- cluster=example-slurm
+- module=4xl40s_ag_1_aurora_seed3
+- dataloader=era5-w
+- module.seed=3
+- module.use_infobatch=True
+- module.path_save_base=/mnt/ssd/zi/4xl40s_ag_1_seed3_TDDS_keephard_30
+- module.info_batch.prune_easy=-52
+- module.info_batch.info_batch_ratio=0.3
+- max_steps=320000
