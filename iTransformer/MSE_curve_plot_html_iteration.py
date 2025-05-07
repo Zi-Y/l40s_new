@@ -27,7 +27,7 @@ pm_values = [-1, 0,  9, 12,]
 # pm_values = [0,  1, 2, 3, 4, 9, 10, 11]
 pm_values = [0, 1, 2, 3, 4, 9, 13, 14, 15, 16]
 pm_values = [0, 4, 9, 12, 13, 14, 15, 16, 17]
-
+pm_values = [0, 9, 12, 15]
 pr_values = [0, 10, 30, 50, 70, 90]
 pr_values = [0, 50]
 pr_values = [0, 10, 30, 50, 70,]
@@ -50,13 +50,13 @@ pm_names = {
     6: "IB KM", # keep middle
     7: "IB RM", # remove middle
     8: "IB R-part", # remove a part
-    9: "Token level pruning (dynamic)", #"SLM-token (dynamic)",
+    9: "Token level pruning, per batch", #"SLM-token (dynamic)",
     10: "IB token",
     11: "IB token pr",
-    12: "Global token level pruning (dynamic)", #"Global SLM-token , same as 9",
+    12: "Token level pruning, global", #"Global SLM-token , same as 9" Global token level pruning (dynamic),
     13: "SLM-token, using (loss at 1 epoch - current loss)",
-    14: "SLM-token, using (previous epoch loss - current loss)",
-    15: "SLM-token, using loss difference divided by previous epoch loss", # (previous epoch loss - current loss)/previous epoch loss
+    14: "SLM-token, using (previous epoch loss - current loss)", # using (previous epoch loss - current loss)
+    15: "Token level pruning, per batch, using loss change rate", # SLM-token, using loss difference divided by previous epoch loss, (previous epoch loss - current loss)/previous epoch loss
     16: "random token pruning",
     17: "SLM-token, using loss at 1 epoch - current loss divided by previous epoch loss", # (loss at 1 epoch - current loss)/previous epoch loss
 
@@ -336,6 +336,29 @@ color_list = [
     'rgba(100, 50, 200, 1)',
     'rgba(200, 100, 50, 1)'
 ]
+
+color_list = [
+    'rgba(214, 39, 40, 1)',    # 红
+    'rgba(31, 119, 180, 1)',   # 蓝
+    'rgba(255, 127, 14, 1)',   # 橙
+    'rgba(44, 160, 44, 1)',    # 绿
+    'rgba(148, 103, 189, 1)',  # 紫
+    'rgba(140, 86, 75, 1)',    # 棕
+    'rgba(227, 119, 194, 1)',  # 粉紫
+    'rgba(127, 127, 127, 1)',  # 灰
+    'rgba(188, 189, 34, 1)',   # 橄榄绿
+    'rgba(23, 190, 207, 1)',   # 青蓝
+    'rgba(174, 199, 232, 1)',  # 淡蓝
+    'rgba(255, 187, 120, 1)',  # 淡橙
+    'rgba(152, 223, 138, 1)',  # 淡绿
+    'rgba(255, 152, 150, 1)',  # 淡红
+    'rgba(197, 176, 213, 1)',  # 淡紫
+    'rgba(196, 156, 148, 1)',  # 淡棕
+    'rgba(247, 182, 210, 1)',  # 淡粉
+    'rgba(199, 199, 199, 1)',  # 浅灰
+    'rgba(219, 219, 141, 1)',  # 淡黄绿
+    'rgba(158, 218, 229, 1)'   # 淡青蓝
+]
 color_index = 0
 
 for label, (mean_steps, mean_loss_smooth, std_loss_smooth, *rest) in data_dict.items():
@@ -400,10 +423,15 @@ for label, data in data_dict.items():
     # 提取方法名称（假设方法名称在 label 中出现，参考 pm_names 中的值）
     method_found = None
     for mname in pm_names.values():
-        if label.startswith(mname):
-        # if mname in label:
+        prefix = re.split(r'P(?=\d)', label, maxsplit=1)[0][:-1]
+        if mname == prefix:
             method_found = mname
             break
+
+    # if label.startswith(mname):
+        # if mname in label:
+        #     method_found = mname
+        #     break
     if method_found is None:
         continue
     grouped_data.setdefault(method_found, []).append((pr_value, best_test_avg, best_test_std))
