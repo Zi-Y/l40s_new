@@ -76,7 +76,7 @@ class InfoBatch(Dataset):
         self.args = args
 
         # scores 和 weights 均在 GPU 上初始化
-        if self.args.pruning_method in {9, 10, 11, 12, 13, 14, 15, 16}:
+        if self.args.pruning_method in {9, 10, 11, 12, 13, 14, 15, 16, 17}:
             self.per_sample_scores = torch.ones(len(self.dataset), device=self.device)
             self.scores = torch.ones((len(self.dataset), self.args.pred_len, self.args.enc_in), device=self.device) * 3
             # self.weights = torch.ones((len(self.dataset), self.args.pred_len, self.args.enc_in), device=self.device)
@@ -206,7 +206,7 @@ class InfoBatch(Dataset):
         elif self.args.pruning_method == 12:
             weights = self.global_token_mask[indices].float()
 
-        elif self.args.pruning_method == 13:
+        elif self.args.pruning_method in (13, 17):
             if only_update_saved_loss_metric:
                 self.trained_per_token_loss[indices] = values
             else:
@@ -216,6 +216,9 @@ class InfoBatch(Dataset):
                 else:
                     diff_trained_current = values - self.trained_per_token_loss[indices]
 
+                if self.args.pruning_method == 17:
+                    diff_trained_current = diff_trained_current/self.trained_per_token_loss[indices]
+
                 flat_diff = diff_trained_current.contiguous().reshape(-1)
                 # 计算近似分位数对应的 kth 索引
                 k = max(1, int(abs(self.args.token_pr_rate) * flat_diff.numel()))
@@ -223,6 +226,7 @@ class InfoBatch(Dataset):
 
                 # 根据阈值生成权重
                 weights = (diff_trained_current >= threshold).float()
+
 
         elif self.args.pruning_method in (14, 15):
             if only_update_saved_loss_metric:
@@ -338,7 +342,7 @@ class InfoBatch(Dataset):
             self.global_token_mask = (diff_trained_current >= threshold).float()
 
 
-        elif self.args.pruning_method in {13, 14, 15, 16}:
+        elif self.args.pruning_method in {13, 14, 15, 16, 17}:
             # well_learned_mask should be all false mask
             # because we do not want to remove any sample, but we want to remove tokens
             well_learned_mask = torch.zeros_like(self.per_sample_scores, dtype=torch.bool)

@@ -353,8 +353,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
                             elif self.args.pruning_method in (9, 10, 11, 12, 16):
                                 loss = train_data.update(loss)
-
-                            elif self.args.pruning_method in (13, 14, 15):
+                            # 第一个epoch不计算weighted loss值 只记录当前的loss
+                            elif self.args.pruning_method in (13, 14, 15, 17):
                                 if epoch == 0:
                                     loss = train_data.update(loss, only_update_saved_loss_metric=True)
                                 else:
