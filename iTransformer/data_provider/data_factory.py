@@ -25,7 +25,7 @@ def data_provider(args, flag):
     elif flag == 'infer':
         shuffle_flag = False
         drop_last = False  # original drop_last = True
-        batch_size = args.batch_size * 256  # original batch_size=1 for evaluation
+        batch_size = args.batch_size * 4  # original batch_size=1 for evaluation
         freq = args.freq
     elif flag == 'pred':
         shuffle_flag = False
