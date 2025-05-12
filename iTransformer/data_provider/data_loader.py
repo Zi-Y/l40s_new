@@ -259,7 +259,7 @@ class Dataset_Custom(Dataset):
         valid_length = len(self.data_x) - self.seq_len - self.pred_len + 1
         if (self.flag == 'train'
                 and pruning_rate != 0
-                and args.pruning_method not in {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}):
+                and args.pruning_method not in {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}):
 
             if pruning_method == 0 and pruning_rate > 0:
                 num_keep = int(valid_length * (1 - pruning_rate))
@@ -298,6 +298,12 @@ class Dataset_Custom(Dataset):
                     0,  # 21
                 )
 
+                # 根据异常值的大小，从小到大排列
+                # if pruning_method in (21, 22):
+                #     rank_file_name = ("/mnt/ssd/zi/itransformer_results/"
+                #                  "trend_scores/seed0_pm0_pr0_low10_high10_start0_int20_tr30_test101_"
+                #                  "iTransformer_custom_ftM_sl96_ll48_"
+                #                  "pl96_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0/trend_error_train_set_all_sample_all_tokens.npy")
 
                 rank_matrix_np = np.load(rank_file_name)
                 print('load rank file:', rank_file_name)
@@ -307,14 +313,23 @@ class Dataset_Custom(Dataset):
                 # 计算要移除多少个
                 remove_count = int(valid_length * abs(pruning_rate))
 
-                if pruning_rate >= 0:
+                if pruning_method == 21:
                     # 移除最“容易”的前 remove_count 个
                     remaining_ids = sorted_sample_ids[remove_count:]
-                    # sample_weights = rank_matrix_np[:,1][remove_count:]
-                else:
+                elif pruning_method == 22:
                     # 移除最“困难”的后 remove_count 个
                     remaining_ids = sorted_sample_ids[:-remove_count]
-                    # sample_weights = rank_matrix_np[:,1][:-remove_count]
+                    # remaining_ids = sorted_sample_ids[remove_count:]
+                else:
+                    if pruning_rate >= 0:
+                        # 移除最“容易”的前 remove_count 个
+                        remaining_ids = sorted_sample_ids[remove_count:]
+                        # sample_weights = rank_matrix_np[:,1][remove_count:]
+                    else:
+                        # 移除最“困难”的后 remove_count 个
+                        remaining_ids = sorted_sample_ids[:-remove_count]
+                        # sample_weights = rank_matrix_np[:,1][:-remove_count]
+
 
                 self.indices = remaining_ids.astype(int)
 

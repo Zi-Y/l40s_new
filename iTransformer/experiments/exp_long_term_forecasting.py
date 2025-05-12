@@ -732,8 +732,9 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                                 loss = -loss
 
 
-                            elif self.args.pruning_method in (9, 10, 11, 12, 16):
+                            elif self.args.pruning_method in (9, 10, 11, 12, 16, 18):
                                 loss = train_data.update(loss)
+
                             # 第一个epoch不计算weighted loss值 只记录当前的loss
                             elif self.args.pruning_method in (13, 14, 15, 17):
                                 if epoch == 0:
@@ -772,7 +773,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
                 if (global_step) % 100 == 0:
 
-                    self.infer_train_set(infer_data, infer_loader, criterion, global_step, setting)
+                    # self.infer_train_set(infer_data, infer_loader, criterion, global_step, setting)
 
 
                     vali_MSE_loss, vali_MAE_loss, vali_total_loss = self.vali(vali_data, vali_loader, criterion)

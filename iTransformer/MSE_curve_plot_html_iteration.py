@@ -26,7 +26,7 @@ pm_values = [-1, 0,  4, 9, 12, 13, 14, 15,]
 pm_values = [-1, 0,  9, 12,]
 # pm_values = [0,  1, 2, 3, 4, 9, 10, 11]
 pm_values = [0, 1, 2, 3, 4, 9, 13, 14, 15, 16]
-pm_values = [0, 4, 9, 12, 13, 14, 15, 16, 17]
+pm_values = [0, 4, 9, 12, 13, 14, 15, 16, 17, 18]
 pm_values = [0, 9, 12, 15]
 pr_values = [0, 10, 30, 50, 70, 90]
 pr_values = [0, 50]
@@ -59,6 +59,9 @@ pm_names = {
     15: "Token level pruning, per batch, using loss change rate", # SLM-token, using loss difference divided by previous epoch loss, (previous epoch loss - current loss)/previous epoch loss
     16: "random token pruning",
     17: "SLM-token, using loss at 1 epoch - current loss divided by previous epoch loss", # (loss at 1 epoch - current loss)/previous epoch loss
+    18: "trend error - token",
+    21: "trend error - sample level pruning, remove easy",
+    22: "trend error - sample level pruning, remove hard",
 
 }
 
