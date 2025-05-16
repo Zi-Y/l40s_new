@@ -27,7 +27,11 @@ pm_values = [-1, 0,  9, 12,]
 # pm_values = [0,  1, 2, 3, 4, 9, 10, 11]
 pm_values = [0, 1, 2, 3, 4, 9, 13, 14, 15, 16]
 pm_values = [0, 4, 9, 12, 13, 14, 15, 16, 17, 18]
-pm_values = [0, 9, 12, 15]
+pm_values = [0, 9, 12, 16, 18, 21, 22]
+
+pm_values = [0, 1, 3, 2, 22, 4, 9, 12, 18,]
+
+
 pr_values = [0, 10, 30, 50, 70, 90]
 pr_values = [0, 50]
 pr_values = [0, 10, 30, 50, 70,]
@@ -38,30 +42,29 @@ pr_values = [0, 10, 30, 50, 70,]
 # seeds = range(27)  # seed 从 0 到 27
 # seeds = range(5)  # seed 从 0 到 27
 seeds = range(20)  # seed 从 0 到 27
-seeds = range(20)  # seed 从 0 到 27
 pm_names = {
     -1: "No Pruning",
     0: "Random Pruning",
-    1: "Avg Loss (static)",
-    2: "S2L (static)",
-    3: "TTDS (static)",
-    4: "InfoBatch (dynamic)",
+    1: "Avg Loss (sample, static)",
+    2: "S2L (sample, static)",
+    3: "TTDS (sample, static)",
+    4: "InfoBatch (sample, dynamic)",
     5: "I-IB",
     6: "IB KM", # keep middle
     7: "IB RM", # remove middle
     8: "IB R-part", # remove a part
-    9: "Token level pruning, per batch", #"SLM-token (dynamic)",
+    9: "Modified SLM - per batch (token, dynamic)", #"Token level pruning, per batch", #"SLM-token (dynamic)",
     10: "IB token",
     11: "IB token pr",
-    12: "Token level pruning, global", #"Global SLM-token , same as 9" Global token level pruning (dynamic),
+    12: "Modified SLM - global (token, dynamic)",#"Token level pruning, global", #"Global SLM-token , same as 9" Global token level pruning (dynamic),
     13: "SLM-token, using (loss at 1 epoch - current loss)",
     14: "SLM-token, using (previous epoch loss - current loss)", # using (previous epoch loss - current loss)
     15: "Token level pruning, per batch, using loss change rate", # SLM-token, using loss difference divided by previous epoch loss, (previous epoch loss - current loss)/previous epoch loss
     16: "random token pruning",
     17: "SLM-token, using loss at 1 epoch - current loss divided by previous epoch loss", # (loss at 1 epoch - current loss)/previous epoch loss
-    18: "trend error - token",
-    21: "trend error - sample level pruning, remove easy",
-    22: "trend error - sample level pruning, remove hard",
+    18: "Trend error (token, static)",
+    21: "Trend error - sample level pruning, remove easy",
+    22: "Trend error (sample, static)" # trend error - sample level pruning, remove hard",
 
 }
 
@@ -105,6 +108,12 @@ for dir_index, base_dir in enumerate(dir_list):
 
                 elif pm == 17:
                     base_dir = "./pm17_checkpoints"
+
+                elif pm == 18:
+                    base_dir = "./pm18_checkpoints"
+
+                elif pm in (21, 22):
+                    base_dir = "./pm21-22_checkpoints"
 
                 elif pm == 10:
                     base_dir = "./pm10_checkpoints"
@@ -165,9 +174,13 @@ for dir_index, base_dir in enumerate(dir_list):
                             label = f"{dir_name[dir_index]}{pm_names[pm]} P{predicted_len} PR{low_t}"
                             model_part = f"pm{pm}_pr10_low10_high10_start10_int25_tr{low_t}_weather_96_{predicted_len}_iTransformer_custom_ftM_sl96_ll48_pl{predicted_len}_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0"
 
-                        elif pm in (13, 14, 15, 16, 17):
+                        elif pm in (13, 14, 15, 16, 17, 18):
                             label = f"{dir_name[dir_index]}{pm_names[pm]} P{predicted_len} PR{low_t}"
                             model_part = f"pm{pm}_pr10_low10_high10_start10_int25_tr{low_t}_weather_96_{predicted_len}_iTransformer_custom_ftM_sl96_ll48_pl{predicted_len}_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0"
+
+                        elif pm in (21, 22):
+                            label = f"{dir_name[dir_index]}{pm_names[pm]} P{predicted_len} PR{low_t}"
+                            model_part = f"pm{pm}_pr{low_t}_low10_high10_start10_int25_tr10_weather_96_{predicted_len}_iTransformer_custom_ftM_sl96_ll48_pl{predicted_len}_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0"
 
 
                         elif pm <= 3 and pm >= 0:
@@ -323,6 +336,7 @@ color_list = [
     'rgba(200, 50, 50, 1)',
     'rgba(50, 200, 50, 1)',
     'rgba(200, 150, 50, 1)',
+    'rgba(200, 100, 50, 1)'
     'rgba(50, 50, 200, 1)',
     'rgba(150, 50, 200, 1)',
     'rgba(50, 200, 200, 1)',
@@ -337,7 +351,7 @@ color_list = [
     'rgba(200, 50, 200, 1)',
     'rgba(50, 200, 100, 1)',
     'rgba(100, 50, 200, 1)',
-    'rgba(200, 100, 50, 1)'
+    # 'rgba(200, 100, 50, 1)'
 ]
 
 color_list = [
@@ -362,6 +376,23 @@ color_list = [
     'rgba(219, 219, 141, 1)',  # 淡黄绿
     'rgba(158, 218, 229, 1)'   # 淡青蓝
 ]
+
+color_list = [
+    # Okabe & Ito 9 色调色板（色盲友好）
+    'rgba(0, 0, 0, 1)',        # 黑色
+    'rgba(230, 159, 0, 1)',    # 橙色
+    'rgba(86, 180, 233, 1)',   # 浅蓝
+    'rgba(0, 158, 115, 1)',    # 墨绿色
+    'rgba(0, 204, 204, 1)',    # 青色
+    'rgba(0, 114, 178, 1)',    # 深蓝
+    'rgba(213, 94, 0, 1)',     # 朱红（深橙）
+    'rgba(204, 121, 167, 1)',  # 紫红
+    'rgba(128, 128, 128, 1)',  # 中灰
+    # 如需更多类别，可考虑以下附加色（选用性更强）
+    'rgba(86, 86, 214, 1)',    # 蓝紫
+    'rgba(255, 128, 0, 1)',    # 亮橙
+]
+
 color_index = 0
 
 for label, (mean_steps, mean_loss_smooth, std_loss_smooth, *rest) in data_dict.items():
@@ -492,7 +523,11 @@ fig_pr.update_layout(
     title=f"Best Test MSE Loss vs Pruning rate per Method",
     xaxis_title="Pruning rate (%)",
     yaxis_title="Best Test MSE Loss",
-    template="plotly_white"
+    template="plotly_white",
+    hoverlabel=dict(
+        # font_size=14,  # 调整字体大小，避免被裁剪
+        namelength=-1  # -1 表示不裁剪名称
+    ),
 )
 
 # 保存为新的 html 文件

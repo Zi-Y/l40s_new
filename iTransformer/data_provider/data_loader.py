@@ -299,11 +299,13 @@ class Dataset_Custom(Dataset):
                 )
 
                 # 根据异常值的大小，从小到大排列
-                # if pruning_method in (21, 22):
-                #     rank_file_name = ("/mnt/ssd/zi/itransformer_results/"
-                #                  "trend_scores/seed0_pm0_pr0_low10_high10_start0_int20_tr30_test101_"
-                #                  "iTransformer_custom_ftM_sl96_ll48_"
-                #                  "pl96_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0/trend_error_train_set_all_sample_all_tokens.npy")
+                if pruning_method in (21, 22):
+                    rank_file_name = ("/mnt/ssd/zi/itransformer_results/"
+                                      "trend_scores/seed0_pm0_pr0_low10_high10_"
+                                      "start0_int20_tr30_test101_iTransformer_"
+                                      "custom_ftM_sl96_ll48_pl96_dm512_nh8_el3_"
+                                      "dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0/"
+                                      "trend_anomaly_score_train_set_all_sample_lay_back_8.npy")
 
                 rank_matrix_np = np.load(rank_file_name)
                 print('load rank file:', rank_file_name)

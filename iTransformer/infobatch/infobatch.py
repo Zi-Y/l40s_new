@@ -4,7 +4,7 @@ from torch.utils.data import Dataset
 from operator import itemgetter
 import warnings
 import numpy as np
-
+import random
 __all__ = ['InfoBatch']
 #
 def info_hack_indices(self):
@@ -274,6 +274,8 @@ class InfoBatch(Dataset):
 
             # 根据阈值生成权重
             weights = (self.trained_per_token_loss[indices] <= threshold).float()
+            if random.random() < 0.005:
+                print(f'threshold {threshold}, percent of used tokens {100.0 * weights.mean().item()}')
 
 
         else:
