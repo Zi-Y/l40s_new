@@ -29,7 +29,7 @@ pm_values = [0, 1, 2, 3, 4, 9, 13, 14, 15, 16]
 pm_values = [0, 4, 9, 12, 13, 14, 15, 16, 17, 18]
 pm_values = [0, 9, 12, 16, 18, 21, 22]
 
-pm_values = [0, 1, 3, 2, 22, 4, 9, 12, 18,]
+pm_values = [-1,0, 1, 3, 2, 22, 4, 9, 12, 18, 19, 16]
 
 
 pr_values = [0, 10, 30, 50, 70, 90]
@@ -62,7 +62,8 @@ pm_names = {
     15: "Token level pruning, per batch, using loss change rate", # SLM-token, using loss difference divided by previous epoch loss, (previous epoch loss - current loss)/previous epoch loss
     16: "random token pruning",
     17: "SLM-token, using loss at 1 epoch - current loss divided by previous epoch loss", # (loss at 1 epoch - current loss)/previous epoch loss
-    18: "Trend error (token, static)",
+    18: "Trend error - per batch (token, static)",# batch level pruning
+    19: "Trend error - global (token, static)",
     21: "Trend error - sample level pruning, remove easy",
     22: "Trend error (sample, static)" # trend error - sample level pruning, remove hard",
 
@@ -98,6 +99,8 @@ for dir_index, base_dir in enumerate(dir_list):
                 # only need original results without pruning
                 # if pr != 0 and pm == 0:
                 #     continue
+
+
                 if pm == 12:
                     base_dir = "./PM12_iter_6830_tokens_checkpoints"
                     # base_dir = "./checkpoints"
@@ -111,6 +114,9 @@ for dir_index, base_dir in enumerate(dir_list):
 
                 elif pm == 18:
                     base_dir = "./pm18_checkpoints"
+
+                elif pm == 19:
+                    base_dir = "./pm19_checkpoints"
 
                 elif pm in (21, 22):
                     base_dir = "./pm21-22_checkpoints"
@@ -174,7 +180,7 @@ for dir_index, base_dir in enumerate(dir_list):
                             label = f"{dir_name[dir_index]}{pm_names[pm]} P{predicted_len} PR{low_t}"
                             model_part = f"pm{pm}_pr10_low10_high10_start10_int25_tr{low_t}_weather_96_{predicted_len}_iTransformer_custom_ftM_sl96_ll48_pl{predicted_len}_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0"
 
-                        elif pm in (13, 14, 15, 16, 17, 18):
+                        elif pm in (13, 14, 15, 16, 17, 18, 19):
                             label = f"{dir_name[dir_index]}{pm_names[pm]} P{predicted_len} PR{low_t}"
                             model_part = f"pm{pm}_pr10_low10_high10_start10_int25_tr{low_t}_weather_96_{predicted_len}_iTransformer_custom_ftM_sl96_ll48_pl{predicted_len}_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0"
 

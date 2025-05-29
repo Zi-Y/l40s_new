@@ -23,9 +23,9 @@ class Dataset_ETT_hour(Dataset):
             self.pred_len = 24 * 4
         else:
             self.seq_len, self.label_len, self.pred_len = size
-        assert flag in ['train', 'test', 'val', 'infer']
+        assert flag in ['train', 'test', 'val', 'all_val', 'infer']
         self.flag = flag
-        type_map = {'train': 0, 'val': 1, 'test': 2, 'infer': 0,}
+        type_map = {'train': 0, 'val': 1, 'all_val': 1, 'test': 2, 'infer': 0,}
         self.set_type = type_map[flag]
 
         self.features = features
@@ -133,9 +133,9 @@ class Dataset_ETT_minute(Dataset):
             self.pred_len = 24 * 4
         else:
             self.seq_len, self.label_len, self.pred_len = size
-        assert flag in ['train', 'test', 'val', 'infer']
+        assert flag in ['train', 'test', 'val', 'all_val', 'infer']
         self.flag = flag
-        type_map = {'train': 0, 'val': 1, 'test': 2, 'infer': 0,}
+        type_map = {'train': 0, 'val': 1, 'all_val': 1, 'test': 2, 'infer': 0,}
         self.set_type = type_map[flag]
 
         self.features = features
@@ -241,9 +241,9 @@ class Dataset_Custom(Dataset):
             self.pred_len = 24 * 4
         else:
             self.seq_len, self.label_len, self.pred_len = size
-        assert flag in ['train', 'test', 'val', 'infer']
+        assert flag in ['train', 'test', 'val', 'all_val', 'infer']
         self.flag = flag
-        type_map = {'train': 0, 'val': 1, 'test': 2, 'infer': 0,}
+        type_map = {'train': 0, 'val': 1, 'all_val': 1, 'test': 2, 'infer': 0,}
         self.set_type = type_map[flag]
 
         self.features = features
@@ -423,9 +423,9 @@ class Dataset_PEMS(Dataset):
                  sample_ids=None, sample_weights=None,
                  pruning_method=None, pruning_rate=0, args=None):
         self.seq_len, self.label_len, self.pred_len = size
-        assert flag in ['train', 'test', 'val', 'infer']
+        assert flag in ['train', 'test', 'val', 'all_val', 'infer']
         self.flag = flag
-        type_map = {'train': 0, 'val': 1, 'test': 2, 'infer': 0,}
+        type_map = {'train': 0, 'val': 1, 'all_val': 1, 'test': 2, 'infer': 0,}
         self.set_type = type_map[flag]
 
         self.features = features
@@ -510,9 +510,9 @@ class Dataset_Solar(Dataset):
                  sample_ids=None, sample_weights=None,
                  pruning_method=None, pruning_rate=0, args=None):
         self.seq_len, self.label_len, self.pred_len = size
-        assert flag in ['train', 'test', 'val', 'infer']
+        assert flag in ['train', 'test', 'val', 'all_val', 'infer']
         self.flag = flag
-        type_map = {'train': 0, 'val': 1, 'test': 2, 'infer': 0,}
+        type_map = {'train': 0, 'val': 1, 'all_val': 1, 'test': 2, 'infer': 0,}
         self.set_type = type_map[flag]
 
         self.features = features

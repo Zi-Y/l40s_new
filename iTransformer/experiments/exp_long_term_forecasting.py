@@ -15,6 +15,8 @@ import math
 import copy
 from torch.utils.data import DataLoader, Subset
 
+from torch.nn.utils import parameters_to_vector
+import torch.nn.functional as F
 warnings.filterwarnings('ignore')
 
 # 计算trend ----------------------开始----------------------
@@ -567,20 +569,36 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     loss_mse = criterion_MSE(outputs, batch_y)
                     sample_loss_metric = loss_mse.detach().cpu().numpy()
 
+                    top_index = [33625, 33534, 33626, 33617, 33536, 20368, 33525, 20451, 20452,
+                                 20458, 14857, 14948, 14946, 14934, 14947, 14933, 14945, 14937, 14935,
+                                 14940]
+                    bottom_index = [27941, 27940, 27939, 27942, 27943, 8000, 8001, 7999, 7998, 4890]
 
-                    # --- 调用trend 计算函数 ---
-                    batch_scores, batch_errors = process_batch_and_get_anomaly_scores(
-                        batch_y,
-                        plot_first_n_samples=0,
-                        verbose=False,# False, True
-                    )
+                    for j, sid in enumerate(sample_id):
+                        if sid in top_index:
+                            np.save(f'/home/local/zi/research_project/iTransformer/sample_label_plot/sample_{sid}.npy',
+                                    batch_y[j].cpu().numpy())
+                            print(f'top index: {sid}')
+                        elif sid in bottom_index:
+                            np.save(f'/home/local/zi/research_project/iTransformer/sample_label_plot/sample_{sid}.npy',
+                                    batch_y[j].cpu().numpy())
+                            print(f'bottom index: {sid}')
 
-                    for j, sid in enumerate(sample_id):  # 遍历当前batch的样本id
-                        loss_all_sample_all_variable_all_token[int(sid)] = sample_loss_metric[j]
-                        # 保存trend 值
-                        trend_all_sample_all_variable_all_token[int(sid)] = batch_errors[j]
-                        trend_ano_score_all_sample[int(sid),0] = int(sid)
-                        trend_ano_score_all_sample[int(sid),1] = batch_scores[j]
+                    cal_save_trend = False
+                    if cal_save_trend:
+                        # --- 调用trend 计算函数 ---
+                        batch_scores, batch_errors = process_batch_and_get_anomaly_scores(
+                            batch_y,
+                            plot_first_n_samples=0,
+                            verbose=False,# False, True
+                        )
+
+                        for j, sid in enumerate(sample_id):  # 遍历当前batch的样本id
+                            loss_all_sample_all_variable_all_token[int(sid)] = sample_loss_metric[j]
+                            # 保存trend 值
+                            trend_all_sample_all_variable_all_token[int(sid)] = batch_errors[j]
+                            trend_ano_score_all_sample[int(sid),0] = int(sid)
+                            trend_ano_score_all_sample[int(sid),1] = batch_scores[j]
 
 
                     print(f'finish batch: {i}')
@@ -644,6 +662,22 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         vali_data, vali_loader = self._get_data(flag='val')
         test_data, test_loader = self._get_data(flag='test')
 
+        if self.args.pruning_method in (100,):
+            # data_shapley_scores = torch.zeros(len(train_data), device=self.device)
+            data_shapley_scores = np.zeros((len(train_data), total_epoch))
+
+            all_vali_data, all_vali_loader = self._get_data(flag='all_val')
+            val_batch_x, val_batch_y, val_batch_x_mark, val_batch_y_mark, val_sample_id, val_sample_weight = next(iter(all_vali_loader))
+            val_batch_x = val_batch_x.float().to(self.device)
+            val_batch_y = val_batch_x.float().to(self.device)
+
+            if 'PEMS' in self.args.data or 'Solar' in self.args.data:
+                val_batch_x_mark = None
+                val_batch_y_mark = None
+            else:
+                val_batch_x_mark = val_batch_x_mark.float().to(self.device)
+                val_batch_y_mark = val_batch_y_mark.float().to(self.device)
+
 
 
         path = os.path.join(self.args.checkpoints, setting)
@@ -678,137 +712,266 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         for epoch in range(total_epoch):
             iter_count = 0
             train_loss = []
-
             self.model.train()
             epoch_time = time.time()
-            for i, (batch_x, batch_y, batch_x_mark, batch_y_mark, sample_id, sample_weight) in enumerate(train_loader):
-                iter_count += 1
-                global_step += 1
-                model_optim.zero_grad()
-                batch_x = batch_x.float().to(self.device)
-                batch_y = batch_y.float().to(self.device)
-                if 'PEMS' in self.args.data or 'Solar' in self.args.data:
-                    batch_x_mark = None
-                    batch_y_mark = None
-                else:
-                    batch_x_mark = batch_x_mark.float().to(self.device)
-                    batch_y_mark = batch_y_mark.float().to(self.device)
+            if self.args.pruning_method in (100,):
+                for i, (batch_x, batch_y, batch_x_mark, batch_y_mark, sample_id, sample_weight) in enumerate(
+                        train_loader):
+                    iter_count += 1
+                    global_step += 1
+                    batch_x = batch_x.float().to(self.device)
+                    batch_y = batch_y.float().to(self.device)
 
-                # decoder input
-                dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
-                dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
-
-                # encoder - decoder
-                if self.args.use_amp:
-                    pass
-                else:
-                    if self.args.output_attention:
-                        outputs, attentions = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-                    else:
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                    batch_x = torch.cat((batch_x, val_batch_x), dim=0)
 
                     f_dim = -1 if self.args.features == 'MS' else 0
-                    if self.args.probabilistic:
-                        # 【Modified】提取概率模式输出
-                        mu, sigma = outputs
-                        mu = mu[:, -self.args.pred_len:, f_dim:]
-                        sigma = sigma[:, -self.args.pred_len:, f_dim:]
-                        batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
-                        loss = criterion([mu, sigma], batch_y_proc)
+                    batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+                    batch_y_proc = torch.cat((batch_y_proc, val_batch_y), dim=0)
+
+                    if 'PEMS' in self.args.data or 'Solar' in self.args.data:
+                        batch_x_mark = None
+                        batch_y_mark = None
                     else:
-                        outputs = outputs[:, -self.args.pred_len:, f_dim:]
-                        batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+                        batch_x_mark = batch_x_mark.float().to(self.device)
+                        batch_y_mark = batch_y_mark.float().to(self.device)
 
-                        # outputs = outputs[:, -self.args.pred_len:, f_dim:]
-                        # batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
-
-                        if self.args.pruning_method in (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19):
-
-                            loss = criterion_train(outputs, batch_y_proc)
-
-                            if self.args.pruning_method == 5:
-                                loss = loss.mean(dim=(1, 2))
-                                loss = train_data.update(-loss)
-                                loss = -loss
+                    batch_x_mark = torch.cat((batch_x_mark, val_batch_x_mark), dim=0)
 
 
-                            elif self.args.pruning_method in (9, 10, 11, 12, 16, 18):
-                                loss = train_data.update(loss)
+                    outputs = self.model(batch_x, batch_x_mark, 0, 0)
+                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
 
-                            # 第一个epoch不计算weighted loss值 只记录当前的loss
-                            elif self.args.pruning_method in (13, 14, 15, 17):
-                                if epoch == 0:
-                                    loss = train_data.update(loss, only_update_saved_loss_metric=True)
-                                else:
-                                    loss = train_data.update(loss, only_update_saved_loss_metric=False)
+                    combined_loss = criterion(outputs, batch_y_proc)
 
 
-                            else:
-                                loss = loss.mean(dim=(1, 2))
-                                loss = train_data.update(loss)
+                    # Ghost dot product for backward pass
+                    model_optim.zero_grad()
+                    # retain graph since we need more of the backprop later on
+                    combined_loss.backward(retain_graph=True)
+
+                    saved_state = {}  # save the current state
+
+                    # We store the current gradients (which are for train+val) in saved_state.
+                    for name, param in self.model.named_parameters():
+                        if param.grad is not None:
+                            # save param.grad clone for later use
+                            saved_state[name] = param.grad.detach().clone()
+
+                    # zero the model gradient
+                    # only use val for back/forward pass
+                    model_optim.zero_grad()
+                    outputs_val_only = self.model(val_batch_x, val_batch_x_mark, 0, 0)
+                    loss_val_only = criterion(outputs_val_only, val_batch_y)
+
+                    # single-sample gradient
+                    loss_val_only.backward(create_graph=False)
+                    grad_val = {}
+
+                    for name, param in self.model.named_parameters():
+                        if param.grad is not None:
+                            grad_val[name] = param.grad.detach().clone()
+
+                    grad_val_list = [grad_val[name] for name, param in self.model.named_parameters()
+                                     if param.grad is not None and name in grad_val]
+
+                    # Now let's compute the "dot product" for each sample in the train batch:
+                    for batch_idx in range(self.args.batch_size):
+                        # zero grad
+                        param_zero = {}
+                        for name, param in self.model.named_parameters():
+                            if param.grad is not None:
+                                param.grad.zero_()
+
+                        # backward on just the i-th example in the train batch
+                        single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
+                        single_loss = criterion(single_logit, batch_y_proc[batch_idx])
+                        single_loss.backward()
+
+
+                        # # read off dot-product with grad_val
+                        # dot_val = 0.0
+                        # for name, param in self.model.named_parameters():
+                        #     if param.grad is not None and name in grad_val:
+                        #         # flatten both param.grad and grad_val[name]
+                        #         dot_val += (param.grad.view(-1) * grad_val[name].view(-1)).sum()
+
+                        # 取出所有 param.grad；注意顺序要和 grad_val 一致
+                        grad_list = [param.grad for name, param in self.model.named_parameters()
+                                     if param.grad is not None and name in grad_val]
+
+                        if grad_list:
+                            flat_grad = parameters_to_vector(grad_list)
+                            flat_grad_val = parameters_to_vector(grad_val_list)
+                            # dot_val = torch.dot(flat_grad, flat_grad_val)
+                            # cal cosine similarity
+                            dot_val = F.cosine_similarity(flat_grad.unsqueeze(0), flat_grad_val.unsqueeze(0), dim=1)
+
                         else:
-                            loss = criterion(outputs, batch_y_proc)
+                            dot_val = torch.tensor(0.0, device=next(self.model.parameters()).device)
 
-                    # else:
-                    #     if self.args.probabilistic:
-                    #         loss = criterion([mu, sigma], batch_y_proc)
-                    #     else:
-                    #         loss = criterion(outputs, batch_y_proc)
+                        # Add to data_shapley_scores
+                        idx_in_full_dataset = sample_id[batch_idx]  # approximate global index
+                        # data_shapley_scores[idx_in_full_dataset, epoch] = -1 * dot_val.item()  # mul by lr to scale back things
+                        data_shapley_scores[idx_in_full_dataset, epoch] = 100.0*dot_val.item()  # mul by lr to scale back things
 
-                    train_loss.append(loss.item())
-                    # 【Modified】记录每个样本的loss
-                    if self.args.save_per_sample_loss:
-                        sample_loss_metric = ((outputs - batch_y_proc) ** 2)
-                        sample_loss = (sample_loss_metric.mean(dim=[1,2])).detach().cpu().numpy()
-                        sample_loss_metric = sample_loss_metric.detach().cpu().numpy()# 计算每个样本的MSE
-                        for j, sid in enumerate(sample_id):  # 遍历当前batch的样本id
-                            loss_all_epoch[int(sid), epoch+1] = sample_loss[j]
-                            loss_all_epoch_all_variable_all_stamp[int(sid), epoch]=sample_loss_metric[j]
+                        # We used lr=0.01 -> so multiply by -lr. Negative sign because the loss change is -( grad_val · grad_train_i ).
 
+                    # restore the combined grad from saved_state
+                    for name, param in self.model.named_parameters():
+                        if name in saved_state:
+                            param.grad = saved_state[name]  # now when it is in param save it to saved_state
 
-                            if self.args.output_attention:
-                                attention_all_epoch[int(sid), epoch] = torch.cat([item.view(32, -1) for item in attentions], dim=1).detach().cpu().numpy()[j]
-                                # attention_all_epoch[int(sid), epoch] = torch.cat([item.mean(dim=1).view(32, -1) for item in attentions], dim=1).detach().cpu().numpy()[j]
-                            # 保存loss到对应epoch的列
-
-                if (global_step) % 100 == 0:
-
-                    # self.infer_train_set(infer_data, infer_loader, criterion, global_step, setting)
-
-
-                    vali_MSE_loss, vali_MAE_loss, vali_total_loss = self.vali(vali_data, vali_loader, criterion)
-                    test_MSE_loss, test_MAE_loss, test_total_loss = self.vali(test_data, test_loader, criterion)
-
-
-                    iteration_results_path = os.path.join(self.args.checkpoints, setting, f'iter_{global_step}_results.npy')
-
-                    np.save(iteration_results_path, np.array([global_step,
-                                                          epoch + 1, 0, vali_MSE_loss, vali_MAE_loss,
-                                                          vali_total_loss,
-                                                          test_MSE_loss, test_MAE_loss, test_total_loss]))
-                    print("\titers: {0}, epoch: {1} | loss: {2:.6f}, val loss: {3:.6f}, test loss: {4:.6f}"
-                          .format(global_step, epoch, loss, vali_total_loss, test_total_loss))
-
-                if (i + 1) % 300 == 0:
-                    # print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
-                    speed = (time.time() - time_now) / iter_count
-                    left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
-                    print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
-                    iter_count = 0
-                    time_now = time.time()
-
-                if self.args.use_amp:
-                    scaler.scale(loss).backward()
-                    scaler.step(model_optim)
-                    scaler.update()
-                else:
-                    loss.backward()
+                    # Final logging
                     model_optim.step()
+
+
+
+
+                    if (i + 1) % 100 == 0:
+                        # print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
+                        speed = (time.time() - time_now) / iter_count
+                        left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
+                        print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
+                        iter_count = 0
+                        time_now = time.time()
+
+
+
+
+
+            else:
+                for i, (batch_x, batch_y, batch_x_mark, batch_y_mark, sample_id, sample_weight) in enumerate(train_loader):
+                    iter_count += 1
+                    global_step += 1
+                    model_optim.zero_grad()
+                    batch_x = batch_x.float().to(self.device)
+                    batch_y = batch_y.float().to(self.device)
+                    if 'PEMS' in self.args.data or 'Solar' in self.args.data:
+                        batch_x_mark = None
+                        batch_y_mark = None
+                    else:
+                        batch_x_mark = batch_x_mark.float().to(self.device)
+                        batch_y_mark = batch_y_mark.float().to(self.device)
+
+                    # decoder input
+                    dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+                    dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+
+                    # encoder - decoder
+                    if self.args.use_amp:
+                        pass
+                    else:
+                        if self.args.output_attention:
+                            outputs, attentions = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+                        else:
+                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
+
+                        f_dim = -1 if self.args.features == 'MS' else 0
+                        if self.args.probabilistic:
+                            # 【Modified】提取概率模式输出
+                            mu, sigma = outputs
+                            mu = mu[:, -self.args.pred_len:, f_dim:]
+                            sigma = sigma[:, -self.args.pred_len:, f_dim:]
+                            batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+                            loss = criterion([mu, sigma], batch_y_proc)
+                        else:
+                            outputs = outputs[:, -self.args.pred_len:, f_dim:]
+                            batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+
+                            # outputs = outputs[:, -self.args.pred_len:, f_dim:]
+                            # batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+
+                            if self.args.pruning_method in (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19):
+
+                                loss = criterion_train(outputs, batch_y_proc)
+
+                                if self.args.pruning_method == 5:
+                                    loss = loss.mean(dim=(1, 2))
+                                    loss = train_data.update(-loss)
+                                    loss = -loss
+
+
+                                elif self.args.pruning_method in (9, 10, 11, 12, 16, 18, 19):
+                                    loss = train_data.update(loss)
+
+                                # 第一个epoch不计算weighted loss值 只记录当前的loss
+                                elif self.args.pruning_method in (13, 14, 15, 17):
+                                    if epoch == 0:
+                                        loss = train_data.update(loss, only_update_saved_loss_metric=True)
+                                    else:
+                                        loss = train_data.update(loss, only_update_saved_loss_metric=False)
+
+
+                                else:
+                                    loss = loss.mean(dim=(1, 2))
+                                    loss = train_data.update(loss)
+                            else:
+                                loss = criterion(outputs, batch_y_proc)
+
+                        # else:
+                        #     if self.args.probabilistic:
+                        #         loss = criterion([mu, sigma], batch_y_proc)
+                        #     else:
+                        #         loss = criterion(outputs, batch_y_proc)
+
+                        train_loss.append(loss.item())
+                        # 【Modified】记录每个样本的loss
+                        if self.args.save_per_sample_loss:
+                            sample_loss_metric = ((outputs - batch_y_proc) ** 2)
+                            sample_loss = (sample_loss_metric.mean(dim=[1,2])).detach().cpu().numpy()
+                            sample_loss_metric = sample_loss_metric.detach().cpu().numpy()# 计算每个样本的MSE
+                            for j, sid in enumerate(sample_id):  # 遍历当前batch的样本id
+                                loss_all_epoch[int(sid), epoch+1] = sample_loss[j]
+                                loss_all_epoch_all_variable_all_stamp[int(sid), epoch]=sample_loss_metric[j]
+
+
+                                if self.args.output_attention:
+                                    attention_all_epoch[int(sid), epoch] = torch.cat([item.view(32, -1) for item in attentions], dim=1).detach().cpu().numpy()[j]
+                                    # attention_all_epoch[int(sid), epoch] = torch.cat([item.mean(dim=1).view(32, -1) for item in attentions], dim=1).detach().cpu().numpy()[j]
+                                # 保存loss到对应epoch的列
+
+                    if (global_step) % 100 == 0:
+
+                        # self.infer_train_set(infer_data, infer_loader, criterion, global_step, setting)
+
+
+                        vali_MSE_loss, vali_MAE_loss, vali_total_loss = self.vali(vali_data, vali_loader, criterion)
+                        test_MSE_loss, test_MAE_loss, test_total_loss = self.vali(test_data, test_loader, criterion)
+
+
+                        iteration_results_path = os.path.join(self.args.checkpoints, setting, f'iter_{global_step}_results.npy')
+
+                        np.save(iteration_results_path, np.array([global_step,
+                                                              epoch + 1, 0, vali_MSE_loss, vali_MAE_loss,
+                                                              vali_total_loss,
+                                                              test_MSE_loss, test_MAE_loss, test_total_loss]))
+                        print("\titers: {0}, epoch: {1} | loss: {2:.6f}, val loss: {3:.6f}, test loss: {4:.6f}"
+                              .format(global_step, epoch, loss, vali_total_loss, test_total_loss))
+
+                    if (i + 1) % 300 == 0:
+                        # print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
+                        speed = (time.time() - time_now) / iter_count
+                        left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
+                        print('\tspeed: {:.4f}s/iter; left time: {:.4f}s'.format(speed, left_time))
+                        iter_count = 0
+                        time_now = time.time()
+
+                    if self.args.use_amp:
+                        scaler.scale(loss).backward()
+                        scaler.step(model_optim)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        model_optim.step()
 
             print("Epoch: {} cost time: {}".format(epoch + 1, time.time() - epoch_time))
             train_loss = np.average(train_loss)
 
 
+
+            print(f'Saving data_shapley_scores_epoch_{epoch}.npy')
+            np.save(os.path.join(self.args.checkpoints, setting, f'data_shapley_scores_epoch_{epoch}.npy'),
+                    data_shapley_scores)
 
             # # 1. MSE loss, 2. MAE, 3. pre-selected loss,
 
@@ -1230,3 +1393,27 @@ class Exp_Long_Term_Forecast_GRPO(Exp_Basic):
             num_workers=self.args.num_workers,
             drop_last=True
         )
+
+
+# # 收集所有需要梯度的参数
+# params = [(name, param)
+#           for name, param in self.model.named_parameters()
+#           if param.requires_grad]
+# # 计算总参数量
+# total_params = sum(param.numel() for _, param in params)
+#
+# # 打印表头
+# header = f"{'Name':40s} {'Shape':25s} {'#Params':>12s} {'% of Total':>12s}"
+# print(header)
+# print("-" * len(header))
+#
+# # 遍历打印每一项
+# for name, param in params:
+#     shape = tuple(param.size())
+#     num = param.numel()
+#     pct = 100.0 * num / total_params
+#     print(f"{name:60s} {str(shape):25s} {num:12d} {pct:12.2f}%")
+#
+# # 打印总计
+# print("-" * len(header))
+# print(f"{'Total trainable parameters':40s} {'':25s} {total_params:12d} {100.00:12.2f}%")

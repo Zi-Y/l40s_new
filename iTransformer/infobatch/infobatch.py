@@ -76,7 +76,7 @@ class InfoBatch(Dataset):
         self.args = args
 
         # scores 和 weights 均在 GPU 上初始化
-        if self.args.pruning_method in {9, 10, 11, 12, 13, 14, 15, 16, 17, 18}:
+        if self.args.pruning_method in {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}:
             self.per_sample_scores = torch.ones(len(self.dataset), device=self.device)
             self.scores = torch.ones((len(self.dataset), self.args.pred_len, self.args.enc_in), device=self.device) * 3
             # self.weights = torch.ones((len(self.dataset), self.args.pred_len, self.args.enc_in), device=self.device)
@@ -142,6 +142,24 @@ class InfoBatch(Dataset):
                                                      self.args.pred_len,
                                                      self.args.enc_in),
                                                     device=self.device)
+            elif self.args.pruning_method == 19:
+                file_path = ("/mnt/ssd/zi/itransformer_results/"
+                             "trend_scores/seed0_pm0_pr0_low10_high10_start0_int20_tr30_test101_"
+                             "iTransformer_custom_ftM_sl96_ll48_"
+                             "pl96_dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_exp_projection_0/trend_error_train_set_all_sample_all_tokens.npy")
+                global_token_mask_loaded = torch.tensor(np.load(file_path),
+                                                           dtype=torch.float32, device=device)
+                flat_diff = global_token_mask_loaded.contiguous().reshape(-1)
+                # 计算近似分位数对应的 kth 索引
+                k = max(1, int((1.0 - abs(self.args.token_pr_rate)) * flat_diff.numel()))
+                threshold, _ = flat_diff.kthvalue(k)
+
+                # 根据阈值生成权重
+                self.global_token_mask = (global_token_mask_loaded <= threshold).float()
+
+
+
+
         else:
             self.scores = torch.ones(len(self.dataset), device=self.device) * 3
             # self.weights = torch.ones(len(self.dataset), device=self.device)
@@ -277,6 +295,12 @@ class InfoBatch(Dataset):
             if random.random() < 0.005:
                 print(f'threshold {threshold}, percent of used tokens {100.0 * weights.mean().item()}')
 
+        elif self.args.pruning_method == 19:
+
+            weights = self.global_token_mask[indices]
+            if random.random() < 0.0001:
+                print(f'token_pr_rate {self.args.token_pr_rate}, percent of used tokens {100.0 * weights.mean().item()}')
+
 
         else:
             # 直接使用 GPU 上的 weights，无需转换
@@ -365,7 +389,7 @@ class InfoBatch(Dataset):
             self.global_token_mask = (diff_trained_current >= threshold).float()
 
 
-        elif self.args.pruning_method in {13, 14, 15, 16, 17, 18}:
+        elif self.args.pruning_method in {13, 14, 15, 16, 17, 18, 19}:
             # well_learned_mask should be all false mask
             # because we do not want to remove any sample, but we want to remove tokens
             well_learned_mask = torch.zeros_like(self.per_sample_scores, dtype=torch.bool)
