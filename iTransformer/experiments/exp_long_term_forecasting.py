@@ -737,27 +737,6 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
                     batch_x_mark = torch.cat((batch_x_mark, val_batch_x_mark), dim=0)
 
-
-                    outputs = self.model(batch_x, batch_x_mark, 0, 0)
-                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
-
-                    combined_loss = criterion(outputs, batch_y_proc)
-                    train_loss.append(combined_loss.item())
-
-
-                    # Ghost dot product for backward pass
-                    model_optim.zero_grad()
-                    # retain graph since we need more of the backprop later on
-                    combined_loss.backward(retain_graph=True)
-
-                    saved_state = {}  # save the current state
-
-                    # We store the current gradients (which are for train+val) in saved_state.
-                    for name, param in self.model.named_parameters():
-                        if param.grad is not None:
-                            # save param.grad clone for later use
-                            saved_state[name] = param.grad.detach().clone()
-
                     # zero the model gradient
                     # only use val for back/forward pass
                     model_optim.zero_grad()
@@ -765,7 +744,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     loss_val_only = criterion(outputs_val_only, val_batch_y)
 
                     # single-sample gradient
-                    loss_val_only.backward(create_graph=False)
+                    loss_val_only.backward()
                     grad_val = {}
 
                     for name, param in self.model.named_parameters():
@@ -843,12 +822,30 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
 
 
+                    # only calculate train loss
+                    outputs = self.model(batch_x[:self.args.batch_size], batch_x_mark[:self.args.batch_size], 0, 0)
+                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
+
+                    train_batch_loss = criterion(outputs, batch_y_proc[:self.args.batch_size])
+                    train_loss.append(train_batch_loss.item())
 
 
-                    # restore the combined grad from saved_state
-                    for name, param in self.model.named_parameters():
-                        if name in saved_state:
-                            param.grad = saved_state[name]  # now when it is in param save it to saved_state
+                    # Ghost dot product for backward pass
+                    model_optim.zero_grad()
+                    # retain graph since we need more of the backprop later on
+                    train_batch_loss.backward()
+
+                    # saved_state = {}  # save the current state
+                    #
+                    # # We store the current gradients (which are for train+val) in saved_state.
+                    # for name, param in self.model.named_parameters():
+                    #     if param.grad is not None:
+                    #         # save param.grad clone for later use
+                    #         saved_state[name] = param.grad.detach().clone()
+                    # # restore the combined grad from saved_state
+                    # for name, param in self.model.named_parameters():
+                    #     if name in saved_state:
+                    #         param.grad = saved_state[name]  # now when it is in param save it to saved_state
 
                     # Final logging
                     model_optim.step()
