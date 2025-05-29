@@ -662,7 +662,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         vali_data, vali_loader = self._get_data(flag='val')
         test_data, test_loader = self._get_data(flag='test')
 
-        if self.args.pruning_method in (100,):
+        if self.args.pruning_method in (100, 101):
             # data_shapley_scores = torch.zeros(len(train_data), device=self.device)
             data_shapley_scores = np.zeros((len(train_data), total_epoch, 4))
 
@@ -714,7 +714,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
             train_loss = []
             self.model.train()
             epoch_time = time.time()
-            if self.args.pruning_method in (100,):
+            if self.args.pruning_method in (100, 101):
                 for i, (batch_x, batch_y, batch_x_mark, batch_y_mark, sample_id, sample_weight) in enumerate(
                         train_loader):
                     iter_count += 1
@@ -756,6 +756,13 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     flat_grad_val = parameters_to_vector(grad_val_list)
                     l2_norm_flat_val_grad = torch.linalg.norm(flat_grad_val)
 
+                    # only calculate train loss
+                    outputs = self.model(batch_x[:self.args.batch_size], batch_x_mark[:self.args.batch_size], 0, 0)
+                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
+
+                    train_batch_loss = criterion_train(outputs, batch_y_proc[:self.args.batch_size])
+                    train_batch_loss = train_batch_loss.mean(dim=(1, 2))
+
                     # Now let's compute the "dot product" for each sample in the train batch:
                     for batch_idx in range(self.args.batch_size):
                         # zero grad
@@ -764,10 +771,18 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                             if param.grad is not None:
                                 param.grad.zero_()
 
+
                         # backward on just the i-th example in the train batch
-                        single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
-                        single_loss = criterion(single_logit, batch_y_proc[batch_idx])
-                        single_loss.backward()
+                        # single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
+                        # single_loss = criterion(single_logit, batch_y_proc[batch_idx])
+                        # single_loss.backward()
+
+
+
+                        train_batch_loss[batch_idx].backward(retain_graph=True)
+
+                        # grad_train_i_tuple = torch.autograd.grad(train_batch_loss[batch_idx], list(self.model.parameters()), retain_graph=True,
+                        #                                          create_graph=False)
 
 
                         # # read off dot-product with grad_val
@@ -822,11 +837,9 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
 
 
-                    # only calculate train loss
-                    outputs = self.model(batch_x[:self.args.batch_size], batch_x_mark[:self.args.batch_size], 0, 0)
-                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
 
-                    train_batch_loss = criterion(outputs, batch_y_proc[:self.args.batch_size])
+
+                    train_batch_loss = train_batch_loss.mean()
                     train_loss.append(train_batch_loss.item())
 
 
