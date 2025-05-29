@@ -1,0 +1,17 @@
+defaults:
+  - task: forecast
+  - dataset: dummy_debug
+  - model: standard_Aurora
+  - _self_
+
+# Use evaluation mode for forecasting
+dataset:
+  common:
+    no_xarray: False
+  train:
+    start_time: ${dataset.val.start_time}  # To make sure we can run the script even when the training data is not available
+    end_time: ${dataset.val.end_time}
+
+dataloader:
+  batch_size: 1
+  num_workers: 4

@@ -1,0 +1,3 @@
+task: "evaluate"
+forecast_data_path: ???
+use_latitude_weighting: True
