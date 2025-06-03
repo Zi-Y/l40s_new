@@ -28,10 +28,42 @@ if cal_gradinet_sim_train_val:
                                         "fc1_ebtimeF_dtTrue_exp_projection_0/"
                                         "data_shapley_scores_epoch_10.npy")
 
+    sample_level_cos_similarity_file = ("/home/local/zi/research_project/"
+                                        "iTransformer/checkpoints_test/"
+                                        "seed0_pm100_pr0_low10_high10_start0_i"
+                                        "nt20_tr10_test101_iTransformer_custom_ftM_"
+                                        "sl96_ll48_pl96_dm512_nh8_el3_dl1_df512_fc1_"
+                                        "ebtimeF_dtTrue_exp_projection_0/"
+                                        "data_shapley_l2_dot_cos_scores_epoch_10.npy")
+    # data_shapley_scores[idx_in_full_dataset, epoch, 0] = 1.0 * l2_norm_flat_train_grad_value
+    # data_shapley_scores[idx_in_full_dataset, epoch, 1] = 1.0 * l2_norm_flat_val_grad.item()  # l2_norm_flat_val_grad已经是标量tensor
+    # data_shapley_scores[idx_in_full_dataset, epoch, 2] = 100.0 * actual_dot_product_value
+    # data_shapley_scores[idx_in_full_dataset, epoch, 3] = 100.0 * cosine_similarity_value
+    sample_level_similarity = np.load(sample_level_cos_similarity_file)[:,:,2]
+
+
+
+    # variable_level_cos_similarity_file = ("/home/local/zi/research_project/iTransformer/"
+    #                                       "checkpoints_test/seed0_pm101_pr0_"
+    #                                       "low10_high10_start0_int20_tr10_test101_"
+    #                                       "iTransformer_custom_ftM_sl96_ll48_pl96_"
+    #                                       "dm512_nh8_el3_dl1_df512_fc1_ebtimeF_dtTrue_"
+    #                                       "exp_projection_0/data_shapley_l2_dot_cos_scores_epoch_10.npy")
 
     # sample_level_similarity = np.load(sample_level_dot_similarity_file)
-    sample_level_similarity = np.load(sample_level_cos_similarity_file)
+    #
+    # data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 0] = 100.0 * l2_norm_flat_train_grad_value
+    # data_shapley_scores[
+    #     idx_in_full_dataset, epoch, time_point_index, 1] = 100.0 * l2_norm_flat_val_grad.item()  # l2_norm_flat_val_grad已经是标量tensor
+    # data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 2] = 100.0 * actual_dot_product_value
+    # data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 3] = 100.0 * cosine_similarity_value
 
+    # sample_level_similarity = np.load(variable_level_cos_similarity_file)
+
+
+
+
+    # ----------------test--------------------------------------------------
 
     def plot_distribution(data, bins=50, smooth_window=5):
         """
@@ -83,7 +115,7 @@ if cal_gradinet_sim_train_val:
         )
 
         # 将图表保存为 HTML 文件
-        fig.write_html(f"./gradient_similarity_plot/gradient_cos_epoch{epoch}_line_chart.html", include_plotlyjs="cdn")
+        fig.write_html(f"./gradient_similarity_plot_new/gradient_cos_epoch{epoch}_line_chart.html", include_plotlyjs="cdn")
         fig.show()
         print('test')
 

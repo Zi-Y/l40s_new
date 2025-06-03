@@ -65,8 +65,9 @@ pm_names = {
     18: "Trend error - per batch (token, static)",# batch level pruning
     19: "Trend error - global (token, static)",
     21: "Trend error - sample level pruning, remove easy",
-    22: "Trend error (sample, static)" # trend error - sample level pruning, remove hard",
-
+    22: "Trend error (sample, static)", # trend error - sample level pruning, remove hard",
+    100: "calculate sample level gradient l2 norm, dot, cosine similarity",
+    101: "calculate time point level (each time point mean 21 variables at a singe time point) gradient l2 norm, dot, cosine similarity",
 }
 
 

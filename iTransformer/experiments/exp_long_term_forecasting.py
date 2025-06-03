@@ -664,7 +664,10 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         if self.args.pruning_method in (100, 101):
             # data_shapley_scores = torch.zeros(len(train_data), device=self.device)
-            data_shapley_scores = np.zeros((len(train_data), total_epoch, 4))
+            if self.args.pruning_method == 100:
+                data_shapley_scores = np.zeros((len(train_data), total_epoch, 4))
+            elif self.args.pruning_method == 101:
+                data_shapley_scores = np.zeros((len(train_data), total_epoch, self.args.pred_len, 4))
 
             all_vali_data, all_vali_loader = self._get_data(flag='all_val')
             val_batch_x, val_batch_y, val_batch_x_mark, val_batch_y_mark, val_sample_id, val_sample_weight = next(iter(all_vali_loader))
@@ -711,248 +714,164 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         for epoch in range(total_epoch):
             iter_count = 0
-            train_loss = []
+            train_loss = []  # 用于记录每个epoch的平均训练损失
             self.model.train()
             epoch_time = time.time()
+
             if self.args.pruning_method in (100, 101):
-                for i, (batch_x, batch_y, batch_x_mark, batch_y_mark, sample_id, sample_weight) in enumerate(
-                        train_loader):
-                    iter_count += 1
-                    global_step += 1
-                    batch_x = batch_x.float().to(self.device)
-                    batch_y = batch_y.float().to(self.device)
+                # 假设 val_batch_x, val_batch_y, val_batch_x_mark 已经在正确的设备上并且预处理完毕
+                # 如果它们在整个 epoch 中不变，这部分 grad_val 的计算理论上可以更少，但当前代码是在每个iter都算
+                # --- 开始验证集梯度计算 ---
+                model_optim.zero_grad(set_to_none=True)
+                # outputs_val_only = self.model(val_batch_x, val_batch_x_mark, dec_inp_val, mark_dec_inp_val) # 假设dec_inp等已定义
+                # 简化模型调用，根据您原代码，后两个参数为0
+                outputs_val_only = self.model(val_batch_x, val_batch_x_mark, 0, 0)
+                loss_val_only = criterion(outputs_val_only, val_batch_y)
+                loss_val_only.backward()
 
-                    batch_x = torch.cat((batch_x, val_batch_x), dim=0)
+                grad_val = {}
+                for name, param in self.model.named_parameters():
+                    if param.grad is not None:
+                        grad_val[name] = param.grad.detach().clone()
 
-                    f_dim = -1 if self.args.features == 'MS' else 0
-                    batch_y_proc = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
-                    batch_y_proc = torch.cat((batch_y_proc, val_batch_y), dim=0)
-
-                    if 'PEMS' in self.args.data or 'Solar' in self.args.data:
-                        batch_x_mark = None
-                        batch_y_mark = None
-                    else:
-                        batch_x_mark = batch_x_mark.float().to(self.device)
-                        batch_y_mark = batch_y_mark.float().to(self.device)
-
-                    batch_x_mark = torch.cat((batch_x_mark, val_batch_x_mark), dim=0)
-
-                    # zero the model gradient
-                    # only use val for back/forward pass
-                    model_optim.zero_grad()
-                    outputs_val_only = self.model(val_batch_x, val_batch_x_mark, 0, 0)
-                    loss_val_only = criterion(outputs_val_only, val_batch_y)
-
-                    # single-sample gradient
-                    loss_val_only.backward()
-                    grad_val = {}
-
-                    for name, param in self.model.named_parameters():
-                        if param.grad is not None:
-                            grad_val[name] = param.grad.detach().clone()
-
-                    grad_val_list = [grad_val[name] for name, param in self.model.named_parameters()
-                                     if param.grad is not None and name in grad_val]
+                grad_val_list = [grad_val[name] for name, param in self.model.named_parameters()
+                                 if name in grad_val]  # 确保顺序和存在性
+                if not grad_val_list:  # 如果验证集没有产生任何梯度（例如，所有参数都被冻结或验证批次特殊）
+                    # 根据您的逻辑处理这种情况，可能跳过Shapley计算或发出警告
+                    print(
+                        f"Warning: grad_val_list is empty for epoch {epoch}. Skipping Shapley calculations for this epoch.")
+                    # 或者根据需要设置 flat_grad_val 和 l2_norm_flat_val_grad 为默认值或引发错误
+                    flat_grad_val = torch.tensor(0.0, device=self.device)  # 示例默认值
+                    l2_norm_flat_val_grad = torch.tensor(0.0, device=self.device)  # 示例默认值
+                else:
                     flat_grad_val = parameters_to_vector(grad_val_list)
                     l2_norm_flat_val_grad = torch.linalg.norm(flat_grad_val)
+                # --- 结束验证集梯度计算 ---
 
-                    # only calculate train loss
-                    outputs = self.model(batch_x[:self.args.batch_size], batch_x_mark[:self.args.batch_size], 0, 0)
-                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
+                for i, (train_batch_x_from_loader, train_batch_y_from_loader, train_batch_x_mark_from_loader, _, sample_id,
+                        _) in enumerate(train_loader):
+                    iter_count += 1
+                    # global_step += 1 # 如果需要 global_step
 
-                    train_batch_loss = criterion_train(outputs, batch_y_proc[:self.args.batch_size])
-                    train_batch_loss = train_batch_loss.mean(dim=(1, 2))
+                    current_train_batch_x = train_batch_x_from_loader.float().to(self.device)
+                    current_train_batch_y = train_batch_y_from_loader.float().to(self.device)
 
-                    # Now let's compute the "dot product" for each sample in the train batch:
-                    for batch_idx in range(self.args.batch_size):
-                        # zero grad
-                        param_zero = {}
-                        for name, param in self.model.named_parameters():
-                            if param.grad is not None:
-                                param.grad.zero_()
+                    f_dim = -1 if self.args.features == 'MS' else 0
+                    current_train_batch_y_proc = current_train_batch_y[:, -self.args.pred_len:, f_dim:]
 
+                    if 'PEMS' in self.args.data or 'Solar' in self.args.data:
+                        current_train_batch_x_mark = None
+                    else:
+                        if train_batch_x_mark_from_loader is not None:
+                            current_train_batch_x_mark = train_batch_x_mark_from_loader.float().to(self.device)
+                        else:
+                            current_train_batch_x_mark = None  # 明确处理 loader 可能返回 None 的情况
 
-                        # backward on just the i-th example in the train batch
-                        # single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
-                        # single_loss = criterion(single_logit, batch_y_proc[batch_idx])
-                        # single_loss.backward()
+                    # --- 开始训练集前向传播和损失计算 ---
+                    # 注意：这里不再使用之前拼接的 batch_x 和 batch_x_mark
+                    # 简化模型调用，根据您原代码，后两个参数为0
+                    outputs_train = self.model(current_train_batch_x, current_train_batch_x_mark, 0, 0)
+                    outputs_train_proc = outputs_train[:, -self.args.pred_len:, f_dim:]
 
-
-
-                        train_batch_loss[batch_idx].backward(retain_graph=True)
-
-                        # grad_train_i_tuple = torch.autograd.grad(train_batch_loss[batch_idx], list(self.model.parameters()), retain_graph=True,
-                        #                                          create_graph=False)
-
-
-                        # # read off dot-product with grad_val
-                        # dot_val = 0.0
-                        # for name, param in self.model.named_parameters():
-                        #     if param.grad is not None and name in grad_val:
-                        #         # flatten both param.grad and grad_val[name]
-                        #         dot_val += (param.grad.view(-1) * grad_val[name].view(-1)).sum()
-
-                        # 取出所有 param.grad；注意顺序要和 grad_val 一致
-                        grad_list = [param.grad for name, param in self.model.named_parameters()
-                                     if param.grad is not None and name in grad_val]
-                        # 初始化本次迭代的度量值
-                        cosine_similarity_value = torch.tensor(0.0, device=self.device)
-                        actual_dot_product_value = torch.tensor(0.0, device=self.device)
-                        l2_norm_flat_train_grad_value = torch.tensor(0.0, device=self.device)
-
-                        if grad_list:
-                            current_flat_grad_train_i = parameters_to_vector(grad_list)
-
-                            # dot_val = torch.dot(flat_grad, flat_grad_val)
-                            # cal cosine similarity
-                            # dot_val = F.cosine_similarity(flat_grad.unsqueeze(0), flat_grad_val.unsqueeze(0), dim=1)
-                            # 1. 计算 L2 Norm (训练梯度)
-                            l2_norm_flat_train_grad_value = torch.linalg.norm(current_flat_grad_train_i)
-
-                            # 2. 计算实际的点积
-                            actual_dot_product_value = torch.dot(current_flat_grad_train_i, flat_grad_val)
-
-                            # 3. 手动计算余弦相似度
-                            denominator = l2_norm_flat_train_grad_value * l2_norm_flat_val_grad
-                            # 添加一个小的 epsilon 防止除以零
-                            if denominator > 1e-9:
-                                cosine_similarity_value = actual_dot_product_value / denominator
-                            # else: 保持为 0.0
-
-                        # 获取样本在完整数据集中的索引
-                        idx_in_full_dataset = sample_id[batch_idx]
-
-                        # 存储原始的 Shapley 分数 (基于缩放后的余弦相似度)
-                        data_shapley_scores[idx_in_full_dataset, epoch, 0] = 1.0 * l2_norm_flat_train_grad_value.item()
-                        data_shapley_scores[idx_in_full_dataset, epoch, 1] = 1.0 * l2_norm_flat_val_grad.item()
-                        data_shapley_scores[idx_in_full_dataset, epoch, 2] = 100.0 * actual_dot_product_value.item()
-                        data_shapley_scores[idx_in_full_dataset, epoch, 3] = 100.0 * cosine_similarity_value.item()
+                    # 计算每个样本的损失，结果应为 (batch_size,)
+                    train_loss_per_sample = criterion_train(outputs_train_proc, current_train_batch_y_proc)
+                    if self.args.pruning_method == 100:
+                        train_loss_per_sample = train_loss_per_sample.mean(dim=(1, 2))
+                    elif self.args.pruning_method == 101:
+                        train_loss_per_sample = train_loss_per_sample.mean(dim=2)
 
 
-                        # # Add to data_shapley_scores
-                        # idx_in_full_dataset = sample_id[batch_idx]  # approximate global index
-                        # # data_shapley_scores[idx_in_full_dataset, epoch] = -1 * dot_val.item()  # mul by lr to scale back things
-                        # data_shapley_scores[idx_in_full_dataset, epoch] = 100.0*dot_val.item()  # mul by lr to scale back things
-                        # # We used lr=0.01 -> so multiply by -lr. Negative sign because the loss change is -( grad_val · grad_train_i ).
+                    # --- 开始计算每个训练样本的梯度并与验证集梯度比较 (Shapley 值相关计算) ---
+                    actual_batch_size = current_train_batch_x.size(0)  # 使用实际的批次大小
+                    for batch_idx in range(actual_batch_size):
+                        if self.args.pruning_method == 100:
+                            model_optim.zero_grad(set_to_none=True)  # 清除之前的梯度 (来自loss_val_only或上一个batch_idx)
+                            train_loss_per_sample[batch_idx].backward(retain_graph=True)
+
+                            current_train_grad_list = []
+                            for name, param in self.model.named_parameters():
+                                if name in grad_val and param.grad is not None:  # 确保参数在grad_val中且有梯度
+                                    current_train_grad_list.append(param.grad.detach().clone())
+                                    # detach().clone() 是安全的，如果后续不希望修改这些梯度或它们参与其他计算图
+
+                            if not current_train_grad_list or not grad_val_list:  # 如果任一梯度列表为空
+                                l2_norm_flat_train_grad_value = 0.0
+                                actual_dot_product_value = 0.0
+                                cosine_similarity_value = 0.0
+                            else:
+                                # 如果 current_train_grad_list 的参数数量/顺序与 grad_val_list 不匹配，
+                                # parameters_to_vector 和 dot product 会出问题。
+                                # 上面的收集方式（基于 name in grad_val）应该能保证对应。
+                                flat_current_train_grad = parameters_to_vector(current_train_grad_list)
+
+                                l2_norm_flat_train_grad_value = torch.linalg.norm(flat_current_train_grad).item()
+                                actual_dot_product_value = torch.dot(flat_current_train_grad, flat_grad_val).item()
+
+                                denominator = l2_norm_flat_train_grad_value * l2_norm_flat_val_grad.item()
+                                if denominator > 1e-9:
+                                    cosine_similarity_value = actual_dot_product_value / denominator
+                                else:
+                                    cosine_similarity_value = 0.0
+
+                            idx_in_full_dataset = sample_id[batch_idx]  # sample_id 来自 train_loader
+
+                            data_shapley_scores[idx_in_full_dataset, epoch, 0] = 1.0 * l2_norm_flat_train_grad_value
+                            data_shapley_scores[
+                                idx_in_full_dataset, epoch, 1] = 1.0 * l2_norm_flat_val_grad.item()  # l2_norm_flat_val_grad已经是标量tensor
+                            data_shapley_scores[idx_in_full_dataset, epoch, 2] = 100.0 * actual_dot_product_value
+                            data_shapley_scores[idx_in_full_dataset, epoch, 3] = 100.0 * cosine_similarity_value
+                        # --- 结束逐样本梯度计算 ---
+
+                        elif self.args.pruning_method == 101:
+                            for time_point_index in range(current_train_batch_x.size(1)):
+                                model_optim.zero_grad(set_to_none=True)  # 清除之前的梯度 (来自loss_val_only或上一个batch_idx)
+                                train_loss_per_sample[batch_idx, time_point_index].backward(retain_graph=True)
+
+                                current_train_grad_list = []
+                                for name, param in self.model.named_parameters():
+                                    if name in grad_val and param.grad is not None:  # 确保参数在grad_val中且有梯度
+                                        current_train_grad_list.append(param.grad.detach().clone())
+                                        # detach().clone() 是安全的，如果后续不希望修改这些梯度或它们参与其他计算图
+
+                                if not current_train_grad_list or not grad_val_list:  # 如果任一梯度列表为空
+                                    l2_norm_flat_train_grad_value = 0.0
+                                    actual_dot_product_value = 0.0
+                                    cosine_similarity_value = 0.0
+                                else:
+                                    # 如果 current_train_grad_list 的参数数量/顺序与 grad_val_list 不匹配，
+                                    # parameters_to_vector 和 dot product 会出问题。
+                                    # 上面的收集方式（基于 name in grad_val）应该能保证对应。
+                                    flat_current_train_grad = parameters_to_vector(current_train_grad_list)
+
+                                    l2_norm_flat_train_grad_value = torch.linalg.norm(flat_current_train_grad).item()
+                                    actual_dot_product_value = torch.dot(flat_current_train_grad, flat_grad_val).item()
+
+                                    denominator = l2_norm_flat_train_grad_value * l2_norm_flat_val_grad.item()
+                                    if denominator > 1e-9:
+                                        cosine_similarity_value = actual_dot_product_value / denominator
+                                    else:
+                                        cosine_similarity_value = 0.0
+
+                                idx_in_full_dataset = sample_id[batch_idx]  # sample_id 来自 train_loader
+
+                                data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 0] = 100.0 * l2_norm_flat_train_grad_value
+                                data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 1] = 100.0 * l2_norm_flat_val_grad.item()  # l2_norm_flat_val_grad已经是标量tensor
+                                data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 2] = 100.0 * actual_dot_product_value
+                                data_shapley_scores[idx_in_full_dataset, epoch, time_point_index, 3] = 100.0 * cosine_similarity_value
 
 
 
+                    # --- 开始实际的优化器更新步骤 ---
+                    mean_train_batch_loss = train_loss_per_sample.mean()  # 计算整个批次的平均损失用于更新
+                    # train_loss_per_sample.detach().mean() 如果不希望影响Shapley计算中的梯度图
 
-
-                    train_batch_loss = train_batch_loss.mean()
-                    train_loss.append(train_batch_loss.item())
-
-
-                    # Ghost dot product for backward pass
-                    model_optim.zero_grad()
-                    # retain graph since we need more of the backprop later on
-                    train_batch_loss.backward()
-
-                    # saved_state = {}  # save the current state
-                    #
-                    # # We store the current gradients (which are for train+val) in saved_state.
-                    # for name, param in self.model.named_parameters():
-                    #     if param.grad is not None:
-                    #         # save param.grad clone for later use
-                    #         saved_state[name] = param.grad.detach().clone()
-                    # # restore the combined grad from saved_state
-                    # for name, param in self.model.named_parameters():
-                    #     if name in saved_state:
-                    #         param.grad = saved_state[name]  # now when it is in param save it to saved_state
-
-                    # Final logging
+                    model_optim.zero_grad(set_to_none=True)  # 清除上一个batch_idx的梯度
+                    mean_train_batch_loss.backward()  # 为优化器计算梯度
                     model_optim.step()
+                    # --- 结束优化器更新步骤 ---
 
-
-
-            #
-            #         # ------------previous---------------------------------------------------------------------------------
-            #         combined_loss = criterion(outputs, batch_y_proc)
-            #
-            #
-            #         # Ghost dot product for backward pass
-            #         model_optim.zero_grad()
-            #         # retain graph since we need more of the backprop later on
-            #         combined_loss.backward(retain_graph=True)
-            #
-            #         saved_state = {}  # save the current state
-            #
-            #         # We store the current gradients (which are for train+val) in saved_state.
-            #         for name, param in self.model.named_parameters():
-            #             if param.grad is not None:
-            #                 # save param.grad clone for later use
-            #                 saved_state[name] = param.grad.detach().clone()
-            #
-            #         # zero the model gradient
-            #         # only use val for back/forward pass
-            #         model_optim.zero_grad()
-            #         outputs_val_only = self.model(val_batch_x, val_batch_x_mark, 0, 0)
-            #         loss_val_only = criterion(outputs_val_only, val_batch_y)
-            #
-            #         # single-sample gradient
-            #         loss_val_only.backward(create_graph=False)
-            #         grad_val = {}
-            #
-            #         for name, param in self.model.named_parameters():
-            #             if param.grad is not None:
-            #                 grad_val[name] = param.grad.detach().clone()
-            #
-            #         grad_val_list = [grad_val[name] for name, param in self.model.named_parameters()
-            #                          if param.grad is not None and name in grad_val]
-            #         flat_grad_val = parameters_to_vector(grad_val_list)
-            #
-            #         # Now let's compute the "dot product" for each sample in the train batch:
-            #         for batch_idx in range(self.args.batch_size):
-            #             # zero grad
-            #             param_zero = {}
-            #             for name, param in self.model.named_parameters():
-            #                 if param.grad is not None:
-            #                     param.grad.zero_()
-            #
-            #             # backward on just the i-th example in the train batch
-            #             single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
-            #             single_loss = criterion(single_logit, batch_y_proc[batch_idx])
-            #             single_loss.backward()
-            #
-            #
-            #             # # read off dot-product with grad_val
-            #             # dot_val = 0.0
-            #             # for name, param in self.model.named_parameters():
-            #             #     if param.grad is not None and name in grad_val:
-            #             #         # flatten both param.grad and grad_val[name]
-            #             #         dot_val += (param.grad.view(-1) * grad_val[name].view(-1)).sum()
-            #
-            #             # 取出所有 param.grad；注意顺序要和 grad_val 一致
-            #             grad_list = [param.grad for name, param in self.model.named_parameters()
-            #                          if param.grad is not None and name in grad_val]
-            #
-            #             if grad_list:
-            #                 flat_grad = parameters_to_vector(grad_list)
-            #                 # dot_val = torch.dot(flat_grad, flat_grad_val)
-            #                 # cal cosine similarity
-            #                 dot_val = F.cosine_similarity(flat_grad.unsqueeze(0), flat_grad_val.unsqueeze(0), dim=1)
-            #
-            #             else:
-            #                 dot_val = torch.tensor(0.0, device=next(self.model.parameters()).device)
-            #
-            #             # Add to data_shapley_scores
-            #             idx_in_full_dataset = sample_id[batch_idx]  # approximate global index
-            #             # data_shapley_scores[idx_in_full_dataset, epoch] = -1 * dot_val.item()  # mul by lr to scale back things
-            #             data_shapley_scores[idx_in_full_dataset, epoch] = 100.0*dot_val.item()  # mul by lr to scale back things
-            #
-            #             # We used lr=0.01 -> so multiply by -lr. Negative sign because the loss change is -( grad_val · grad_train_i ).
-            #
-            #         # restore the combined grad from saved_state
-            #         for name, param in self.model.named_parameters():
-            #             if name in saved_state:
-            #                 param.grad = saved_state[name]  # now when it is in param save it to saved_state
-            #
-            #         # Final logging
-            #         model_optim.step()
-                    # ------------previous---------------------------------------------------------------------------------
-
-
-                    if (i + 1) % 1 == 0:
+                    train_loss.append(mean_train_batch_loss.item())
+                    if (i + 1) % 100 == 0:
                         # print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
                         speed = (time.time() - time_now) / iter_count
                         left_time = speed * ((self.args.train_epochs - epoch) * train_steps - i)
@@ -961,6 +880,91 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                         time_now = time.time()
 
 
+                #
+                #         # ------------previous---------------------------------------------------------------------------------
+                #         combined_loss = criterion(outputs, batch_y_proc)
+                #
+                #
+                #         # Ghost dot product for backward pass
+                #         model_optim.zero_grad()
+                #         # retain graph since we need more of the backprop later on
+                #         combined_loss.backward(retain_graph=True)
+                #
+                #         saved_state = {}  # save the current state
+                #
+                #         # We store the current gradients (which are for train+val) in saved_state.
+                #         for name, param in self.model.named_parameters():
+                #             if param.grad is not None:
+                #                 # save param.grad clone for later use
+                #                 saved_state[name] = param.grad.detach().clone()
+                #
+                #         # zero the model gradient
+                #         # only use val for back/forward pass
+                #         model_optim.zero_grad()
+                #         outputs_val_only = self.model(val_batch_x, val_batch_x_mark, 0, 0)
+                #         loss_val_only = criterion(outputs_val_only, val_batch_y)
+                #
+                #         # single-sample gradient
+                #         loss_val_only.backward(create_graph=False)
+                #         grad_val = {}
+                #
+                #         for name, param in self.model.named_parameters():
+                #             if param.grad is not None:
+                #                 grad_val[name] = param.grad.detach().clone()
+                #
+                #         grad_val_list = [grad_val[name] for name, param in self.model.named_parameters()
+                #                          if param.grad is not None and name in grad_val]
+                #         flat_grad_val = parameters_to_vector(grad_val_list)
+                #
+                #         # Now let's compute the "dot product" for each sample in the train batch:
+                #         for batch_idx in range(self.args.batch_size):
+                #             # zero grad
+                #             param_zero = {}
+                #             for name, param in self.model.named_parameters():
+                #                 if param.grad is not None:
+                #                     param.grad.zero_()
+                #
+                #             # backward on just the i-th example in the train batch
+                #             single_logit = self.model(batch_x[batch_idx].unsqueeze(0), batch_x_mark[batch_idx].unsqueeze(0), 0, 0)
+                #             single_loss = criterion(single_logit, batch_y_proc[batch_idx])
+                #             single_loss.backward()
+                #
+                #
+                #             # # read off dot-product with grad_val
+                #             # dot_val = 0.0
+                #             # for name, param in self.model.named_parameters():
+                #             #     if param.grad is not None and name in grad_val:
+                #             #         # flatten both param.grad and grad_val[name]
+                #             #         dot_val += (param.grad.view(-1) * grad_val[name].view(-1)).sum()
+                #
+                #             # 取出所有 param.grad；注意顺序要和 grad_val 一致
+                #             grad_list = [param.grad for name, param in self.model.named_parameters()
+                #                          if param.grad is not None and name in grad_val]
+                #
+                #             if grad_list:
+                #                 flat_grad = parameters_to_vector(grad_list)
+                #                 # dot_val = torch.dot(flat_grad, flat_grad_val)
+                #                 # cal cosine similarity
+                #                 dot_val = F.cosine_similarity(flat_grad.unsqueeze(0), flat_grad_val.unsqueeze(0), dim=1)
+                #
+                #             else:
+                #                 dot_val = torch.tensor(0.0, device=next(self.model.parameters()).device)
+                #
+                #             # Add to data_shapley_scores
+                #             idx_in_full_dataset = sample_id[batch_idx]  # approximate global index
+                #             # data_shapley_scores[idx_in_full_dataset, epoch] = -1 * dot_val.item()  # mul by lr to scale back things
+                #             data_shapley_scores[idx_in_full_dataset, epoch] = 100.0*dot_val.item()  # mul by lr to scale back things
+                #
+                #             # We used lr=0.01 -> so multiply by -lr. Negative sign because the loss change is -( grad_val · grad_train_i ).
+                #
+                #         # restore the combined grad from saved_state
+                #         for name, param in self.model.named_parameters():
+                #             if name in saved_state:
+                #                 param.grad = saved_state[name]  # now when it is in param save it to saved_state
+                #
+                #         # Final logging
+                #         model_optim.step()
+                        # ------------previous---------------------------------------------------------------------------------
 
 
 
@@ -1095,8 +1099,11 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
 
             print(f'Saving data_shapley_scores_epoch_{epoch}.npy')
-            np.save(os.path.join(self.args.checkpoints, setting, f'data_shapley_l2_dot_cos_scores_epoch_{epoch}.npy'),
+            if self.args.pruning_method in (100, 101):
+                np.save(os.path.join(self.args.checkpoints, setting, f'data_shapley_l2_dot_cos_scores_epoch_{epoch}.npy'),
                     data_shapley_scores)
+
+
 
             # # 1. MSE loss, 2. MAE, 3. pre-selected loss,
 
